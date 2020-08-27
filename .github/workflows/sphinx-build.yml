@@ -1,0 +1,34 @@
+#------------------------------------------------------------
+# This is a RasPiMouse_with_MRPT document build actions
+#
+# Noriaki Ando <Noriaki.Ando@gmail.com>
+# 2020.08.27
+#------------------------------------------------------------
+
+name: sphinx-build
+
+# Build runs when push or pull request to the master branch happened
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+# main jobs
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks-out
+      - uses: actions/checkout@v2
+
+      # Runs a single command using the runners shell
+      - name: Setting up sphinx environment
+        run: apt install sphinx-doc
+
+      # Runs a set of commands using the runners shell
+      - name: build-sphinx
+        run: |
+          cd $GITHUB_WORKSPACE/doce
+          make
