@@ -27,6 +27,7 @@ jobs:
       - name: build-sphinx
         run: |
           sudo docker run --rm -v $GITHUB_WORKSPACE/doc:/docs sphinxdoc/sphinx make html
+          ls -R
       
       - name: deploy
         uses: peaceiris/actions-gh-pages@v3
