@@ -1,0 +1,211 @@
+
+<!DOCTYPE html>
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>概要 &#8212; Navigation  ドキュメント</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/translations.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">Navigation  ドキュメント</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">概要</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="id1">
+<h1>概要<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>このシステムでは、前述のナビゲーション地図作成システムにより生成した
+地図とRasPiMouse2019に搭載したLiDARの情報をもとにMontecarlo localization
+を行い、ナビゲーション地図上で指定した目的地までのナビゲーションを行うシステムです。</p>
+<p>目的地は、NavigationManagerに表示されたナビゲーション地図上のポイントをクリックすることで、
+位置と姿勢を入力することができます。</p>
+<p>このシステムでは、RaspberryPiMouseRTC, RPLidarRTC, Localization_MRPT,
+PathPlanner_MRPT, SimplePathFollower, MapServer, NavigationManagerの7つのRTCを使用します。
+また、各RTC間の接続は、下図のようになります。</p>
+<img alt="_images/path_plan.png" src="_images/path_plan.png" />
+</div>
+<div class="section" id="rtc">
+<h1>RTCの起動<a class="headerlink" href="#rtc" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>RTCの起動は、Webブラウザを利用する場合には、トップページの第5セクション &quot;PathPlan&quot;の部分を使用します。
+ナビゲーションRTCのシステムに対しては、
+下図のように「Start」、「Connect」、「Activate」、「Deactivate」、「Stop」の5つのオペレーションがあります。</p>
+<img alt="_images/web4.png" src="_images/web4.png" />
+<p>ナビゲーション（経路計画）システムに必要なRTCの起動に「Start」を押下してください。
+起動メッセージのページに遷移後、3秒後に自動でトップページに戻ります。</p>
+<p>トップページに移行後、第2セクションの  &quot;RTC List&quot; には、現在起動中のRTCの一覧が
+表示されますが、RTCによって起動時間が異なりますので、全てのRTCが起動完了するまで
+しばらくお待ちください。</p>
+<p>NavigationManagerはGUIを伴いますので、おそらく一番最後に起動すると思います。
+全てのRTCが起動すると、ナビゲーション地図作成システムと同様の
+NavigationManagerの操作パネルが表示されます。</p>
+<p>また、第2セクションの「List」を押下すると下図のようにRTCのリストが表示されます。</p>
+<img alt="_images/path_plan-start.png" src="_images/path_plan-start.png" />
+<p>Webブラウザを使用せずに、ターミナルでRasPiMouse2019にログインする場合には、
+下記のコマンドを入力すると上記と同じ結果が得らえます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ /usr/local/openrtm/bin/path_plan.sh start
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h1>ナビゲーション（経路計画）構築（ポートの接続）<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>必要なRTCの起動後は、ナビゲーション（経路計画）システムを構成するために、
+各RTCのポートの接続を行います。
+最終的なシステム構成は、概要で表示した図の通りになります。
+この構成を外部のRT System Editorを使って手動で接続しても良いのですが、
+第4セクションの「Connect」ボタンを押下することで必要な接続を行うことができます。</p>
+<p>ポートの接続後、第2セクションの「List」を押下すると下図のようなリストが得られます。</p>
+<img alt="_images/path_plan-connect.png" src="_images/path_plan-connect.png" />
+<p>また、rtcmdを用いて graphコマンドを実行すると下図のようなシステム構成図を得ることができます。</p>
+<img alt="_images/path_plan-graph.png" src="_images/path_plan-graph.png" />
+<p>また、Webブラウザを使用せずに、ターミナルでRasPiMouse2019にログインする場合には、
+下記のコマンドを入力すると上記と同じ結果が得らえます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ /usr/local/openrtm/bin/path_plan.sh connect
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h1>ナビゲーション（経路計画）の実行<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>RTCのポート接続が完了後、ナビゲーション（自己位置同定）を行います。
+本システムに係る5つのRTCをアクティベートしてください。</p>
+<div class="section" id="id4">
+<h2>RTCのアクティベート<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>RTCのアクティベートの方法は、
+Webブラウザ、ターミナルでログイン後にコマンド入力、
+クライアントPC上のopenrtp、rtcmd等の外部ツールのいづれかを使用してください。</p>
+<p>ここでは、Webブラウザとターミナルでログイン後のコマンドライン入力の2つの方法を紹介します。</p>
+<p>Webブラウザでは、第5セクションの「Activation」ボタンを押下することで全てのRTCをアクティベートすることができます。
+ターミナルからのコマンドライン入力では、下記のコマンドで同様に全てのRTCをアクティベートすることが可能です。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ /usr/local/openrtm/path_plan.sh activate
+</pre></div>
+</div>
+<p>すべてのRTCを有効化すると、下図のようにNavigationManagerの右側のペインにナビゲーション地図が表示され、
+現在のRasPiMouse2019の位置が原点付近で探索され、表示されます。</p>
+<img alt="_images/localize-start-mgr.png" src="_images/localize-start-mgr.png" />
+<p>現在のデフォルト設定では、/usr/local/openrtm/testMap.yamlを使用しますが、
+他のナビゲーション地図を利用する場合には、
+/usr/local/openrtm/etc/MapServer.confのパラメータを適宜修正してください。</p>
+</div>
+<div class="section" id="id5">
+<h2>移動目標位置の入力<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>次に、NavigationManagerのナビゲーション地図上をマウスでクリックすることで、
+移動目標の入力を行います。</p>
+<p>ナビゲーション地図の任意の位置でクリックすると、下のようなダイアログが表示され、
+目標座標と姿勢を入力することができます。</p>
+<img alt="_images/navi-goal.png" src="_images/navi-goal.png" />
+<p>目標位置は、このダイアログの上部に表示されており、目標姿勢はダイアログ内に表示された
+円の円周をクリックすることで指定することができます。</p>
+<p>目標姿勢を確認後、「OK」ボタンをクリックして移動目標の位置と姿勢を決定してください。
+すると、下図に示すようにナビゲーション地図上に目標位置と姿勢が表示されます。</p>
+<img alt="_images/navi-goal-start.png" src="_images/navi-goal-start.png" />
+</div>
+<div class="section" id="id6">
+<h2>移動経路の生成<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>次に、目標位置までの経路生成を行います。
+経路生成は、NavigationManagerのGUIパネルの上部の「Plan Path」ボタンを押下することで
+生成することができます。</p>
+<p>経路生成の結果（成功したか否か）は、NavigationManagerの右下にあるメッセージパネルに表示されます。</p>
+</div>
+<div class="section" id="raspimouse2019">
+<h2>RasPiMouse2019のナビゲーション<a class="headerlink" href="#raspimouse2019" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>経路計画が正常に終了すれば、「Follow」ボタンを押下することで、
+RasPiMouse2019を移動させることができます。</p>
+<p>生成さえた経路に沿ったナビゲーションは、
+SimplePathFollowerコンポーネントがNavigationManager経由で
+得られた動作経路とLocalization_MRPTによって推定された自己位置を
+もとに動作命令を生成しています。</p>
+<p>ナビゲーション終了後は、下図のようになります。</p>
+<img alt="_images/path_plan-end.png" src="_images/path_plan-end.png" />
+<p>この時Localization_MRPTの自己位置推定によっては正しい動作をすることができません。
+ナビゲーション（自己位置推定）システムの部分にも記載していますが、
+推定精度はオドメトリの精度に大きく依存しており、車輪のスリップが発生すると
+正しいナビゲーションを行うことができません。</p>
+<p>そのため、システム動作のまえに車輪等のハードウェアの管理を適切に行うようにしてください。</p>
+</div>
+</div>
+<div class="section" id="id7">
+<h1>ナビゲーション（経路計画）システムの終了<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>ナビゲーション（経路計画）システムの終了は、
+Webブラウザの第3セクションの「Stop」ボタンを押下するか、
+ターミナルでログイン後に下記のコマンド入力を行うことで行ってください。</p>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">概要</a></li>
+<li><a class="reference internal" href="#rtc">RTCの起動</a></li>
+<li><a class="reference internal" href="#id2">ナビゲーション（経路計画）構築（ポートの接続）</a></li>
+<li><a class="reference internal" href="#id3">ナビゲーション（経路計画）の実行</a><ul>
+<li><a class="reference internal" href="#id4">RTCのアクティベート</a></li>
+<li><a class="reference internal" href="#id5">移動目標位置の入力</a></li>
+<li><a class="reference internal" href="#id6">移動経路の生成</a></li>
+<li><a class="reference internal" href="#raspimouse2019">RasPiMouse2019のナビゲーション</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id7">ナビゲーション（経路計画）システムの終了</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/path_plan.rst.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">クイック検索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="検索" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">Navigation  ドキュメント</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">概要</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Isao Hara.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
+    </div>
+  </body>
+</html>

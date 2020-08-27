@@ -1,0 +1,1265 @@
+
+<!DOCTYPE html>
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Raspberry Pi Mouse ROSConJP2019講習会キット &#8212; Navigation  ドキュメント</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/translations.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="nav-item nav-item-0"><a href="#">Navigation  ドキュメント</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Raspberry Pi Mouse ROSConJP2019講習会キット</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="raspberry-pi-mouse-rosconjp2019">
+<h1><a class="toc-backref" href="#id45">Raspberry Pi Mouse ROSConJP2019講習会キット</a><a class="headerlink" href="#raspberry-pi-mouse-rosconjp2019" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id1">
+<h2><a class="toc-backref" href="#id46">この文書について</a><a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>この文章は、レーザ測域センサ付き小型移動ロボット（株式会社アールティ製
+Raspberry Pi Mouse ROSConJP2019講習会キット：以下RasPiMouse2019）を
+OpenRTM-aistの講習会に用いるための、教材作成に係るものです。</p>
+<p>RasPiMouse2019にOpenRTM-aist-1.2.1及び移動ロボットナビゲーション
+RTコンポーネントをインストールし、ナビゲーション用地図の生成、
+地図上の指定した地点へのナビゲーションを実行するシステムを導入し、
+RTミドルウェア講習会のための教材を作成すること目的としています。</p>
+<div class="contents topic" id="id2">
+<p class="topic-title">目次</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#raspberry-pi-mouse-rosconjp2019" id="id45">Raspberry Pi Mouse ROSConJP2019講習会キット</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id1" id="id46">この文書について</a></p></li>
+<li><p><a class="reference internal" href="#raspberrypimouse" id="id47">RaspberryPiMouseのセットアップ</a></p>
+<ul>
+<li><p><a class="reference internal" href="#raspberrypi-3b-os" id="id48">RaspberryPi 3B+へOSのインストール</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id49">RaspberryPiMouseのドライバのインストール</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#rt" id="id50">対象RTコンポーネントのバイナリパッケージのインストール</a></p>
+<ul>
+<li><p><a class="reference internal" href="#openrtm-aist-1-2-1-release" id="id51">OpenRTM-aist-1.2.1-Releaseのインストール</a></p></li>
+<li><p><a class="reference internal" href="#rplidar-sdk" id="id52">rplidar_sdkのインストール</a></p></li>
+<li><p><a class="reference internal" href="#mrpt" id="id53">MRPTのインストール</a></p></li>
+<li><p><a class="reference internal" href="#rtc" id="id54">ナビゲーションRTC群のパッケージインストール</a></p></li>
+<li><p><a class="reference internal" href="#id7" id="id55">ナビゲーションRTC群の起動・設定ファイル群のインストール</a></p></li>
+<li><p><a class="reference internal" href="#rtcweb" id="id56">ナビゲーションRTC群操作用のWebインターフェースのインストール</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#raspimouse2019" id="id57">RasPiMouse2019のローカルネットワーク設定</a></p>
+<ul>
+<li><p><a class="reference internal" href="#raspberrypimouselan" id="id58">RaspberryPiMouseの無線LANのアクセスポイント化</a></p></li>
+<li><p><a class="reference internal" href="#web" id="id59">Webサーバーのセットアップ</a></p></li>
+<li><p><a class="reference internal" href="#pc" id="id60">クライアント用PCの設定</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id8" id="id61">RTコンポーネントの起動方法</a></p>
+<ul>
+<li><p><a class="reference internal" href="#webrtc" id="id62">Webブラウザを用いたRTCの起動</a></p></li>
+<li><p><a class="reference internal" href="#id11" id="id63">コマンドラインからRTCの起動</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id12" id="id64">RTコンポーネントの自動起動の設定について</a></p></li>
+<li><p><a class="reference internal" href="#id13" id="id65">システム構成の実行方法</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id14" id="id66">ナビゲーション地図生成の実行</a></p></li>
+<li><p><a class="reference internal" href="#id23" id="id67">ナビゲーション（自己位置同定）の実行</a></p></li>
+<li><p><a class="reference internal" href="#id31" id="id68">ナビゲーション（経路計画）の実行</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id41" id="id69">対象RTコンポーネントのコンパイル</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id42" id="id70">ナビゲーションRTC群のソースコードの取得</a></p></li>
+<li><p><a class="reference internal" href="#rtc-c" id="id71">RTC(C++)のビルド</a></p></li>
+<li><p><a class="reference internal" href="#id43" id="id72">RTC(C++)のパッケージ化</a></p></li>
+<li><p><a class="reference internal" href="#rtc-java" id="id73">RTC(Java)のビルド</a></p></li>
+<li><p><a class="reference internal" href="#id44" id="id74">RTC(Java)のパッケージ化</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="raspberrypimouse">
+<h2><a class="toc-backref" href="#id47">RaspberryPiMouseのセットアップ</a><a class="headerlink" href="#raspberrypimouse" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="raspberrypi-3b-os">
+<h3><a class="toc-backref" href="#id48">RaspberryPi 3B+へOSのインストール</a><a class="headerlink" href="#raspberrypi-3b-os" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>RasPiMouse2019のハードウェアの組み立ての前に、搭載するCPUボード(RaspberryPi 3B+)に
+OSのインストールとRasPiMouse2019を動作指せるデバイスドライバのインストールを行ってください。</p>
+<div class="section" id="raspberrypi-3b-raspbian">
+<h4>RaspberryPi 3B+にRaspbianをインストール<a class="headerlink" href="#raspberrypi-3b-raspbian" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>Raspbianのインストールは、<a class="reference external" href="https://www.raspberrypi.org/downloads/raspbian/">オフィシャルサイト</a>
+からNOOBS.zipをダウンロードし、RaspbianをインストールするmicroSDカードに展開します。</p>
+<p>次に、NOOBS.zipを展開したmicroSDカードをRaspberryPi 3B+に挿入し、ディスプレイ、マウス、キーボードを接続して、
+通常起動を行い、画面の指示通りに進めるとRaspbian Busterがインストールされます。</p>
+<p>また、sshdを有効にするために NOOBS.zipを展開した場所に ssh という名前のファイルを作成してください。</p>
+<p>インストール終了後、ネットワークに接続してOSのアップデートを行ってください。</p>
+</div>
+<div class="section" id="cui">
+<h4>起動モードをCUIに変更<a class="headerlink" href="#cui" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>NOOBSを使ってRaspbianをインストールすると、グラフィックモードで起動します。
+RasPiMouse2019では、通常、ディスプレイを接続しませんので、CUIモードで起動するように設定ます。
+起動モードの設定には、raspi-configを用います。</p>
+<p>新規にターミナルを起動し、下記のコマンドを実行してください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo raspi-config
+</pre></div>
+</div>
+<p>上記のコマンドを実行すると piユーザのパスワードを要求しますので、
+Raspbianをインストール時に設定したパスワードを入力してください。
+すると、下のようなメニュー画面が表示されますので、
+3 Boot Options -&gt; B1 Desktop/CLI の順で選択し、CUIモード(B1またはB2)に変更してください。</p>
+<img alt="_images/raspi-config.png" src="_images/raspi-config.png" />
+<p>変更終了後、再起動してCUIモードで起動することを確認してください。</p>
+</div>
+</div>
+<div class="section" id="id4">
+<h3><a class="toc-backref" href="#id49">RaspberryPiMouseのドライバのインストール</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>搭載するCPUボードへのOSのインストール終了後、RasPiMouse2019にCPUボードを取付け
+モータ、センサ制御用のデバイスドライバのインストールを行います。</p>
+<div class="section" id="raspimouse">
+<h4>RasPiMouseのドライバのインストール<a class="headerlink" href="#raspimouse" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>RasPiMouseのドライバは、<a class="reference external" href="https://github.com/rt-net/RaspberryPiMouse">株式会社アールティのオフィシャルGithub</a>
+に公開されています。
+RasPiMouseのドライバは、ソースコードからビルドしインストールします。</p>
+<p>まず、オフィシャルサイトからソースコードをダウンロードします。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir ~/src
+$ cd src
+$ git clone https://github.com/rt-net/RaspberryPiMouse
+</pre></div>
+</div>
+<p>ドライバのソースコードのダウンロードが正常に終了後、'utils'の下に移動し、
+ドライバモジュールのビルドとテストインストールを行います。
+ドライバモジュールのビルドには、kernel ヘッダーファイルが必要になりますので、事前にaptコマンドで
+インストールしてください。</p>
+<p>ドライバモジュールのビルドとテストインストールは、'utils/build_install.bash'で実行することができます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt install raspberrypi-kernel-headers
+$ cd ~/src/RaspberryPiMouse/utils
+$ ./build_install.bash
+</pre></div>
+</div>
+<p>上記のコマンドを実行後、「ピッ」と音がすれば、ドライバモジュールがインストールされています。
+この時、src/drivers　にドライバモジュールとテスト用のバイナリが生成されていますので、
+RasPiMouseの動作確認を行うことができす。</p>
+<p>この状態では、ドライバモジュールは、~/src/RasPiMouse/src/drivers にあります。
+再起動直後にドライバモジュールを読み込むようにするには、ドライバモジュールを
+システム用のディレクトリにコピーする必要があります。</p>
+<p>そこで、下記のコマンドを実行し、/lib/modules/4.19.75-v7+/kernel/dirversへ
+rtmouse.koをコピーしてください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ~/src/RasPiMouse/src/drivers
+$ sudo cp rtmouse.ko /lib/modules/4.19.75-v7+/kernel/drivers
+$ sudo depmod
+</pre></div>
+</div>
+</div>
+<div class="section" id="raspbian">
+<h4>Raspbianの設定変更とスクリプトの導入<a class="headerlink" href="#raspbian" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>次に、再移動直後に RasPiMouseのドライバモジュールが利用できるように設定を行います。
+RasPiMouseのドライバは、SPI機能とI2C機能を有効にする必要がありますので、
+raspi-configコマンドを使って、SPI機能、I2C機能を「入」にしてください。
+SPI機能は、5 Interfacing Options -&gt; P4 SPI で有効化することができ、
+I2C機能は、5 Interfacing Options -&gt; P5 I2C で有効化することがでます。</p>
+<p>さらに、RasPiMouseの起動時にドライバモジュールの読み込むように、設定を行います。</p>
+<p>まず、下記の内容のrtmouse.shを作成し、/etc/init.d/にコピーしてください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#!/bin/bash
+#
+#
+### BEGIN INIT INFO
+# Provides:          rtmouse
+# Required-Start:    $all
+# Required-Stop:
+# Default-Start:     2 3 4 5
+# Default-Stop:
+# Short-Description: RT_Mouse_Driver
+# Description:       RaspPiMouse Driver
+### END INIT INFO
+SCRIPTNAME=rtmouse.sh
+PROC_FILE=/proc/modules
+GREP=/bin/grep
+MODPROBE=/sbin/modprobe
+MODULE_NAME=rtmouse
+DEP_MODULE_NAME=mcp320x
+[ -f $PROC_FILE ] || exit 0
+[ -x $GREP ] || exit 0
+[ -x $MODPROBE ] || exit 0
+RES=`$GREP $MODULE_NAME $PROC_FILE`
+install_rtmouse(){
+  if [ &quot;$RES&quot; = &quot;&quot; ]; then
+    $MODPROBE $MODULE_NAME
+    echo &quot;Module Install $MODULE_NAME&quot;
+  else
+    echo &quot;Module &#39;$MODULE_NAME&#39; is already installed&quot;
+  fi
+}
+remove_rtmouse(){
+  if [ &quot;$RES&quot; = &quot;&quot; ]; then
+    echo &quot;Module &#39;$MODULE_NAME&#39; isn&#39;t installed yet.&quot;
+  else
+    $MODPROBE -r $MODULE_NAME
+    $MODPROBE -r $DEP_MODULE_NAME
+    echo &quot;Module &#39;$MODULE_NAME&#39; is rmoved.&quot;
+  fi
+}
+
+case &quot;$1&quot; in
+  start)
+  install_rtmouse
+  sleep 1
+  /bin/chmod a+rw /dev/rt*
+  ;;
+  stop)
+  remove_rtmouse
+  ;;
+  status)
+    if [ &quot;$RES&quot; = &quot;&quot; ]; then
+      echo &quot;Module &#39;$MODULE_NAME&#39; isn&#39;t installed yet.&quot;
+      exit 0
+    else
+      echo &quot;Module &#39;$MODULE_NAME&#39; is already installed&quot;
+      exit 0
+    fi
+  ;;
+  *)
+    echo &quot;Usage: $SCRIPTNAME {start|stop|status}&quot; &gt;&amp;2
+    exit 3
+esac
+exit 0
+</pre></div>
+</div>
+<p>次に、rtmouse.koを起動時systemdによる自動起動を行うために、下記の内容のファイルを作成し、
+/etc/systemd/system/rtmouse.service という名前で配置してください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">Unit</span><span class="p">]</span>
+<span class="n">Description</span><span class="o">=</span><span class="n">rtmouse</span> <span class="n">driver</span>
+
+<span class="p">[</span><span class="n">Service</span><span class="p">]</span>
+<span class="n">Type</span><span class="o">=</span><span class="n">oneshot</span>
+<span class="n">ExecStart</span><span class="o">=/</span><span class="n">etc</span><span class="o">/</span><span class="n">init</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">rtmouse</span><span class="o">.</span><span class="n">sh</span> <span class="n">start</span>
+<span class="n">ExecReload</span><span class="o">=/</span><span class="n">etc</span><span class="o">/</span><span class="n">init</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">rtmouse</span><span class="o">.</span><span class="n">sh</span> <span class="n">restart</span>
+<span class="n">ExecStopt</span><span class="o">=/</span><span class="n">etc</span><span class="o">/</span><span class="n">init</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">rtmouse</span><span class="o">.</span><span class="n">sh</span> <span class="n">stop</span>
+
+<span class="p">[</span><span class="n">Install</span><span class="p">]</span>
+<span class="n">WantedBy</span><span class="o">=</span><span class="n">multi</span><span class="o">-</span><span class="n">user</span><span class="o">.</span><span class="n">target</span>
+</pre></div>
+</div>
+<p>最後に、上記で作成してsystemdの設定の有効化を行うために下記のコマンドを実行してください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo sysremctl enable rtmouse
+</pre></div>
+</div>
+<p>以上で、systemdによるドライバをインストールできるようになりますので、再起動して動作確認を行ってください。
+起動時に「ピッ」という音が鳴れば、ドライバのインストールが正常に動作しています。</p>
+</div>
+</div>
+</div>
+<div class="section" id="rt">
+<h2><a class="toc-backref" href="#id50">対象RTコンポーネントのバイナリパッケージのインストール</a><a class="headerlink" href="#rt" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="openrtm-aist-1-2-1-release">
+<h3><a class="toc-backref" href="#id51">OpenRTM-aist-1.2.1-Releaseのインストール</a><a class="headerlink" href="#openrtm-aist-1-2-1-release" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><a class="reference external" href="https://openrtm.org/openrtm/ja/node/6912">OpenRTM-aistのオフィシャルサイト</a>
+から「一括インストールスクリプト(pkg_install_raspbian.sh)」をダウンロードし、インストールを行います。</p>
+<p>下記のコマンドを実行してください。
+OpenRTM-aist-1.2.1-Release のC++版、Python版(Python2.7)、Java版及びOpenRTP, Rtshellがインストールされます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wget https://raw.githubusercontent.com/OpenRTM/OpenRTM-aist/master/scripts/pkg_install_raspbian.sh
+$ sudo sh ./pkg_install_raspbian.sh -l all --yes
+</pre></div>
+</div>
+<p>OpenRTM-aist-1.2.1-ReleaseのJava版では、OpenJDK-8が必要となりますが、
+上記の一括インストールスクリプトでは、openjdk-8はインストールされませんので、
+別途インストールが必要です。</p>
+<p>Raspbian Butterでは、openjdk-8のパッケージが提供されていますので、
+下記のコマンドでインストールし、デフォルトの設定をopenjdk-8に変更してください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get install openjdk-8-jdk
+$ sudo update-alternatives --config java
+
+   選択肢    パス                                          優先度  状態
+------------------------------------------------------------
+ * 0            /usr/lib/jvm/java-11-openjdk-amd64/bin/java      1111      自動モード
+   1            /usr/lib/jvm/java-11-openjdk-amd64/bin/java      1111      手動モード
+   2            /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java   1081      手動モード
+
+ 現在の選択 [*] を保持するには &lt;Enter&gt;、さもなければ選択肢の番号のキーを押してください: 2
+ update-alternatives: /usr/bin/java (java) を提供するためにマニュアルモードで /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java を使います
+</pre></div>
+</div>
+<p>以上で、OpenRTM-aist-1.2.1-Releaseのインストールは終了です。</p>
+</div>
+<div class="section" id="rplidar-sdk">
+<h3><a class="toc-backref" href="#id52">rplidar_sdkのインストール</a><a class="headerlink" href="#rplidar-sdk" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>次に、RasPiMouse2019に搭載さているレーザー距離センサを利用するためのライブラリ
+rplidar_sdkをインストールします。</p>
+<p>rplidar_sdkは、<a class="reference external" href="https://github.com/hara-jp/rplidar_sdk">Github</a>
+に公開されていますので、ダウンロードしインストールします。
+下記のコマンドでライブラリをビルドしてください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ~/src
+$ git clone https://github.com/hara-jp/rplidar_sdk
+$ cd ~/src/rplidar_sdk/sdk
+$ make
+</pre></div>
+</div>
+<p>上記のビルドが成功すれば、 sdk/output/Linux/Release　にライブラリ librplidar_sdk.a
+が生成されているはずですので確認してください。</p>
+<p>次に、ビルドしたライブラリおよびヘッダーファイル、
+cmakeファイルを下記のコマンドでインストールしてください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo make install
+</pre></div>
+</div>
+<p>上記のコマンドの実行後には /usr/local/rplidar_sdk　にライブラリ、ヘッダーなどがインストールされています。</p>
+<p>また、RPLidarはUSBシリアルを使用します。
+通常、USBシリアルのデバイスファイルへのアクセスは、管理者権限のみに限られています。
+そのため、USBシリアルデバイスファイル（/dev/ttyUSB0）をユーザ権限でアクセスするために
+udev（/lib/udev/rules.d/50-udev-default.rules）の設定を変更します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">udev</span><span class="o">/</span><span class="n">rules</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="mi">50</span><span class="o">-</span><span class="n">udev</span><span class="o">-</span><span class="n">default</span><span class="o">.</span><span class="n">rules</span>
+</pre></div>
+</div>
+<p>の最下部から2行目に下記の一行を追記してください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KERNEL</span><span class="o">==</span><span class="s2">&quot;ttyUSB[0-9]*&quot;</span><span class="p">,</span> <span class="n">MODE</span><span class="o">=</span><span class="s2">&quot;0666&quot;</span>
+</pre></div>
+</div>
+<p>以上で、udevの設定は終了です。
+再起動後には、&quot;/dev/tyyUSB*&quot; のファイルがユーザ権限で利用可能です。</p>
+</div>
+<div class="section" id="mrpt">
+<h3><a class="toc-backref" href="#id53">MRPTのインストール</a><a class="headerlink" href="#mrpt" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>移動ロボットのナビゲーションを行うRTC群は、MRPT(Mobile Robot Programing Toolkit)を利用し、
+ナビゲーション用の地図の作成や目的地への経路計画などを行っています。
+RasPiMouse2019で使用しているRaspbianには、このMRPTライブラリ(libmrpt)の
+パッケージが用意されていますので、libmrptをインストールします。</p>
+<p>libmrptは、下記のようにaptコマンドでインストールすることができます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get install libmrpt-dev
+</pre></div>
+</div>
+</div>
+<div class="section" id="rtc">
+<h3><a class="toc-backref" href="#id54">ナビゲーションRTC群のパッケージインストール</a><a class="headerlink" href="#rtc" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>次に、RasPiMouse2019のナビゲーションのためのRTC群のパッケージを
+<a class="reference external" href="https://github.com/hara-jp/RasPiMouse2019-OpenRTM/blob/master/pkgs.tgz?raw=true">Github</a>
+からダウンロードしてください。</p>
+<p>このパッケージには、ナビゲーションRTC群(debファイル)、
+ナビゲーション実行のための設定、起動ファイル群(openrtm.tgz)、
+RTC群、ネームサーバの起動、終了等のためのWebコンテンツ及びCGIスクリプト(web.tgz)
+が含まれています。</p>
+<p>パッケージをダウンロード後、下記のコマンドで展開してください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ~/
+$ wget https://github.com/hara-jp/RasPiMouse2019-OpenRTM/blob/master/pkgs.tgz?raw=true -O pkgs.tgz
+$ tar xzvf pkgs.tgz
+</pre></div>
+</div>
+<p>ナビゲーションRTC群は、dpkgコマンドでインストールすることができますので、
+下記のコマンドでインストールしてください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ~/pkgs
+$ sudo dpkg -i *.deb
+</pre></div>
+</div>
+<p>これでナビゲーションRTC群は、/usr/share/openrtm-1.2/components の下にインストールされます。</p>
+</div>
+<div class="section" id="id7">
+<h3><a class="toc-backref" href="#id55">ナビゲーションRTC群の起動・設定ファイル群のインストール</a><a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>次に、RasPiMouse2019でナビゲーションRTC群の設定、起動スクリプトの
+ファイル群を展開します。
+前述しましたが、設定、起動ファイル群は openrtm.tgz になりますので、
+下記のコマンドで /usr/local の下に展開してください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ~/pkgs
+$ sudo tar xzvf openrtm.tgz -C /usr/local
+</pre></div>
+</div>
+</div>
+<div class="section" id="rtcweb">
+<h3><a class="toc-backref" href="#id56">ナビゲーションRTC群操作用のWebインターフェースのインストール</a><a class="headerlink" href="#rtcweb" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>最後に、ナビゲーションRTC群を制御するためのWebコンテンツ及びCGIのファイル群(www.tgz)
+を展開します。</p>
+<p>下記のコマンドでファイル群をインストールしてください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ~/pkgs
+$ sudo tar xzvf www.tgz -C /var
+</pre></div>
+</div>
+<p>以上でナビゲーションRTC群のバイナリ、設定ファイル群のインストールは終了です。</p>
+</div>
+</div>
+<div class="section" id="raspimouse2019">
+<h2><a class="toc-backref" href="#id57">RasPiMouse2019のローカルネットワーク設定</a><a class="headerlink" href="#raspimouse2019" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="raspberrypimouselan">
+<h3><a class="toc-backref" href="#id58">RaspberryPiMouseの無線LANのアクセスポイント化</a><a class="headerlink" href="#raspberrypimouselan" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>RasPiMouse2019を使用する場合、無線LANを外部ネットワークに接続して
+使用しても良いのですが、複数のRasPiMouse2019で講習会を行うことを
+想定すると個々のRasPiMouse2019の無線LANをアクセスポイント化し
+クライアントPCとダイレクト接続して利用する方が便利です。</p>
+<p>そこで、ここではRasPiMouse2019の無線LANをアクセスポイント化について
+説明します。</p>
+<p>RasPiMouse2019の無線LANのアクセスポイント化には、hostapdとdnsmasq というソフトウェアが
+が必要になります。
+下記のようにapt-getコマンドでインストールしてください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get install hostapd dnsmasq
+</pre></div>
+</div>
+<p>次に、hostaptdとdnsmasqの設定を行います。
+hostapdの設定を行うために、/etc/hostapd/hostapd.conf を下のような内容で作成してください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">interface</span><span class="o">=</span><span class="n">wlan0</span>
+<span class="n">driver</span><span class="o">=</span><span class="n">nl80211</span>
+<span class="n">ssid</span><span class="o">=&lt;</span><span class="n">SSID</span><span class="o">&gt;</span>
+<span class="n">hw_mode</span><span class="o">=</span><span class="n">g</span>
+<span class="n">channel</span><span class="o">=</span><span class="mi">4</span>
+<span class="n">wmm_enabled</span><span class="o">=</span><span class="mi">0</span>
+<span class="n">macaddr_acl</span><span class="o">=</span><span class="mi">0</span>
+<span class="n">auth_algs</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">wpa</span><span class="o">=</span><span class="mi">2</span>
+<span class="n">wpa_key_mgmt</span><span class="o">=</span><span class="n">WPA</span><span class="o">-</span><span class="n">PSK</span>
+<span class="n">rsn_pairwise</span><span class="o">=</span><span class="n">CCMP</span>
+<span class="n">wpa_passphrase</span><span class="o">=&lt;</span><span class="n">PASSWORD</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>上記のファイル内容で &lt;SSID&gt; 及び &lt;PASSWORD&gt; は、RasPiMouse2019は
+個々の機体ごとに任意の文字列で設定してください。(ただし、&lt;PASSWORD&gt;は8文字以上にしてください)</p>
+<p>次にRasPiMouse2019の機体のIPアドレスを固定アドレスで運用できるように設定します。
+Raspbian Busterでは、dhcpcdというDHCPクライアントによって各ネットワークデバイス
+IPアドレスを設定しています。
+dhcpcdの設定ファイルは /etc/dhcpcd.conf になりますので、
+このファイルに下記のように固定アドレスの設定を追記してください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="o">....</span>
+  <span class="o">....</span>
+
+<span class="n">interface</span> <span class="n">wlan0</span>
+<span class="n">static</span> <span class="n">ip_address</span><span class="o">=</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">11.1</span><span class="o">/</span><span class="mi">24</span>
+<span class="n">static</span> <span class="n">routers</span><span class="o">=</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">11.1</span>
+<span class="n">static</span> <span class="n">domain_name_servers</span><span class="o">=</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">11.1</span> <span class="mf">8.8</span><span class="o">.</span><span class="mf">8.8</span>
+<span class="n">nohook</span> <span class="n">wpa_supplicant</span>
+</pre></div>
+</div>
+<p>ここでは、RasPiMouse2019の無線LANのIPアドレスを 192.168.11.1/24 という
+プライベートアドレスに設定しています。
+また、Raspbian Busterの dhcpcdでは、無線LANのネットワークデバイスの設定
+には、wpa_supplicantというマネージャーを自動起動してしまいます。
+そのため、無線LANアクセスポイントを利用する場合には、wpa_supplicantの起動を
+抑制するために &quot;nohook wpa_supplicant&quot; を末尾に追加しています。</p>
+<p>ただし、このwpa_suplicantの自動起動機能の抑制は、全ての無線LAN機器に
+対して有効になりますので、他のUSBの無線LANを付けてもwap_supplicantが
+機能せず、無線LANの自動接続しませんので注意してください。</p>
+<p>次に、無線LANアクセスポイントに接続するクライアントPCへIPアドレスを割り当てる
+DHCPサーバー機能を有効にします。</p>
+<p>DHCPサーバーとして使用する dnsmasq の設定ファイルは、/etc/dnsmasq.conf にありますので、
+下記の内容を追記してください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">no</span><span class="o">-</span><span class="n">resolv</span>
+<span class="n">no</span><span class="o">-</span><span class="n">poll</span>
+<span class="n">dhcp</span><span class="o">-</span><span class="nb">range</span><span class="o">=</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">11.10</span><span class="p">,</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">11.20</span><span class="p">,</span><span class="mi">12</span><span class="n">h</span>
+<span class="n">server</span><span class="o">=</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">11.1</span>
+</pre></div>
+</div>
+<p>ここでは、クライアントPCに配布するIDアドレスとして、192.168.11.10～192.168.11.20の
+11個のアドレスに設定しており、そのリース期間は12時間になっています。
+また、dhcpサーバーとして機能するIPアドレスは、192.168.11.1になっています。</p>
+<p>上記の3つのファイルの追加・修正で内蔵無線LANデバイスのアクセスポイント化の設定は
+終了ですが、hostapdがsystemdで起動できない状態のママになっています。</p>
+<p>そこで下記のコマンドを実行して、hostapdを起動時に自動実行するように設定してください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo systemctl unmask hostapd
+$ sudo systemctl enable hostapd
+</pre></div>
+</div>
+<p>最後に、Java版の外部からのアクセスを有効にするために、/etc/hostsを変更します。
+Raspbian Buster の初期設定では、ホスト名である &quot;raspberrypi&quot; のIPアドレスの設定が、</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">127.0</span><span class="o">.</span><span class="mf">1.1</span>    <span class="n">raspberrypi</span>
+</pre></div>
+</div>
+<p>と記載されています。
+このままでは、Java版のRTCに外部のPCからアクセスすることができません。</p>
+<p>したがって、上記の部分を下のように修正してください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">192.168</span><span class="o">.</span><span class="mf">11.1</span>    <span class="n">raspberrypi</span>
+</pre></div>
+</div>
+<p>以上で、RasPiMouse2019の内蔵無線LANデバイスをアクセスポイント化することができましたので、
+再起動を実施てアクセスポイントになっていることを確認してください。</p>
+</div>
+<div class="section" id="web">
+<h3><a class="toc-backref" href="#id59">Webサーバーのセットアップ</a><a class="headerlink" href="#web" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>RasPiMouse2019では、CGIを経由して外部PC上のWebブラウザから
+ネームサーバの起動、RTC群の制御を行うことができます。</p>
+<p>この節では、CGIを利用するためにapache2を導入と設定を行っていきます。
+まずは、下記のコマンドを実行してapache2のインストールとCGIの有効化を実行してください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get install apache2
+$ sudo ln -s /etc/apache2/mods-available/cgi.load /etc/apache2/mods-enabled/cgi.load
+</pre></div>
+</div>
+<p>次に、CGIの設定をファイルの指定のために、
+apache2のデフォルト設定ファイルを下のように修正します。</p>
+<p>/etc/apache2/sites-available/000-default.conf をエディタで開き、
+28行目にある下記の行のコメントをはずします。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Include</span> <span class="n">conf</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">serve</span><span class="o">-</span><span class="n">cgi</span><span class="o">-</span><span class="nb">bin</span><span class="o">.</span><span class="n">conf</span>
+</pre></div>
+</div>
+<p>次に、CGIプログラムとしてPythonプログラムファイルを使うためにMIME設定を変更します。</p>
+<p>/etc/apache2/mods-available/mime.conf のファイルの219行目にある
+下記の行のコメントをはずし '.py'を追加します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AddHandler</span> <span class="n">cgi</span><span class="o">-</span><span class="n">script</span> <span class="o">.</span><span class="n">cgi</span> <span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>最後に、CGIプログラムを配置する場所を /var/www/cgi-bin に変更します。
+/etc/apache2/conf-available/serve-cgi-bin.conf の11行目と12行目に記載されている
+CGIプログラムの設置場所を下記のように変更してください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ScriptAlias</span> <span class="o">/</span><span class="n">cgi</span><span class="o">-</span><span class="nb">bin</span><span class="o">/</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">cgi</span><span class="o">-</span><span class="nb">bin</span>
+<span class="o">&lt;</span><span class="n">Directory</span> <span class="s2">&quot;/var/www/cgi-bin&quot;</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>以上で、apache2のインストールとCGIの設定は終了です。
+apache2を再起動するために下記のコマンドを実行してください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo service apache2 restart
+</pre></div>
+</div>
+</div>
+<div class="section" id="pc">
+<h3><a class="toc-backref" href="#id60">クライアント用PCの設定</a><a class="headerlink" href="#pc" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>RasPiMouse2019のナビゲーションRTC群の中でNavigationManagerは、Javaで実装され
+GUIパネルを含んでいます。</p>
+<p>そのため RasPiMouse2019上でNavigationManagerを動作させるには、
+クライアントPCにX-WindowのXサーバーが必要になります。
+Linux端末等UNIX系OSには、GUIシステムとしてXだサーバが利用されていますが、
+Windows10などのMicrosoftのOSには、Xサーバーを別途インストールする必要があります。</p>
+<p>Windows上で実行可能なXサーバーとして、
+<a class="reference external" href="https://www.microsoft.com/ja-jp/p/x410/9nlp712zmn9q?activetab=pivot:overviewtab">有償のX410</a>
+または <a class="reference external" href="https://sourceforge.net/projects/vcxsrv/">VcXsrv</a>
+がありますので、どちらのアプリケーションをインストールしてください。</p>
+</div>
+</div>
+<div class="section" id="id8">
+<h2><a class="toc-backref" href="#id61">RTコンポーネントの起動方法</a><a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ここでは、RasPiMouse2019を操作するRTC群の起動方法について説明します。
+RasPiMouse2019のナビゲーションのためのRTC群の操作は、
+sshでログインしてターミナル上で起動、接続、有効化等の操作を行うことも
+可能ですが、ナビゲーションRTC群の基本操作は Webブラウザを介して
+実行することができます。
+ここでは、最初にWebブラウザを用いた操作について説明し、次にターミナルから
+ログインして操作する方法について解説します。</p>
+<div class="section" id="webrtc">
+<h3><a class="toc-backref" href="#id62">Webブラウザを用いたRTCの起動</a><a class="headerlink" href="#webrtc" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>RasPiMouse2019の電源と投入し、Raspbian を起動させます。
+クライアントPCの無線LANのマネージャーからhostapd.confで設定したssidが
+見えることを確認し、接続してください。</p>
+<p>WindowsPCの場合には、タスクバーの右側のWifiの設定から接続することができます。
+接続時には、パスワードを入力する必要がありますので、hostapd.confに記載した
+passwordを入力してください。</p>
+<p>正常に接続できれば、192.168.11.XX というIPアドレスが設定されているはずですので、
+ipconfigコマンド等で確認してください。</p>
+<img alt="_images/ipconfig.png" src="_images/ipconfig.png" />
+<p>IPアドレスの確認終了後、RasPiMouse2019（IPアドレス: 192.168.11.1）に
+Webブラウザから接続してください。
+下のようなページが出力されれば正常に動作しています。</p>
+<img alt="_images/web.png" src="_images/web.png" />
+<div class="section" id="id9">
+<h4>ネームサーバーの起動<a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>起動直後ではネームサーバーが動作していないため、2段目の &quot;RTC LIST&quot;の部分は、
+下のようなエラー表示になっています。</p>
+<img alt="_images/web-1.png" src="_images/web-1.png" />
+<p>ナビゲーションRTC群を含むOpenRTM-aistをベースとしたRTコンポーネントでは、
+ネームサーバーが必要なため、「Start NameServer」ボタンをクリックして起動してください。</p>
+<p>ボタンをクリック後は、起動メッセージのページに移行し、3秒後にトップページに移動します。
+移動後、しばらくすれば &quot;RTC LIST&quot;の部分が下記のようになります。</p>
+<img alt="_images/web-2.png" src="_images/web-2.png" />
+<p>このようにエラーメッセージが表示されない場合は、ネームサーバが正常に動作しています。</p>
+</div>
+<div class="section" id="id10">
+<h4>ナビゲーションRTC群の操作<a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>トップページの最初のセクションには、下図のように
+RasPiMouse2019のナビゲーションに用いるRTCの名称および
+操作のCGIプログラムへのリンクの一覧が表示されています。</p>
+<img alt="_images/web1.png" src="_images/web1.png" />
+<p>ここのRTCの起動、終了、アクティベート、デアクティベートをこれらのリンクを押下することで
+操作することができます。</p>
+<p>各RTCの起動後は、第2セクションの &quot;RTC List&quot;　にある「List」ボタンを押下することで、
+ネームサーバーに登録されているRTCの一覧を更新、表示することができます。</p>
+</div>
+</div>
+<div class="section" id="id11">
+<h3><a class="toc-backref" href="#id63">コマンドラインからRTCの起動</a><a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>Webブラウザからでは、現在、個々のRTCの起動、終了、アクティベート、デアクティベートに対応していますが、
+RTCの強制終了やエラー時の対応など細かい操作を行うことができません。</p>
+<p>RTCの強制終了やエラー時の対応など細かい操作が必要な場合には、
+クライアントPCのターミナルからssh経由でログインしてコマンドラインのオペレーションを実行してください。</p>
+<p>WindowsPCからのsshによるアクセスは、
+<a class="reference external" href="https://ja.osdn.net/projects/ttssh2/">TaraTerm</a> や
+<a class="reference external" href="https://www.chiark.greenend.org.uk/~sgtatham/putty/">PuTTY</a>
+, <a class="reference external" href="https://mintty.github.io/">mintty</a> 等のターミナルエミュレータを利用してください。
+各ソフトウェアの詳細は、それぞれのプロジェクトページを参照してください。</p>
+<p>RasPiMouse2019へsshでログイン後は、rtshell等を使用してエラーの回復や
+各RTCのプロセスの強制終了等を行うことができます。</p>
+<p>また、ナビゲーションRTCの設定ファイルや起動スクリプトは、/usr/local/openrtm の下に配置されています。
+RTCの個別起動は、/usr/local/openrtm/bin/&lt;RTC名&gt;.sh というファイル名で作成されており、
+各RTCの設定ファイルは、/usr/local/openrtm/etc/&lt;RTC名&gt;.conf として配置されています。</p>
+<p>後述するマップ作成(Mapper)、位置検出(localize)、経路生成(path_plan)のシステム制御用
+スクリプトは、/usr/lcoal/openrtm の下に、mapper.sh, localize.sh, path_plan.sh　として
+配置されています。</p>
+<p>これらのシステム制御用のスクリプトは、第2引数として start, stop, connect, disconnect, activate, deactivate
+のコマンドを指定することで制御すると都ができます。</p>
+<p>例えば、マップ作成のシステムを開始するには、事前にクライアントPCでXサーバーを起動後、</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ export DISPLAY=&lt;クライアントPCのIPアドレス&gt;:0.0
+$ /usr/local/openrtm/mapper.sh start
+$ /usr/local/openrtm/mapper.sh connect
+$ /usr/local/openrtm/mapper.sh activate
+</pre></div>
+</div>
+<p>によって各RTCの起動、ポートの接続、アクティベートを行うことができます。
+なお、最初のコマンドは、NavigationManagerのGUIパネルを表示させるための設定です。</p>
+<p>また、終了時には下記のコマンドでRTCを終了させることができます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ /usr/local/openrtm/mapper.sh deactivate
+$ /usr/local/openrtm/mapper.sh stop
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id12">
+<h2><a class="toc-backref" href="#id64">RTコンポーネントの自動起動の設定について</a><a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>RTコンポーネントの自動起動に関してなのですが、以前のRaspbianでは
+/etc/rc.local の中に起動起動スクリプトを記載することで実行することができました。</p>
+<p>しかしながら現在のRaspbian Busterでは、
+OS起動時にの自動実行プロセスは systemd により制御されており、
+/etc/systemd/system の下にプロセス起動の設定ファイルを配置し、
+systemctl コマンドで有効化を行うことで実現することができます。</p>
+<p>しかしながら、RTCではネームサーバーが必要であるが、
+omniorb4-nameserverのサービスが正常に動作しないという事例が報告されています。
+これは、omniNamesの起動時に、/var/lib/omniorb/omninames-raspberrypi.[log, dat]
+などのファイルが残っていると起動に失敗する場合があるからです。
+したがって、omniorb-nameserverの起動前に上記のファイルを削除するサービスをインストールすれば
+解決可能です。</p>
+<p>例えば、まず、下記の内容の /usr/local/openrtm/remove-nameserver-logs.sh というスクリプトを作成します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#/bin/bash</span>
+<span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">rm</span> <span class="o">-</span><span class="n">f</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">omniorb</span><span class="o">/</span><span class="n">omninames</span><span class="o">-</span><span class="n">raspberrypi</span><span class="o">.*</span>
+</pre></div>
+</div>
+<p>次に、下記の内容のサービス設定ファイル
+/etc/systemd/system/clear_omniname_logs.service</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">Unit</span><span class="p">]</span>
+<span class="n">Description</span><span class="o">=</span><span class="n">Remove</span> <span class="n">log</span> <span class="ow">and</span> <span class="n">dat</span> <span class="n">of</span> <span class="n">omniorb4</span><span class="o">-</span><span class="n">nameserver</span>
+<span class="n">Before</span><span class="o">=</span><span class="n">omniorb4</span><span class="o">-</span><span class="n">nameserver</span><span class="o">.</span><span class="n">service</span>
+
+<span class="p">[</span><span class="n">Service</span><span class="p">]</span>
+<span class="n">Type</span><span class="o">=</span><span class="n">oneshot</span>
+<span class="n">ExecStart</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">sudo</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">openrtm</span><span class="o">/</span><span class="n">remove</span><span class="o">-</span><span class="n">nameserver</span><span class="o">-</span><span class="n">logs</span><span class="o">.</span><span class="n">sh</span>
+
+<span class="p">[</span><span class="n">Install</span><span class="p">]</span>
+<span class="n">WantedBy</span><span class="o">=</span><span class="n">multi</span><span class="o">-</span><span class="n">user</span><span class="o">.</span><span class="n">target</span>
+</pre></div>
+</div>
+<p>を作成し、下記のコマンドでインストールしてください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo systemctl enable clear_omniname_logs.service
+</pre></div>
+</div>
+<p>この設定で、omniNamesの自動起動は可能ですが、外部のクライアントPC上のopenrtp等のツールから
+アクセスできない場合があります。
+そのため、omniNamesの起動スクリプトである /etc/init.d/omniorb4-nameserver の33行目の部分に
+&quot;-ORBendPointPublish giop:tcp:192.168.11.1:&quot;　を下記のように追記することで、外部からのアクセスが可能になります。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">startcmd</span><span class="o">=</span><span class="s2">&quot;start-stop-daemon --start --quiet --background --pidfile $PIDFILE --make-pidfile --exec $DAEMON -- -errlog $LOGFILE -ORBendPointPublish giop:tcp:192.168.11.1:&quot;</span>
+</pre></div>
+</div>
+<p>ナビゲーションRTC群の自動起動については、
+起動スクリプトにバックグラウンド処理で別のコマンドの呼出し等を行うと正常に動作しない場合がある
+ことが報告されているため、起動時にRTC群を自動起動することは推奨することができません。</p>
+<p>そのため、前述のWebブラウザによるRTC及びRTCで構成されるシステムスクリプトを
+CGI経由で呼出し、実行させるようにしてください。</p>
+</div>
+<div class="section" id="id13">
+<h2><a class="toc-backref" href="#id65">システム構成の実行方法</a><a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>RasPiMouse2019をナビゲーションRTC群では、下記の3つのシステムを構成することができます。</p>
+<ul class="simple">
+<li><p>Slamによるナビゲーション地図作成システム</p></li>
+<li><p>Montecalo localiationによる自己位置同定システム</p></li>
+<li><p>Path Plannerを用いた経路生成とナビゲーションシステム</p></li>
+</ul>
+<p>ここでは、それぞれのシステムの起動、実行、終了の手順について解説を行っていきます。</p>
+<div class="section" id="id14">
+<h3><a class="toc-backref" href="#id66">ナビゲーション地図生成の実行</a><a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id15">
+<h4>概要<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>このシステムでは、RasPiMouse2019に搭載しているLiDARからの情報をベースに
+slamによるナビゲーション地図の作成を行うシステムについて述べます。</p>
+<p>このシステムでは、RaspberryPiMouseRTC, RPLidarRTC, Mapper_MRPT, NavigationManagerの4つのRTCを使用します。
+また各RTC間の接続は、下図のようになります。</p>
+<img alt="_images/mapper.png" src="_images/mapper.png" />
+</div>
+<div class="section" id="id16">
+<h4>RTCの起動<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>RTCの起動は、Webブラウザを利用する場合には、トップページの第3セクション &quot;Mapper&quot;の部分を使用します。
+ナビゲーションRTCのシステムに対しては、
+下図のように「Start」、「Connect」、「Activate」、「Deactivate」、「Stop」の5つのオペレーションがあります。</p>
+<img alt="_images/web2.png" src="_images/web2.png" />
+<p>ナビゲーション地図作成システムに必要なRTCの起動に「Start」を押下してください。
+起動メッセージのページに遷移後、3秒後に自動でトップページに戻ります。</p>
+<p>トップページに移行後、第2セクションの  &quot;RTC List&quot; には、現在起動中のRTCの一覧が
+表示されますが、RTCによって起動時間が異なりますので、全てのRTCが起動完了するまで
+しばらくお待ちください。</p>
+<p>NavigationManagerはGUIを伴いますので、おそらく一番最後に起動すると思います。
+全てのRTCが起動すると、下図のようなNavigationManagerの操作パネルが表示されます。</p>
+<img alt="_images/NavigationManager.png" src="_images/NavigationManager.png" />
+<p>また、第2セクションの「List」を押下すると下図のようにRTCのリストが表示されます。</p>
+<img alt="_images/mapper-1.png" src="_images/mapper-1.png" />
+<p>Webブラウザを使用せずに、ターミナルでRasPiMouse2019にログインする場合には、
+下記のコマンドを入力すると上記と同じ結果が得らえます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ /usr/local/openrtm/bin/mapper.sh start
+</pre></div>
+</div>
+</div>
+<div class="section" id="id17">
+<h4>ナビゲーション地図生成構築（ポートの接続）<a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>必要なRTCの起動後は、ナビゲーション地図作成システムを構成するために、
+各RTCのポートの接続を行います。
+最終的なシステム構成は、概要で表示した図の通りになります。
+この構成を外部のRT System Editorを使って手動で接続しても良いのですが、
+第3セクションの「Connect」ボタンを押下することで必要な接続を行うことができます。</p>
+<p>ポートの接続後、第2セクションの「List」を押下すると下図のようなリストが得られます。</p>
+<img alt="_images/mapper-2.png" src="_images/mapper-2.png" />
+<p>また、<a class="reference external" href="https://github.com/haraisao/rtcmd">rtcmd</a> を用いて graphコマンドを実行すると下図のようなシステム構成図を得ることができます。</p>
+<img alt="_images/mapper-graph.png" src="_images/mapper-graph.png" />
+<p>また、Webブラウザを使用せずに、ターミナルでRasPiMouse2019にログインする場合には、
+下記のコマンドを入力すると上記と同じ結果が得らえます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ /usr/local/openrtm/bin/mapper.sh connect
+</pre></div>
+</div>
+</div>
+<div class="section" id="id18">
+<h4>ナビゲーション地図生成の実行<a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>RTCのポート接続が完了後、ナビゲーション地図作成を行います。
+地図生成に係る4つのRTCをアクティベートしてください。</p>
+<div class="section" id="id19">
+<h5>RTCのアクティベート<a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">¶</a></h5>
+<p>アクティベートの方法は、
+Webブラウザ、ターミナルでログイン後にコマンド入力、
+クライアントPC上のopenrtp、rtcmd等の外部ツールのいづれかを使用してください。</p>
+<p>ここでは、Webブラウザとターミナルでログイン後のコマンドライン入力の2つの方法を紹介します。</p>
+<p>Webブラウザでは、第3セクションの「Activation」ボタンを押下することで全てのRTCをアクティベートすることができます。
+ターミナルからのコマンドライン入力では、下記のコマンドで同様に全てのRTCをアクティベートすることが可能です。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ /usr/local/openrtm/mapper.sh activate
+</pre></div>
+</div>
+<p>すべてのRTCを有効化すると、下図のようにNavigationManagerの右側のペインに座標軸のみが表示された
+空の地図が表示されます。</p>
+<img alt="_images/mapper-start.png" src="_images/mapper-start.png" />
+<p>現在の設定では、10m x 10mの地図を作成することができます。
+より広い地図を作成する必要がある場合には、/usr/local/openrtm/etc/Mapper_MRPT.confのパラメータを
+変更してください。</p>
+</div>
+<div class="section" id="id20">
+<h5>ナビゲーション地図の作成<a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h5>
+<p>システムのRTCのアクティベーション後は、
+ナビゲーション地図を作成するために NavigationManagerの上部にある
+「Start Mapping」ボタンを押下してください。
+これによって、下図のようにRasPiMouse2019のLidarの情報を元にナビゲーション地図作成が開始されます。</p>
+<img alt="_images/mapper-start2.png" src="_images/mapper-start2.png" />
+<p>上図のようにナビゲーション地図作成が開始されれば、NavigationManagerのJoystickパネルを用いて
+手動でRasPiMouse2019を移動させてください。</p>
+</div>
+<div class="section" id="joystick">
+<h5>Joystickパネルによる操作<a class="headerlink" href="#joystick" title="このヘッドラインへのパーマリンク">¶</a></h5>
+<p>NavigationManagerのJoystickは、メニューの [Control] -&gt; [Start Control]を選択することで、
+下図のような接続ダイアログが表示されますので、「OK」ボタンで選択してください。</p>
+<img alt="_images/start-control.png" src="_images/start-control.png" />
+<p>正常にポート接続が完了すれば下図のような仮想Joystickが表示されますので、
+RasPiMouse2019を移動させ、ナビゲーション地図を完成させてください。</p>
+<img alt="_images/Joystick.png" src="_images/Joystick.png" />
+<p>しばらくRasPiMouse2019を移動させると下図のようなナビゲーション地図が得られます。</p>
+<img alt="_images/mapper-end.png" src="_images/mapper-end.png" />
+</div>
+<div class="section" id="id21">
+<h5>ナビゲーション地図の保存<a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h5>
+<p>最後に作成したナビゲーション地図を保存します。
+NavigationManagerの「Save Mapping」ボタンを押下してください。
+ファイル名選択ダイアログが表示されますので、/usr/local/openrtm/testMap.png　と
+いう名前で保存してください。</p>
+<p>ここで保存したファイル名(testMap)は、
+自己位置同定システムや経路生成システムで使用するMapServerのデフォルト値になっています。</p>
+</div>
+</div>
+<div class="section" id="id22">
+<h4>ナビゲーション地図生成システムの終了<a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>ナビゲーション地図の保存が終了後は、RTCの終了を行います。
+RTCの終了はWebブラウザの第3セクションの「Stop」ボタンを押下するか、
+ターミナルでログイン後に下記のコマンド入力を行うことで行ってください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ /usr/local/openrtm/bin/mapper.sh stop
+</pre></div>
+</div>
+<p>上記の例では、「Disconnct」と「Deactivate」を使用しませんでしたが、
+起動中のRTCをそのまま使い自己位置同定システム等を実行する場合には
+適宜利用することができます。</p>
+</div>
+</div>
+<div class="section" id="id23">
+<h3><a class="toc-backref" href="#id67">ナビゲーション（自己位置同定）の実行</a><a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id24">
+<h4>概要<a class="headerlink" href="#id24" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>このシステムでは、前述のナビゲーション地図作成システムにより生成した
+地図とRasPiMouse2019に搭載したLiDARの情報をもとにMontecarlo localization
+を行うシステムです。</p>
+<p>NavigationManagerに搭載されたJoystickでRasPiMouse2019を操作しながら、
+自己位置同定を行います。</p>
+<p>このシステムでは、RaspberryPiMouseRTC, RPLidarRTC, Localization_MRPT, MapServer, NavigationManagerの5つのRTCを使用します。
+また、各RTC間の接続は、下図のようになります。</p>
+<img alt="_images/localize.png" src="_images/localize.png" />
+</div>
+<div class="section" id="id25">
+<h4>RTCの起動<a class="headerlink" href="#id25" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>RTCの起動は、Webブラウザを利用する場合には、トップページの第4セクション &quot;Localiation&quot;の部分を使用します。
+ナビゲーションRTCのシステムに対しては、
+下図のように「Start」、「Connect」、「Activate」、「Deactivate」、「Stop」の5つのオペレーションがあります。</p>
+<img alt="_images/web3.png" src="_images/web3.png" />
+<p>ナビゲーション(自己位置同定)システムに必要なRTCの起動に「Start」を押下してください。
+起動メッセージのページに遷移後、3秒後に自動でトップページに戻ります。</p>
+<p>トップページに移行後、第2セクションの  &quot;RTC List&quot; には、現在起動中のRTCの一覧が
+表示されますが、RTCによって起動時間が異なりますので、全てのRTCが起動完了するまで
+しばらくお待ちください。</p>
+<p>NavigationManagerはGUIを伴いますので、おそらく一番最後に起動すると思います。
+全てのRTCが起動すると、ナビゲーション地図作成システムと同様の
+NavigationManagerの操作パネルが表示されます。</p>
+<p>また、第2セクションの「List」を押下すると下図のようにRTCのリストが表示されます。</p>
+<img alt="_images/localize-start.png" src="_images/localize-start.png" />
+<p>Webブラウザを使用せずに、ターミナルでRasPiMouse2019にログインする場合には、
+下記のコマンドを入力すると上記と同じ結果が得らえます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ /usr/local/openrtm/bin/location.sh start
+</pre></div>
+</div>
+</div>
+<div class="section" id="id26">
+<h4>ナビゲーション（自己位置同定）構築（ポートの接続）<a class="headerlink" href="#id26" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>必要なRTCの起動後は、ナビゲーション（自己位置同定）システムを構成するために、
+各RTCのポートの接続を行います。
+最終的なシステム構成は、概要で表示した図の通りになります。
+この構成を外部のRT System Editorを使って手動で接続しても良いのですが、
+第4セクションの「Connect」ボタンを押下することで必要な接続を行うことができます。</p>
+<p>ポートの接続後、第2セクションの「List」を押下すると下図のようなリストが得られます。</p>
+<img alt="_images/localize-connect.png" src="_images/localize-connect.png" />
+<p>また、rtcmdを用いて graphコマンドを実行すると下図のようなシステム構成図を得ることができます。</p>
+<img alt="_images/localize-graph.png" src="_images/localize-graph.png" />
+<p>また、Webブラウザを使用せずに、ターミナルでRasPiMouse2019にログインする場合には、
+下記のコマンドを入力すると上記と同じ結果が得らえます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ /usr/local/openrtm/bin/location.sh connect
+</pre></div>
+</div>
+</div>
+<div class="section" id="id27">
+<h4>ナビゲーション（自己位置同定）の実行<a class="headerlink" href="#id27" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>RTCのポート接続が完了後、ナビゲーション（自己位置同定）を行います。
+本システムに係る5つのRTCをアクティベートしてください。</p>
+<div class="section" id="id28">
+<h5>RTCのアクティベート<a class="headerlink" href="#id28" title="このヘッドラインへのパーマリンク">¶</a></h5>
+<p>RTCのアクティベートの方法は、
+Webブラウザ、ターミナルでログイン後にコマンド入力、
+クライアントPC上のopenrtp、rtcmd等の外部ツールのいづれかを使用してください。</p>
+<p>ここでは、Webブラウザとターミナルでログイン後のコマンドライン入力の2つの方法を紹介します。</p>
+<p>Webブラウザでは、第4セクションの「Activation」ボタンを押下することで全てのRTCをアクティベートすることができます。
+ターミナルからのコマンドライン入力では、下記のコマンドで同様に全てのRTCをアクティベートすることが可能です。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ /usr/local/openrtm/localize.sh activate
+</pre></div>
+</div>
+<p>すべてのRTCを有効化すると、下図のようにNavigationManagerの右側のペインにナビゲーション地図が表示され、
+現在のRasPiMouse2019の位置が原点付近で探索され、表示されます。</p>
+<img alt="_images/localize-start-mgr.png" src="_images/localize-start-mgr.png" />
+<p>現在のデフォルト設定では、/usr/local/openrtm/testMap.yamlを使用しますが、
+他のナビゲーション地図を利用する場合には、
+/usr/local/openrtm/etc/MapServer.confのパラメータを適宜修正してください。</p>
+</div>
+<div class="section" id="id29">
+<h5>Joystickパネルによる操作<a class="headerlink" href="#id29" title="このヘッドラインへのパーマリンク">¶</a></h5>
+<p>ナビゲーション（自己位置同定）システムでは、NavigationManagerのJoystickパネルを用いて
+手動でRasPiMouse2019を移動させることを想定しています。</p>
+<p>NavigationManagerのJoystickは、メニューの [Control] -&gt; [Start Control]を選択することで、
+下図のような接続ダイアログが表示されますので、「OK」ボタンで選択してください。</p>
+<img alt="_images/start-control.png" src="_images/start-control.png" />
+<p>正常にポート接続が完了すれば下図のような仮想Joystickが表示されますので、
+RasPiMouse2019を移動させ、ナビゲーション地図上でRasPiMouse2019の自己位置が
+推定されることを確認してください。</p>
+<img alt="_images/Joystick.png" src="_images/Joystick.png" />
+<p>この自己位置推定では、オドメトリとLiDARの情報を使ってMontecarlo Localization
+を行っています。
+そのため、車輪のスリップによりオドメトリ値が大きく異なる場合には、
+正しく自己位置を推定することはできません。</p>
+<p>車輪のスリップを極力抑えるように車輪のメンテナンスをしてください。</p>
+</div>
+</div>
+<div class="section" id="id30">
+<h4>ナビゲーション（自己位置同定）システムの終了<a class="headerlink" href="#id30" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>ナビゲーション（自己位置同定）システムの終了は、
+Webブラウザの第3セクションの「Stop」ボタンを押下するか、
+ターミナルでログイン後に下記のコマンド入力を行うことで行ってください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ /usr/local/openrtm/bin/location.sh stop
+</pre></div>
+</div>
+<p>上記の例では、「Disconnct」と「Deactivate」を使用しませんでしたが、
+起動中のRTCをそのまま使い経路計画システム等を実行する場合には適宜利用する
+ことができます。</p>
+</div>
+</div>
+<div class="section" id="id31">
+<h3><a class="toc-backref" href="#id68">ナビゲーション（経路計画）の実行</a><a class="headerlink" href="#id31" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id32">
+<h4>概要<a class="headerlink" href="#id32" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>このシステムでは、前述のナビゲーション地図作成システムにより生成した
+地図とRasPiMouse2019に搭載したLiDARの情報をもとにMontecarlo localization
+を行い、ナビゲーション地図上で指定した目的地までのナビゲーションを行うシステムです。</p>
+<p>目的地は、NavigationManagerに表示されたナビゲーション地図上のポイントをクリックすることで、
+位置と姿勢を入力することができます。</p>
+<p>このシステムでは、RaspberryPiMouseRTC, RPLidarRTC, Localization_MRPT,
+PathPlanner_MRPT, SimplePathFollower, MapServer, NavigationManagerの7つのRTCを使用します。
+また、各RTC間の接続は、下図のようになります。</p>
+<img alt="_images/path_plan.png" src="_images/path_plan.png" />
+</div>
+<div class="section" id="id33">
+<h4>RTCの起動<a class="headerlink" href="#id33" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>RTCの起動は、Webブラウザを利用する場合には、トップページの第5セクション &quot;PathPlan&quot;の部分を使用します。
+ナビゲーションRTCのシステムに対しては、
+下図のように「Start」、「Connect」、「Activate」、「Deactivate」、「Stop」の5つのオペレーションがあります。</p>
+<img alt="_images/web4.png" src="_images/web4.png" />
+<p>ナビゲーション（経路計画）システムに必要なRTCの起動に「Start」を押下してください。
+起動メッセージのページに遷移後、3秒後に自動でトップページに戻ります。</p>
+<p>トップページに移行後、第2セクションの  &quot;RTC List&quot; には、現在起動中のRTCの一覧が
+表示されますが、RTCによって起動時間が異なりますので、全てのRTCが起動完了するまで
+しばらくお待ちください。</p>
+<p>NavigationManagerはGUIを伴いますので、おそらく一番最後に起動すると思います。
+全てのRTCが起動すると、ナビゲーション地図作成システムと同様の
+NavigationManagerの操作パネルが表示されます。</p>
+<p>また、第2セクションの「List」を押下すると下図のようにRTCのリストが表示されます。</p>
+<img alt="_images/path_plan-start.png" src="_images/path_plan-start.png" />
+<p>Webブラウザを使用せずに、ターミナルでRasPiMouse2019にログインする場合には、
+下記のコマンドを入力すると上記と同じ結果が得らえます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ /usr/local/openrtm/bin/path_plan.sh start
+</pre></div>
+</div>
+</div>
+<div class="section" id="id34">
+<h4>ナビゲーション（経路計画）構築（ポートの接続）<a class="headerlink" href="#id34" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>必要なRTCの起動後は、ナビゲーション（経路計画）システムを構成するために、
+各RTCのポートの接続を行います。
+最終的なシステム構成は、概要で表示した図の通りになります。
+この構成を外部のRT System Editorを使って手動で接続しても良いのですが、
+第4セクションの「Connect」ボタンを押下することで必要な接続を行うことができます。</p>
+<p>ポートの接続後、第2セクションの「List」を押下すると下図のようなリストが得られます。</p>
+<img alt="_images/path_plan-connect.png" src="_images/path_plan-connect.png" />
+<p>また、rtcmdを用いて graphコマンドを実行すると下図のようなシステム構成図を得ることができます。</p>
+<img alt="_images/path_plan-graph.png" src="_images/path_plan-graph.png" />
+<p>また、Webブラウザを使用せずに、ターミナルでRasPiMouse2019にログインする場合には、
+下記のコマンドを入力すると上記と同じ結果が得らえます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ /usr/local/openrtm/bin/path_plan.sh connect
+</pre></div>
+</div>
+</div>
+<div class="section" id="id35">
+<h4>ナビゲーション（経路計画）の実行<a class="headerlink" href="#id35" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>RTCのポート接続が完了後、ナビゲーション（自己位置同定）を行います。
+本システムに係る5つのRTCをアクティベートしてください。</p>
+<div class="section" id="id36">
+<h5>RTCのアクティベート<a class="headerlink" href="#id36" title="このヘッドラインへのパーマリンク">¶</a></h5>
+<p>RTCのアクティベートの方法は、
+Webブラウザ、ターミナルでログイン後にコマンド入力、
+クライアントPC上のopenrtp、rtcmd等の外部ツールのいづれかを使用してください。</p>
+<p>ここでは、Webブラウザとターミナルでログイン後のコマンドライン入力の2つの方法を紹介します。</p>
+<p>Webブラウザでは、第5セクションの「Activation」ボタンを押下することで全てのRTCをアクティベートすることができます。
+ターミナルからのコマンドライン入力では、下記のコマンドで同様に全てのRTCをアクティベートすることが可能です。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ /usr/local/openrtm/path_plan.sh activate
+</pre></div>
+</div>
+<p>すべてのRTCを有効化すると、下図のようにNavigationManagerの右側のペインにナビゲーション地図が表示され、
+現在のRasPiMouse2019の位置が原点付近で探索され、表示されます。</p>
+<img alt="_images/localize-start-mgr.png" src="_images/localize-start-mgr.png" />
+<p>現在のデフォルト設定では、/usr/local/openrtm/testMap.yamlを使用しますが、
+他のナビゲーション地図を利用する場合には、
+/usr/local/openrtm/etc/MapServer.confのパラメータを適宜修正してください。</p>
+</div>
+<div class="section" id="id37">
+<h5>移動目標位置の入力<a class="headerlink" href="#id37" title="このヘッドラインへのパーマリンク">¶</a></h5>
+<p>次に、NavigationManagerのナビゲーション地図上をマウスでクリックすることで、
+移動目標の入力を行います。</p>
+<p>ナビゲーション地図の任意の位置でクリックすると、下のようなダイアログが表示され、
+目標座標と姿勢を入力することができます。</p>
+<img alt="_images/navi-goal.png" src="_images/navi-goal.png" />
+<p>目標位置は、このダイアログの上部に表示されており、目標姿勢はダイアログ内に表示された
+円の円周をクリックすることで指定することができます。</p>
+<p>目標姿勢を確認後、「OK」ボタンをクリックして移動目標の位置と姿勢を決定してください。
+すると、下図に示すようにナビゲーション地図上に目標位置と姿勢が表示されます。</p>
+<img alt="_images/navi-goal-start.png" src="_images/navi-goal-start.png" />
+</div>
+<div class="section" id="id38">
+<h5>移動経路の生成<a class="headerlink" href="#id38" title="このヘッドラインへのパーマリンク">¶</a></h5>
+<p>次に、目標位置までの経路生成を行います。
+経路生成は、NavigationManagerのGUIパネルの上部の「Plan Path」ボタンを押下することで
+生成することができます。</p>
+<p>経路生成の結果（成功したか否か）は、NavigationManagerの右下にあるメッセージパネルに表示されます。</p>
+</div>
+<div class="section" id="id39">
+<h5>RasPiMouse2019のナビゲーション<a class="headerlink" href="#id39" title="このヘッドラインへのパーマリンク">¶</a></h5>
+<p>経路計画が正常に終了すれば、「Follow」ボタンを押下することで、
+RasPiMouse2019を移動させることができます。</p>
+<p>生成さえた経路に沿ったナビゲーションは、
+SimplePathFollowerコンポーネントがNavigationManager経由で
+得られた動作経路とLocalization_MRPTによって推定された自己位置を
+もとに動作命令を生成しています。</p>
+<p>ナビゲーション終了後は、下図のようになります。</p>
+<img alt="_images/path_plan-end.png" src="_images/path_plan-end.png" />
+<p>この時Localization_MRPTの自己位置推定によっては正しい動作をすることができません。
+ナビゲーション（自己位置推定）システムの部分にも記載していますが、
+推定精度はオドメトリの精度に大きく依存しており、車輪のスリップが発生すると
+正しいナビゲーションを行うことができません。</p>
+<p>そのため、システム動作のまえに車輪等のハードウェアの管理を適切に行うようにしてください。</p>
+</div>
+</div>
+<div class="section" id="id40">
+<h4>ナビゲーション（経路計画）システムの終了<a class="headerlink" href="#id40" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>ナビゲーション（経路計画）システムの終了は、
+Webブラウザの第3セクションの「Stop」ボタンを押下するか、
+ターミナルでログイン後に下記のコマンド入力を行うことで行ってください。</p>
+</div>
+</div>
+</div>
+<div class="section" id="id41">
+<h2><a class="toc-backref" href="#id69">対象RTコンポーネントのコンパイル</a><a class="headerlink" href="#id41" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>RasPiMouse2019のナビゲーションを行うRTCは、
+下記の8つのRTCがあります。</p>
+<ul class="simple">
+<li><p>RaspberryPiMouseRTC</p></li>
+<li><p>RPLidarRTC</p></li>
+<li><p>Mapper_MRPT</p></li>
+<li><p>Localization_MRPT</p></li>
+<li><p>PathPlanner_MRPT</p></li>
+<li><p>SimplePathFollower</p></li>
+<li><p>MapServer</p></li>
+<li><p>NavigationManager</p></li>
+</ul>
+<p>これらのRTCの中でMapServerとNavigationManagerの
+2つのコンポーネントは、Javaで実装されており、
+他の6つはC++で実装されています。</p>
+<p>ここでは上記のRTCをソースコードからビルドする方法について説明します。</p>
+<div class="section" id="id42">
+<h3><a class="toc-backref" href="#id70">ナビゲーションRTC群のソースコードの取得</a><a class="headerlink" href="#id42" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>まず最初にソースコードを取得します。
+上記のRTCのソースコードは全てGithub上に公開されていますので、
+gitコマンドでダウンロードしてください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir ~/src
+$ cd ~/src
+$ git clone https://github.com/hara-jp/RaspbarryPiMouseRTC.git
+$ git clone https://github.com/hara-jp/RPLidarRTC.git
+$ git clone https://github.com/hara-jp/Mapper_MRPT.git
+$ git clone https://github.com/hara-jp/Localization_MRPT.git
+$ git clone https://github.com/hara-jp/PathPlanner_MRPT.git
+$ git clone https://github.com/hara-jp/SimplePathFollower.git
+$ git clone https://github.com/hara-jp/MapServer.git
+$ git clone https://github.com/hara-jp/NavigationManager.git
+</pre></div>
+</div>
+</div>
+<div class="section" id="rtc-c">
+<h3><a class="toc-backref" href="#id71">RTC(C++)のビルド</a><a class="headerlink" href="#rtc-c" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>次に、C++で実装されているRTCをビルドします。
+OpenRTM-aist-1.2.1-Releaseでは、cmakeとmakeを使った
+ビルドシステムを使用します。
+C++で実装されたRTCのビルド手順はすべて同じですので、
+RaspberryPiMouseRTCの場合を例に説明していきます。</p>
+<p>まず、ソースコードのあるディレクトリに移動し、
+ビルド用のディレクトリ &quot;build-1&quot; を生成します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ~/src/RaspbarryPiMouseRTC
+$ mkdir build-1
+</pre></div>
+</div>
+<p>次に、ビルド用ディレクトリに移動し、cmakeを実行します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd build-1
+$ cmake ..
+</pre></div>
+</div>
+<p>cmakeコマンドでエラーが発生しなければ、
+makeコマンドを実行してRTCをビルドします。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ make
+</pre></div>
+</div>
+</div>
+<div class="section" id="id43">
+<h3><a class="toc-backref" href="#id72">RTC(C++)のパッケージ化</a><a class="headerlink" href="#id43" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>OpenRTM-aist-1.2.1-ReleaseのRTC Builderで生成した
+cmakeファイルでは、cpackコマンドによるdebパッケージの
+生成を行うことができます。</p>
+<p>そこで、下記のコマンドを実行してdebパッケージを生成してください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ~/src/RaspbarryPiMouseRTC/build-1
+$ cpack
+</pre></div>
+</div>
+</div>
+<div class="section" id="rtc-java">
+<h3><a class="toc-backref" href="#id73">RTC(Java)のビルド</a><a class="headerlink" href="#rtc-java" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>次に、Javaで実装されているRTCをビルドします。
+OpenRTM-aist-1.2.1-Releaseでは、Java版のRTCにはantコマンドを使用します。
+Java版のRTCもC++版と同様にビルド手順は全て同じです。
+そのため、ここではNavigationManagerの例で説明していきます。</p>
+<p>ソースコードのあるディレクトリに移動し、下記のようにantコマンドを実行します。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ~/src/NavigationManager
+$ ant -f build_NavigationManager.xml
+</pre></div>
+</div>
+<p>ビルトが成功すれば、bin, classesの下に生成された.classファイルが生成されます。</p>
+</div>
+<div class="section" id="id44">
+<h3><a class="toc-backref" href="#id74">RTC(Java)のパッケージ化</a><a class="headerlink" href="#id44" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>OpenRTM-aist-1.2.1-Releaseでは、
+Java版のビルド後にcmakeコマンドとcpackコマンドで
+debパッケージを生成することができます。</p>
+<p>そこで、下記のようにdebパッケージ生成用のディレクトリ build-1を作成して、
+cmake, cpackを実行して下さい。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ~/src/NavigationManager
+$ mkdir build-1
+$ cd build-1
+$ cmake ..
+$ cpack
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Raspberry Pi Mouse ROSConJP2019講習会キット</a><ul>
+<li><a class="reference internal" href="#id1">この文書について</a></li>
+<li><a class="reference internal" href="#raspberrypimouse">RaspberryPiMouseのセットアップ</a><ul>
+<li><a class="reference internal" href="#raspberrypi-3b-os">RaspberryPi 3B+へOSのインストール</a><ul>
+<li><a class="reference internal" href="#raspberrypi-3b-raspbian">RaspberryPi 3B+にRaspbianをインストール</a></li>
+<li><a class="reference internal" href="#cui">起動モードをCUIに変更</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id4">RaspberryPiMouseのドライバのインストール</a><ul>
+<li><a class="reference internal" href="#raspimouse">RasPiMouseのドライバのインストール</a></li>
+<li><a class="reference internal" href="#raspbian">Raspbianの設定変更とスクリプトの導入</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#rt">対象RTコンポーネントのバイナリパッケージのインストール</a><ul>
+<li><a class="reference internal" href="#openrtm-aist-1-2-1-release">OpenRTM-aist-1.2.1-Releaseのインストール</a></li>
+<li><a class="reference internal" href="#rplidar-sdk">rplidar_sdkのインストール</a></li>
+<li><a class="reference internal" href="#mrpt">MRPTのインストール</a></li>
+<li><a class="reference internal" href="#rtc">ナビゲーションRTC群のパッケージインストール</a></li>
+<li><a class="reference internal" href="#id7">ナビゲーションRTC群の起動・設定ファイル群のインストール</a></li>
+<li><a class="reference internal" href="#rtcweb">ナビゲーションRTC群操作用のWebインターフェースのインストール</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#raspimouse2019">RasPiMouse2019のローカルネットワーク設定</a><ul>
+<li><a class="reference internal" href="#raspberrypimouselan">RaspberryPiMouseの無線LANのアクセスポイント化</a></li>
+<li><a class="reference internal" href="#web">Webサーバーのセットアップ</a></li>
+<li><a class="reference internal" href="#pc">クライアント用PCの設定</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id8">RTコンポーネントの起動方法</a><ul>
+<li><a class="reference internal" href="#webrtc">Webブラウザを用いたRTCの起動</a><ul>
+<li><a class="reference internal" href="#id9">ネームサーバーの起動</a></li>
+<li><a class="reference internal" href="#id10">ナビゲーションRTC群の操作</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id11">コマンドラインからRTCの起動</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id12">RTコンポーネントの自動起動の設定について</a></li>
+<li><a class="reference internal" href="#id13">システム構成の実行方法</a><ul>
+<li><a class="reference internal" href="#id14">ナビゲーション地図生成の実行</a><ul>
+<li><a class="reference internal" href="#id15">概要</a></li>
+<li><a class="reference internal" href="#id16">RTCの起動</a></li>
+<li><a class="reference internal" href="#id17">ナビゲーション地図生成構築（ポートの接続）</a></li>
+<li><a class="reference internal" href="#id18">ナビゲーション地図生成の実行</a><ul>
+<li><a class="reference internal" href="#id19">RTCのアクティベート</a></li>
+<li><a class="reference internal" href="#id20">ナビゲーション地図の作成</a></li>
+<li><a class="reference internal" href="#joystick">Joystickパネルによる操作</a></li>
+<li><a class="reference internal" href="#id21">ナビゲーション地図の保存</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id22">ナビゲーション地図生成システムの終了</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id23">ナビゲーション（自己位置同定）の実行</a><ul>
+<li><a class="reference internal" href="#id24">概要</a></li>
+<li><a class="reference internal" href="#id25">RTCの起動</a></li>
+<li><a class="reference internal" href="#id26">ナビゲーション（自己位置同定）構築（ポートの接続）</a></li>
+<li><a class="reference internal" href="#id27">ナビゲーション（自己位置同定）の実行</a><ul>
+<li><a class="reference internal" href="#id28">RTCのアクティベート</a></li>
+<li><a class="reference internal" href="#id29">Joystickパネルによる操作</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id30">ナビゲーション（自己位置同定）システムの終了</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id31">ナビゲーション（経路計画）の実行</a><ul>
+<li><a class="reference internal" href="#id32">概要</a></li>
+<li><a class="reference internal" href="#id33">RTCの起動</a></li>
+<li><a class="reference internal" href="#id34">ナビゲーション（経路計画）構築（ポートの接続）</a></li>
+<li><a class="reference internal" href="#id35">ナビゲーション（経路計画）の実行</a><ul>
+<li><a class="reference internal" href="#id36">RTCのアクティベート</a></li>
+<li><a class="reference internal" href="#id37">移動目標位置の入力</a></li>
+<li><a class="reference internal" href="#id38">移動経路の生成</a></li>
+<li><a class="reference internal" href="#id39">RasPiMouse2019のナビゲーション</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id40">ナビゲーション（経路計画）システムの終了</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id41">対象RTコンポーネントのコンパイル</a><ul>
+<li><a class="reference internal" href="#id42">ナビゲーションRTC群のソースコードの取得</a></li>
+<li><a class="reference internal" href="#rtc-c">RTC(C++)のビルド</a></li>
+<li><a class="reference internal" href="#id43">RTC(C++)のパッケージ化</a></li>
+<li><a class="reference internal" href="#rtc-java">RTC(Java)のビルド</a></li>
+<li><a class="reference internal" href="#id44">RTC(Java)のパッケージ化</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.rst.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">クイック検索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="検索" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="nav-item nav-item-0"><a href="#">Navigation  ドキュメント</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Raspberry Pi Mouse ROSConJP2019講習会キット</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Isao Hara.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
+    </div>
+  </body>
+</html>

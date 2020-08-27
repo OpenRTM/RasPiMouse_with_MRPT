@@ -1,0 +1,172 @@
+
+<!DOCTYPE html>
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Webブラウザを用いたRTCの起動 &#8212; Navigation  ドキュメント</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/translations.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">Navigation  ドキュメント</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Webブラウザを用いたRTCの起動</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <p>ここでは、RasPiMouse2019を操作するRTC群の起動方法について説明します。
+RasPiMouse2019のナビゲーションのためのRTC群の操作は、
+sshでログインしてターミナル上で起動、接続、有効化等の操作を行うことも
+可能ですが、ナビゲーションRTC群の基本操作は Webブラウザを介して
+実行することができます。
+ここでは、最初にWebブラウザを用いた操作について説明し、次にターミナルから
+ログインして操作する方法について解説します。</p>
+<div class="section" id="webrtc">
+<h1>Webブラウザを用いたRTCの起動<a class="headerlink" href="#webrtc" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>RasPiMouse2019の電源と投入し、Raspbian を起動させます。
+クライアントPCの無線LANのマネージャーからhostapd.confで設定したssidが
+見えることを確認し、接続してください。</p>
+<p>WindowsPCの場合には、タスクバーの右側のWifiの設定から接続することができます。
+接続時には、パスワードを入力する必要がありますので、hostapd.confに記載した
+passwordを入力してください。</p>
+<p>正常に接続できれば、192.168.11.XX というIPアドレスが設定されているはずですので、
+ipconfigコマンド等で確認してください。</p>
+<img alt="_images/ipconfig.png" src="_images/ipconfig.png" />
+<p>IPアドレスの確認終了後、RasPiMouse2019（IPアドレス: 192.168.11.1）に
+Webブラウザから接続してください。
+下のようなページが出力されれば正常に動作しています。</p>
+<img alt="_images/web.png" src="_images/web.png" />
+<div class="section" id="id1">
+<h2>ネームサーバーの起動<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>起動直後ではネームサーバーが動作していないため、2段目の &quot;RTC LIST&quot;の部分は、
+下のようなエラー表示になっています。</p>
+<img alt="_images/web-1.png" src="_images/web-1.png" />
+<p>ナビゲーションRTC群を含むOpenRTM-aistをベースとしたRTコンポーネントでは、
+ネームサーバーが必要なため、「Start NameServer」ボタンをクリックして起動してください。</p>
+<p>ボタンをクリック後は、起動メッセージのページに移行し、3秒後にトップページに移動します。
+移動後、しばらくすれば &quot;RTC LIST&quot;の部分が下記のようになります。</p>
+<img alt="_images/web-2.png" src="_images/web-2.png" />
+<p>このようにエラーメッセージが表示されない場合は、ネームサーバが正常に動作しています。</p>
+</div>
+<div class="section" id="rtc">
+<h2>ナビゲーションRTC群の操作<a class="headerlink" href="#rtc" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>トップページの最初のセクションには、下図のように
+RasPiMouse2019のナビゲーションに用いるRTCの名称および
+操作のCGIプログラムへのリンクの一覧が表示されています。</p>
+<img alt="_images/web1.png" src="_images/web1.png" />
+<p>ここのRTCの起動、終了、アクティベート、デアクティベートをこれらのリンクを押下することで
+操作することができます。</p>
+<p>各RTCの起動後は、第2セクションの &quot;RTC List&quot;　にある「List」ボタンを押下することで、
+ネームサーバーに登録されているRTCの一覧を更新、表示することができます。</p>
+</div>
+</div>
+<div class="section" id="id2">
+<h1>コマンドラインからRTCの起動<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>Webブラウザからでは、現在、個々のRTCの起動、終了、アクティベート、デアクティベートに対応していますが、
+RTCの強制終了やエラー時の対応など細かい操作を行うことができません。</p>
+<p>RTCの強制終了やエラー時の対応など細かい操作が必要な場合には、
+クライアントPCのターミナルからssh経由でログインしてコマンドラインのオペレーションを実行してください。</p>
+<p>WindowsPCからのsshによるアクセスは、
+<a class="reference external" href="https://ja.osdn.net/projects/ttssh2/">TaraTerm</a> や
+<a class="reference external" href="https://www.chiark.greenend.org.uk/~sgtatham/putty/">PuTTY</a>
+, <a class="reference external" href="https://mintty.github.io/">mintty</a> 等のターミナルエミュレータを利用してください。
+各ソフトウェアの詳細は、それぞれのプロジェクトページを参照してください。</p>
+<p>RasPiMouse2019へsshでログイン後は、rtshell等を使用してエラーの回復や
+各RTCのプロセスの強制終了等を行うことができます。</p>
+<p>また、ナビゲーションRTCの設定ファイルや起動スクリプトは、/usr/local/openrtm の下に配置されています。
+RTCの個別起動は、/usr/local/openrtm/bin/&lt;RTC名&gt;.sh というファイル名で作成されており、
+各RTCの設定ファイルは、/usr/local/openrtm/etc/&lt;RTC名&gt;.conf として配置されています。</p>
+<p>後述するマップ作成(Mapper)、位置検出(localize)、経路生成(path_plan)のシステム制御用
+スクリプトは、/usr/lcoal/openrtm の下に、mapper.sh, localize.sh, path_plan.sh　として
+配置されています。</p>
+<p>これらのシステム制御用のスクリプトは、第2引数として start, stop, connect, disconnect, activate, deactivate
+のコマンドを指定することで制御すると都ができます。</p>
+<p>例えば、マップ作成のシステムを開始するには、事前にクライアントPCでXサーバーを起動後、</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ export DISPLAY=&lt;クライアントPCのIPアドレス&gt;:0.0
+$ /usr/local/openrtm/mapper.sh start
+$ /usr/local/openrtm/mapper.sh connect
+$ /usr/local/openrtm/mapper.sh activate
+</pre></div>
+</div>
+<p>によって各RTCの起動、ポートの接続、アクティベートを行うことができます。
+なお、最初のコマンドは、NavigationManagerのGUIパネルを表示させるための設定です。</p>
+<p>また、終了時には下記のコマンドでRTCを終了させることができます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ /usr/local/openrtm/mapper.sh deactivate
+$ /usr/local/openrtm/mapper.sh stop
+</pre></div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Webブラウザを用いたRTCの起動</a><ul>
+<li><a class="reference internal" href="#id1">ネームサーバーの起動</a></li>
+<li><a class="reference internal" href="#rtc">ナビゲーションRTC群の操作</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id2">コマンドラインからRTCの起動</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/start_rtc.rst.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">クイック検索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="検索" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">Navigation  ドキュメント</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Webブラウザを用いたRTCの起動</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Isao Hara.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
+    </div>
+  </body>
+</html>

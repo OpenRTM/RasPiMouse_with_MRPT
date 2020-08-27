@@ -1,0 +1,195 @@
+
+<!DOCTYPE html>
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>概要 &#8212; Navigation  ドキュメント</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/translations.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">Navigation  ドキュメント</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">概要</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="id1">
+<h1>概要<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>このシステムでは、前述のナビゲーション地図作成システムにより生成した
+地図とRasPiMouse2019に搭載したLiDARの情報をもとにMontecarlo localization
+を行うシステムです。</p>
+<p>NavigationManagerに搭載されたJoystickでRasPiMouse2019を操作しながら、
+自己位置同定を行います。</p>
+<p>このシステムでは、RaspberryPiMouseRTC, RPLidarRTC, Localization_MRPT, MapServer, NavigationManagerの5つのRTCを使用します。
+また、各RTC間の接続は、下図のようになります。</p>
+<img alt="_images/localize.png" src="_images/localize.png" />
+</div>
+<div class="section" id="rtc">
+<h1>RTCの起動<a class="headerlink" href="#rtc" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>RTCの起動は、Webブラウザを利用する場合には、トップページの第4セクション &quot;Localiation&quot;の部分を使用します。
+ナビゲーションRTCのシステムに対しては、
+下図のように「Start」、「Connect」、「Activate」、「Deactivate」、「Stop」の5つのオペレーションがあります。</p>
+<img alt="_images/web3.png" src="_images/web3.png" />
+<p>ナビゲーション(自己位置同定)システムに必要なRTCの起動に「Start」を押下してください。
+起動メッセージのページに遷移後、3秒後に自動でトップページに戻ります。</p>
+<p>トップページに移行後、第2セクションの  &quot;RTC List&quot; には、現在起動中のRTCの一覧が
+表示されますが、RTCによって起動時間が異なりますので、全てのRTCが起動完了するまで
+しばらくお待ちください。</p>
+<p>NavigationManagerはGUIを伴いますので、おそらく一番最後に起動すると思います。
+全てのRTCが起動すると、ナビゲーション地図作成システムと同様の
+NavigationManagerの操作パネルが表示されます。</p>
+<p>また、第2セクションの「List」を押下すると下図のようにRTCのリストが表示されます。</p>
+<img alt="_images/localize-start.png" src="_images/localize-start.png" />
+<p>Webブラウザを使用せずに、ターミナルでRasPiMouse2019にログインする場合には、
+下記のコマンドを入力すると上記と同じ結果が得らえます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ /usr/local/openrtm/bin/location.sh start
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h1>ナビゲーション（自己位置同定）構築（ポートの接続）<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>必要なRTCの起動後は、ナビゲーション（自己位置同定）システムを構成するために、
+各RTCのポートの接続を行います。
+最終的なシステム構成は、概要で表示した図の通りになります。
+この構成を外部のRT System Editorを使って手動で接続しても良いのですが、
+第4セクションの「Connect」ボタンを押下することで必要な接続を行うことができます。</p>
+<p>ポートの接続後、第2セクションの「List」を押下すると下図のようなリストが得られます。</p>
+<img alt="_images/localize-connect.png" src="_images/localize-connect.png" />
+<p>また、rtcmdを用いて graphコマンドを実行すると下図のようなシステム構成図を得ることができます。</p>
+<img alt="_images/localize-graph.png" src="_images/localize-graph.png" />
+<p>また、Webブラウザを使用せずに、ターミナルでRasPiMouse2019にログインする場合には、
+下記のコマンドを入力すると上記と同じ結果が得らえます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ /usr/local/openrtm/bin/location.sh connect
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h1>ナビゲーション（自己位置同定）の実行<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>RTCのポート接続が完了後、ナビゲーション（自己位置同定）を行います。
+本システムに係る5つのRTCをアクティベートしてください。</p>
+<div class="section" id="id4">
+<h2>RTCのアクティベート<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>RTCのアクティベートの方法は、
+Webブラウザ、ターミナルでログイン後にコマンド入力、
+クライアントPC上のopenrtp、rtcmd等の外部ツールのいづれかを使用してください。</p>
+<p>ここでは、Webブラウザとターミナルでログイン後のコマンドライン入力の2つの方法を紹介します。</p>
+<p>Webブラウザでは、第4セクションの「Activation」ボタンを押下することで全てのRTCをアクティベートすることができます。
+ターミナルからのコマンドライン入力では、下記のコマンドで同様に全てのRTCをアクティベートすることが可能です。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ /usr/local/openrtm/localize.sh activate
+</pre></div>
+</div>
+<p>すべてのRTCを有効化すると、下図のようにNavigationManagerの右側のペインにナビゲーション地図が表示され、
+現在のRasPiMouse2019の位置が原点付近で探索され、表示されます。</p>
+<img alt="_images/localize-start-mgr.png" src="_images/localize-start-mgr.png" />
+<p>現在のデフォルト設定では、/usr/local/openrtm/testMap.yamlを使用しますが、
+他のナビゲーション地図を利用する場合には、
+/usr/local/openrtm/etc/MapServer.confのパラメータを適宜修正してください。</p>
+</div>
+<div class="section" id="joystick">
+<h2>Joystickパネルによる操作<a class="headerlink" href="#joystick" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ナビゲーション（自己位置同定）システムでは、NavigationManagerのJoystickパネルを用いて
+手動でRasPiMouse2019を移動させることを想定しています。</p>
+<p>NavigationManagerのJoystickは、メニューの [Control] -&gt; [Start Control]を選択することで、
+下図のような接続ダイアログが表示されますので、「OK」ボタンで選択してください。</p>
+<img alt="_images/start-control.png" src="_images/start-control.png" />
+<p>正常にポート接続が完了すれば下図のような仮想Joystickが表示されますので、
+RasPiMouse2019を移動させ、ナビゲーション地図上でRasPiMouse2019の自己位置が
+推定されることを確認してください。</p>
+<img alt="_images/Joystick.png" src="_images/Joystick.png" />
+<p>この自己位置推定では、オドメトリとLiDARの情報を使ってMontecarlo Localization
+を行っています。
+そのため、車輪のスリップによりオドメトリ値が大きく異なる場合には、
+正しく自己位置を推定することはできません。</p>
+<p>車輪のスリップを極力抑えるように車輪のメンテナンスをしてください。</p>
+</div>
+</div>
+<div class="section" id="id5">
+<h1>ナビゲーション（自己位置同定）システムの終了<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>ナビゲーション（自己位置同定）システムの終了は、
+Webブラウザの第3セクションの「Stop」ボタンを押下するか、
+ターミナルでログイン後に下記のコマンド入力を行うことで行ってください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ /usr/local/openrtm/bin/location.sh stop
+</pre></div>
+</div>
+<p>上記の例では、「Disconnct」と「Deactivate」を使用しませんでしたが、
+起動中のRTCをそのまま使い経路計画システム等を実行する場合には適宜利用する
+ことができます。</p>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">概要</a></li>
+<li><a class="reference internal" href="#rtc">RTCの起動</a></li>
+<li><a class="reference internal" href="#id2">ナビゲーション（自己位置同定）構築（ポートの接続）</a></li>
+<li><a class="reference internal" href="#id3">ナビゲーション（自己位置同定）の実行</a><ul>
+<li><a class="reference internal" href="#id4">RTCのアクティベート</a></li>
+<li><a class="reference internal" href="#joystick">Joystickパネルによる操作</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id5">ナビゲーション（自己位置同定）システムの終了</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/localize.rst.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">クイック検索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="検索" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">Navigation  ドキュメント</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">概要</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Isao Hara.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
+    </div>
+  </body>
+</html>

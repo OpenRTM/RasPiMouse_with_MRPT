@@ -1,0 +1,260 @@
+
+<!DOCTYPE html>
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RaspberryPi 3B+へOSのインストール &#8212; Navigation  ドキュメント</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/translations.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">Navigation  ドキュメント</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">RaspberryPi 3B+へOSのインストール</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="raspberrypi-3b-os">
+<h1>RaspberryPi 3B+へOSのインストール<a class="headerlink" href="#raspberrypi-3b-os" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>RasPiMouse2019のハードウェアの組み立ての前に、搭載するCPUボード(RaspberryPi 3B+)に
+OSのインストールとRasPiMouse2019を動作指せるデバイスドライバのインストールを行ってください。</p>
+<div class="section" id="raspberrypi-3b-raspbian">
+<h2>RaspberryPi 3B+にRaspbianをインストール<a class="headerlink" href="#raspberrypi-3b-raspbian" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>Raspbianのインストールは、<a class="reference external" href="https://www.raspberrypi.org/downloads/raspbian/">オフィシャルサイト</a>
+からNOOBS.zipをダウンロードし、RaspbianをインストールするmicroSDカードに展開します。</p>
+<p>次に、NOOBS.zipを展開したmicroSDカードをRaspberryPi 3B+に挿入し、ディスプレイ、マウス、キーボードを接続して、
+通常起動を行い、画面の指示通りに進めるとRaspbian Busterがインストールされます。</p>
+<p>また、sshdを有効にするために NOOBS.zipを展開した場所に ssh という名前のファイルを作成してください。</p>
+<p>インストール終了後、ネットワークに接続してOSのアップデートを行ってください。</p>
+</div>
+<div class="section" id="cui">
+<h2>起動モードをCUIに変更<a class="headerlink" href="#cui" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>NOOBSを使ってRaspbianをインストールすると、グラフィックモードで起動します。
+RasPiMouse2019では、通常、ディスプレイを接続しませんので、CUIモードで起動するように設定ます。
+起動モードの設定には、raspi-configを用います。</p>
+<p>新規にターミナルを起動し、下記のコマンドを実行してください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo raspi-config
+</pre></div>
+</div>
+<p>上記のコマンドを実行すると piユーザのパスワードを要求しますので、
+Raspbianをインストール時に設定したパスワードを入力してください。
+すると、下のようなメニュー画面が表示されますので、
+3 Boot Options -&gt; B1 Desktop/CLI の順で選択し、CUIモード(B1またはB2)に変更してください。</p>
+<img alt="_images/raspi-config.png" src="_images/raspi-config.png" />
+<p>変更終了後、再起動してCUIモードで起動することを確認してください。</p>
+</div>
+</div>
+<div class="section" id="raspberrypimouse">
+<h1>RaspberryPiMouseのドライバのインストール<a class="headerlink" href="#raspberrypimouse" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>搭載するCPUボードへのOSのインストール終了後、RasPiMouse2019にCPUボードを取付け
+モータ、センサ制御用のデバイスドライバのインストールを行います。</p>
+<div class="section" id="raspimouse">
+<h2>RasPiMouseのドライバのインストール<a class="headerlink" href="#raspimouse" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>RasPiMouseのドライバは、<a class="reference external" href="https://github.com/rt-net/RaspberryPiMouse">株式会社アールティのオフィシャルGithub</a>
+に公開されています。
+RasPiMouseのドライバは、ソースコードからビルドしインストールします。</p>
+<p>まず、オフィシャルサイトからソースコードをダウンロードします。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir ~/src
+$ cd src
+$ git clone https://github.com/rt-net/RaspberryPiMouse
+</pre></div>
+</div>
+<p>ドライバのソースコードのダウンロードが正常に終了後、'utils'の下に移動し、
+ドライバモジュールのビルドとテストインストールを行います。
+ドライバモジュールのビルドには、kernel ヘッダーファイルが必要になりますので、事前にaptコマンドで
+インストールしてください。</p>
+<p>ドライバモジュールのビルドとテストインストールは、'utils/build_install.bash'で実行することができます。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt install raspberrypi-kernel-headers
+$ cd ~/src/RaspberryPiMouse/utils
+$ ./build_install.bash
+</pre></div>
+</div>
+<p>上記のコマンドを実行後、「ピッ」と音がすれば、ドライバモジュールがインストールされています。
+この時、src/drivers　にドライバモジュールとテスト用のバイナリが生成されていますので、
+RasPiMouseの動作確認を行うことができす。</p>
+<p>この状態では、ドライバモジュールは、~/src/RasPiMouse/src/drivers にあります。
+再起動直後にドライバモジュールを読み込むようにするには、ドライバモジュールを
+システム用のディレクトリにコピーする必要があります。</p>
+<p>そこで、下記のコマンドを実行し、/lib/modules/4.19.75-v7+/kernel/dirversへ
+rtmouse.koをコピーしてください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ~/src/RasPiMouse/src/drivers
+$ sudo cp rtmouse.ko /lib/modules/4.19.75-v7+/kernel/drivers
+$ sudo depmod
+</pre></div>
+</div>
+</div>
+<div class="section" id="raspbian">
+<h2>Raspbianの設定変更とスクリプトの導入<a class="headerlink" href="#raspbian" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>次に、再移動直後に RasPiMouseのドライバモジュールが利用できるように設定を行います。
+RasPiMouseのドライバは、SPI機能とI2C機能を有効にする必要がありますので、
+raspi-configコマンドを使って、SPI機能、I2C機能を「入」にしてください。
+SPI機能は、5 Interfacing Options -&gt; P4 SPI で有効化することができ、
+I2C機能は、5 Interfacing Options -&gt; P5 I2C で有効化することがでます。</p>
+<p>さらに、RasPiMouseの起動時にドライバモジュールの読み込むように、設定を行います。</p>
+<p>まず、下記の内容のrtmouse.shを作成し、/etc/init.d/にコピーしてください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#!/bin/bash
+#
+#
+### BEGIN INIT INFO
+# Provides:          rtmouse
+# Required-Start:    $all
+# Required-Stop:
+# Default-Start:     2 3 4 5
+# Default-Stop:
+# Short-Description: RT_Mouse_Driver
+# Description:       RaspPiMouse Driver
+### END INIT INFO
+SCRIPTNAME=rtmouse.sh
+PROC_FILE=/proc/modules
+GREP=/bin/grep
+MODPROBE=/sbin/modprobe
+MODULE_NAME=rtmouse
+DEP_MODULE_NAME=mcp320x
+[ -f $PROC_FILE ] || exit 0
+[ -x $GREP ] || exit 0
+[ -x $MODPROBE ] || exit 0
+RES=`$GREP $MODULE_NAME $PROC_FILE`
+install_rtmouse(){
+  if [ &quot;$RES&quot; = &quot;&quot; ]; then
+    $MODPROBE $MODULE_NAME
+    echo &quot;Module Install $MODULE_NAME&quot;
+  else
+    echo &quot;Module &#39;$MODULE_NAME&#39; is already installed&quot;
+  fi
+}
+remove_rtmouse(){
+  if [ &quot;$RES&quot; = &quot;&quot; ]; then
+    echo &quot;Module &#39;$MODULE_NAME&#39; isn&#39;t installed yet.&quot;
+  else
+    $MODPROBE -r $MODULE_NAME
+    $MODPROBE -r $DEP_MODULE_NAME
+    echo &quot;Module &#39;$MODULE_NAME&#39; is rmoved.&quot;
+  fi
+}
+
+case &quot;$1&quot; in
+  start)
+  install_rtmouse
+  sleep 1
+  /bin/chmod a+rw /dev/rt*
+  ;;
+  stop)
+  remove_rtmouse
+  ;;
+  status)
+    if [ &quot;$RES&quot; = &quot;&quot; ]; then
+      echo &quot;Module &#39;$MODULE_NAME&#39; isn&#39;t installed yet.&quot;
+      exit 0
+    else
+      echo &quot;Module &#39;$MODULE_NAME&#39; is already installed&quot;
+      exit 0
+    fi
+  ;;
+  *)
+    echo &quot;Usage: $SCRIPTNAME {start|stop|status}&quot; &gt;&amp;2
+    exit 3
+esac
+exit 0
+</pre></div>
+</div>
+<p>次に、rtmouse.koを起動時systemdによる自動起動を行うために、下記の内容のファイルを作成し、
+/etc/systemd/system/rtmouse.service という名前で配置してください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">Unit</span><span class="p">]</span>
+<span class="n">Description</span><span class="o">=</span><span class="n">rtmouse</span> <span class="n">driver</span>
+
+<span class="p">[</span><span class="n">Service</span><span class="p">]</span>
+<span class="n">Type</span><span class="o">=</span><span class="n">oneshot</span>
+<span class="n">ExecStart</span><span class="o">=/</span><span class="n">etc</span><span class="o">/</span><span class="n">init</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">rtmouse</span><span class="o">.</span><span class="n">sh</span> <span class="n">start</span>
+<span class="n">ExecReload</span><span class="o">=/</span><span class="n">etc</span><span class="o">/</span><span class="n">init</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">rtmouse</span><span class="o">.</span><span class="n">sh</span> <span class="n">restart</span>
+<span class="n">ExecStopt</span><span class="o">=/</span><span class="n">etc</span><span class="o">/</span><span class="n">init</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">rtmouse</span><span class="o">.</span><span class="n">sh</span> <span class="n">stop</span>
+
+<span class="p">[</span><span class="n">Install</span><span class="p">]</span>
+<span class="n">WantedBy</span><span class="o">=</span><span class="n">multi</span><span class="o">-</span><span class="n">user</span><span class="o">.</span><span class="n">target</span>
+</pre></div>
+</div>
+<p>最後に、上記で作成してsystemdの設定の有効化を行うために下記のコマンドを実行してください。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo sysremctl enable rtmouse
+</pre></div>
+</div>
+<p>以上で、systemdによるドライバをインストールできるようになりますので、再起動して動作確認を行ってください。
+起動時に「ピッ」という音が鳴れば、ドライバのインストールが正常に動作しています。</p>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">RaspberryPi 3B+へOSのインストール</a><ul>
+<li><a class="reference internal" href="#raspberrypi-3b-raspbian">RaspberryPi 3B+にRaspbianをインストール</a></li>
+<li><a class="reference internal" href="#cui">起動モードをCUIに変更</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#raspberrypimouse">RaspberryPiMouseのドライバのインストール</a><ul>
+<li><a class="reference internal" href="#raspimouse">RasPiMouseのドライバのインストール</a></li>
+<li><a class="reference internal" href="#raspbian">Raspbianの設定変更とスクリプトの導入</a></li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/raspbian_setup.rst.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">クイック検索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="検索" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">Navigation  ドキュメント</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">RaspberryPi 3B+へOSのインストール</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Isao Hara.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
+    </div>
+  </body>
+</html>
