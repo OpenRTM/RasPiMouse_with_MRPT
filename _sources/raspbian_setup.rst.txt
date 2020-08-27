@@ -38,14 +38,14 @@ Raspbianをインストール時に設定したパスワードを入力してく
 
 RaspberryPiMouseのドライバのインストール
 ----------------------------------------
-搭載するCPUボードへのOSのインストール終了後、RasPiMouse2019にCPUボードを取付け
+搭載するCPUボードへのOSのインストール終了後、RaspberryPiMouse2019にCPUボードを取付け
 モータ、センサ制御用のデバイスドライバのインストールを行います。
 
-RasPiMouseのドライバのインストール
+RaspberryPiMouseのドライバのインストール
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-RasPiMouseのドライバは、`株式会社アールティのオフィシャルGithub <https://github.com/rt-net/RaspberryPiMouse>`_ 
+RaspberryPiMouseのドライバは、`株式会社アールティのオフィシャルGithub <https://github.com/rt-net/RaspberryPiMouse>`_ 
 に公開されています。
-RasPiMouseのドライバは、ソースコードからビルドしインストールします。
+RaspberryPiMouseのドライバは、ソースコードからビルドしインストールします。
 
 まず、オフィシャルサイトからソースコードをダウンロードします。
 
@@ -70,9 +70,9 @@ RasPiMouseのドライバは、ソースコードからビルドしインスト�
 
 上記のコマンドを実行後、「ピッ」と音がすれば、ドライバモジュールがインストールされています。
 この時、src/drivers　にドライバモジュールとテスト用のバイナリが生成されていますので、
-RasPiMouseの動作確認を行うことができす。
+RaspberryPiMouseの動作確認を行うことができす。
 
-この状態では、ドライバモジュールは、~/src/RasPiMouse/src/drivers にあります。
+この状態では、ドライバモジュールは、~/src/RaspberryPiMouse/src/drivers にあります。
 再起動直後にドライバモジュールを読み込むようにするには、ドライバモジュールを
 システム用のディレクトリにコピーする必要があります。
 
@@ -81,19 +81,19 @@ rtmouse.koをコピーしてください。
 
 .. code-block::
 
-    $ cd ~/src/RasPiMouse/src/drivers
+    $ cd ~/src/RaspberryPiMouse/src/drivers
     $ sudo cp rtmouse.ko /lib/modules/4.19.75-v7+/kernel/drivers
     $ sudo depmod
 
 Raspbianの設定変更とスクリプトの導入
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-次に、再移動直後に RasPiMouseのドライバモジュールが利用できるように設定を行います。
-RasPiMouseのドライバは、SPI機能とI2C機能を有効にする必要がありますので、
+次に、再移動直後に RaspberryPiMouseのドライバモジュールが利用できるように設定を行います。
+RaspberryPiMouseのドライバは、SPI機能とI2C機能を有効にする必要がありますので、
 raspi-configコマンドを使って、SPI機能、I2C機能を「入」にしてください。
 SPI機能は、5 Interfacing Options -> P4 SPI で有効化することができ、
 I2C機能は、5 Interfacing Options -> P5 I2C で有効化することがでます。
 
-さらに、RasPiMouseの起動時にドライバモジュールの読み込むように、設定を行います。
+さらに、RaspberryPiMouseの起動時にドライバモジュールの読み込むように、設定を行います。
 
 まず、下記の内容のrtmouse.shを作成し、/etc/init.d/にコピーしてください。
 
