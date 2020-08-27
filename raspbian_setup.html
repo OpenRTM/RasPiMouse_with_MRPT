@@ -36,14 +36,68 @@
   <div class="section" id="raspberrypi-3b-os">
 <h1>RaspberryPi 3B+へOSのインストール<a class="headerlink" href="#raspberrypi-3b-os" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p>RasPiMouse2019のハードウェアの組み立ての前に、搭載するCPUボード(RaspberryPi 3B+)に
-OSのインストールとRasPiMouse2019を動作指せるデバイスドライバのインストールを行ってください。</p>
+OSのインストールとRasPiMouse2019の各種デバイスを動作させるためのデバイスドライバのインストールを行ってください。</p>
 <div class="section" id="raspberrypi-3b-raspbian">
 <h2>RaspberryPi 3B+にRaspbianをインストール<a class="headerlink" href="#raspberrypi-3b-raspbian" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>Raspbianのインストールは、<a class="reference external" href="https://www.raspberrypi.org/downloads/raspbian/">オフィシャルサイト</a>
-からNOOBS.zipをダウンロードし、RaspbianをインストールするmicroSDカードに展開します。</p>
-<p>次に、NOOBS.zipを展開したmicroSDカードをRaspberryPi 3B+に挿入し、ディスプレイ、マウス、キーボードを接続して、
-通常起動を行い、画面の指示通りに進めるとRaspbian Busterがインストールされます。</p>
-<p>また、sshdを有効にするために NOOBS.zipを展開した場所に ssh という名前のファイルを作成してください。</p>
+から Raspbian (Raspberry Pi OS) または <cite>NOOBS &lt;https://www.raspberrypi.org/downloads/noobs/&gt;</cite>
+をダウンロードしてOSをインストールします。</p>
+</div>
+<div class="section" id="raspbian-raspberry-pi-os">
+<h2>Raspbian (Raspberry Pi OS) を直接インストール<a class="headerlink" href="#raspbian-raspberry-pi-os" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>オフィシャルサイトの <a class="reference external" href="https://www.raspberrypi.org/downloads/raspbian/">Raspbian ダウンロードサイト</a>
+からOSイメージをダウンロードして、SDカードに書き込みます。なお、このドキュメント執筆時点では、以下の３種類のOSが
+ダウンロード可能でしたが、RaspberryPiMouseを動作させる場合には Lite 版で十分ですので、サイズの小さい
+Lite 版をインストールすることをお勧めします。ただし、このイメージではGUIでの操作ができないので、
+コマンドライン操作に自信がない場合は、サイズ中の desktop 版をインストールします。</p>
+<ul class="simple">
+<li><p>Raspberry Pi OS (32-bit) with desktop and recommended software (サイズ大、インストール時間長、推奨)</p></li>
+<li><p>Raspberry Pi OS (32-bit) with desktop (サイズ中、インストール時間中、推奨)</p></li>
+<li><p>Raspberry Pi OS (32-bit) Lite (サイズ小、インストール時間短、推奨)</p></li>
+</ul>
+<p>イメージとは、ディスクの0バイト目から最後までを一つのファイルにしたものであり、これをイメージ書き込みツールなどで
+SDカードやHDD/SSDなど起動可能なディスクに書き込むと、OSをそのディスクにインストールしたものと同じ状態になる
+一つの大きなファイルのことを指します。</p>
+<p>基本的な方法は、上記ダウンロードサイトから、RaspbianのOSイメージを選択・ダウンロードし、イメージ書き込みツールで
+SDカードへの書き込むことで行います。詳細な方法についてはWeb上に多数のドキュメントがありますのでそれらを参照してください。
+主なドキュメントを以下に示します。</p>
+<ul class="simple">
+<li><p><cite>Qiita 「Raspberry Pi OS(Raspbian)インストールと初期セットアップ」 &lt;https://qiita.com/s_harada/items/3ba9f660f66bc74d1746&gt;</cite></p></li>
+<li><p><cite>Qiita 「Raspbian Busterのインストール」 &lt;https://qiita.com/desucru/items/ccd382aec0628007dc48&gt;</cite></p></li>
+</ul>
+</div>
+<div class="section" id="noobs-raspbian">
+<h2>NOOBS から Raspbian をインストール<a class="headerlink" href="#noobs-raspbian" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>NOOBSは、上記より簡単な方法で、様々なOSをインストールする方法を提供するツールです。
+SDカードの書き込みに特別なツールは必要ありませんし、多数のOSの中からインストール時に好きなOSを
+選ぶことができます。オフィシャルサイトの <a class="reference external" href="https://www.raspberrypi.org/downloads/noobs/">NOOOBS ダウンロードサイト</a>
+からNOOBSをダウンロードして、SDカードに書き込みます。NOOBSは以下の２種類あり、ネットワークがつながる場合には、Lite版が利用可能です。</p>
+<ul class="simple">
+<li><p>NOOBS （サイズ大、ネットワーク不要)</p></li>
+<li><p>NOOBS Lite (サイズ小、ネットワーク必要、推奨)</p></li>
+</ul>
+<p>NOOBSを利用したインストール方法の概要はおおよそ以下の通りです。</p>
+<ul class="simple">
+<li><p>NOOBSファイル (NOOBS.zip) をダウンロード</p></li>
+</ul>
+<p>※ SDカードをフォーマッタでフォーマット
+* NOOBS.zip を解凍して展開されたフィアルをSDカードにコピーする
+※ RaspberryPi にSDカードを挿し起動する
+※ GUIメニューでOSを選択、その後自動でインストールが完了</p>
+<p>詳細な方法についてはWeb上に多数のドキュメントがありますのでそれらを参照してください。
+主なドキュメントを以下に示します。</p>
+<ul class="simple">
+<li><p><a href="#id2"><span class="problematic" id="id3">`</span></a>Qiita「Raspbian ネットインストール」&lt;<a class="reference external" href="https://qiita.com/halchiyo/items/8a03db32e726ecddb0aa">https://qiita.com/halchiyo/items/8a03db32e726ecddb0aa</a>&gt;</p></li>
+<li><p><cite>Qiita「RaspberryPi 3 Model B+ の設定　機材からOSのインストールまで【備忘録】」 &lt;https://qiita.com/MEGAMAN__HS/items/2ac62c260e85b1bea6ad&gt;</cite></p></li>
+<li><p><cite>Qiita「Raspberry Pi への Raspbian インストール方法」 &lt;https://qiita.com/SatomiWatanabe/items/e2773b0c87d3c32473ac&gt;</cite></p></li>
+</ul>
+<p>＊ <cite>Qiita「Raspberry pi 3 Model B セットアップしてみた。」&lt;https://qiita.com/takabye/items/03ad86a23226a12e4417&gt;</cite></p>
+<p>また、NOOBSは工夫すると、事前にssh (リモートログインに必要)やVNC (リモートで画面表示しつつRaspberryPiを操作可能)、
+WIFIなどを設定することができるため、RaspberryPiに接続するキーボードやディスプレイを用意する必要がなくなります。
+その方法については、Web情に多数のドキュメントがありますが、その一つをいかに示します。</p>
+<ul class="simple">
+<li><p><cite>Qiita「Raspberry Piにディスプレイとマウスとキーボートを繋がずに自動でRaspbianをインストールする」 &lt;https://qiita.com/horidaisuke/items/f3a6955c2015fab76f2c&gt;</cite></p></li>
+</ul>
 <p>インストール終了後、ネットワークに接続してOSのアップデートを行ってください。</p>
 </div>
 <div class="section" id="cui">
@@ -67,8 +121,8 @@ Raspbianをインストール時に設定したパスワードを入力してく
 <h1>RaspberryPiMouseのドライバのインストール<a class="headerlink" href="#raspberrypimouse" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p>搭載するCPUボードへのOSのインストール終了後、RaspberryPiMouse2019にCPUボードを取付け
 モータ、センサ制御用のデバイスドライバのインストールを行います。</p>
-<div class="section" id="id2">
-<h2>RaspberryPiMouseのドライバのインストール<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id4">
+<h2>RaspberryPiMouseのドライバのインストール<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>RaspberryPiMouseのドライバは、<a class="reference external" href="https://github.com/rt-net/RaspberryPiMouse">株式会社アールティのオフィシャルGithub</a>
 に公開されています。
 RaspberryPiMouseのドライバは、ソースコードからビルドしインストールします。</p>
@@ -102,8 +156,8 @@ $ sudo depmod
 </pre></div>
 </div>
 </div>
-<div class="section" id="raspbian">
-<h2>Raspbianの設定変更とスクリプトの導入<a class="headerlink" href="#raspbian" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id5">
+<h2>Raspbianの設定変更とスクリプトの導入<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>次に、再移動直後に RaspberryPiMouseのドライバモジュールが利用できるように設定を行います。
 RaspberryPiMouseのドライバは、SPI機能とI2C機能を有効にする必要がありますので、
 raspi-configコマンドを使って、SPI機能、I2C機能を「入」にしてください。
@@ -211,12 +265,14 @@ exit 0
   <ul>
 <li><a class="reference internal" href="#">RaspberryPi 3B+へOSのインストール</a><ul>
 <li><a class="reference internal" href="#raspberrypi-3b-raspbian">RaspberryPi 3B+にRaspbianをインストール</a></li>
+<li><a class="reference internal" href="#raspbian-raspberry-pi-os">Raspbian (Raspberry Pi OS) を直接インストール</a></li>
+<li><a class="reference internal" href="#noobs-raspbian">NOOBS から Raspbian をインストール</a></li>
 <li><a class="reference internal" href="#cui">起動モードをCUIに変更</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#raspberrypimouse">RaspberryPiMouseのドライバのインストール</a><ul>
-<li><a class="reference internal" href="#id2">RaspberryPiMouseのドライバのインストール</a></li>
-<li><a class="reference internal" href="#raspbian">Raspbianの設定変更とスクリプトの導入</a></li>
+<li><a class="reference internal" href="#id4">RaspberryPiMouseのドライバのインストール</a></li>
+<li><a class="reference internal" href="#id5">Raspbianの設定変更とスクリプトの導入</a></li>
 </ul>
 </li>
 </ul>
