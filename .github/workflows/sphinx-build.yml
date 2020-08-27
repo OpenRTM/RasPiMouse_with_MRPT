@@ -27,4 +27,9 @@ jobs:
       - name: build-sphinx
         run: |
           sudo docker run --rm -v $GITHUB_WORKSPACE/doc:/docs sphinxdoc/sphinx make html
-
+      - name: deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: $GITHUB_WORKSPACE/doc/html
+          publish_branch: gh-pages
