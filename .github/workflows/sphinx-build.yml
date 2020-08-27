@@ -23,12 +23,8 @@ jobs:
       # Checks-out
       - uses: actions/checkout@v2
 
-      # Runs a single command using the runners shell
-      - name: Setting up sphinx environment
-        run: sudo apt-get install --yes sphinx-common
-
-      # Runs a set of commands using the runners shell
+      # Sphinx document build on docker
       - name: build-sphinx
         run: |
-          cd $GITHUB_WORKSPACE/doc
-          make html
+          sudo docker run --rm -v $GITHUB_WORKSPACE/doc:/docs sphinxdoc/sphinx make html
+
