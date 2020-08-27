@@ -1,0 +1,196 @@
+﻿Localization_MRPTName - English
+========================
+
+.. toctree::
+   :hidden:
+
+   index_j
+
+
+Introduction
+============
+
+
+For a full list of classes and functions, see the `API documentation`_.
+
+.. _`API Documentation`:
+   doxygen/html/index.html
+
+Requirements
+============
+
+Localization_MRPT uses the `CMake build system`. You will need at least version
+2.8 to be able to build the component.
+
+.. _`CMAke build system`:
+   http://www.cmake.org
+
+
+Installation
+============
+
+Binary
+------
+
+Users of Windows can install the component using the binary installer. This
+will install the component and all its necessary dependencies. It is the
+recommended method of installation in Windows.
+
+- Download the installer from the website.
+- Double-click the executable file to begin installation.
+- Follow the instructions to install the component.
+- You may need to restart your computer for environment variable changes
+  to take effect before using the component.
+
+The component can be launched by double-clicking the
+``Localization_MRPTComp`` executable. The ``Localization_MRPT`` library
+is available for loading into a manager, using the initialisation function
+``Localization_MRPTInit``.
+
+From source
+-----------
+
+Follow these steps to install Localization_MRPT from source in any operating
+system:
+
+- Download the source, either from the repository or a source archive,
+  and extract it somewhere::
+
+    tar -xvzf Localization_MRPT-1.0.0.tar.gz
+
+- Change to the directory containing the extracted source::
+
+    cd Localization_MRPT-1.0.0
+
+- Create a directory called ``build``::
+
+    mkdir build
+
+- Change to that directory::
+
+    cd build
+
+- Run cmake or cmake-gui::
+
+    cmake ../
+
+- If no errors occurred, run make::
+
+    make
+
+- Finally, install the component. Ensure the necessary permissions to
+  install into the chosen prefix are available::
+
+    make install
+
+- The install destination can be changed by executing ccmake and changing
+  the variable ``CMAKE_INSTALL_PREFIX``::
+
+    ccmake ../
+
+The component is now ready for use. See the next section for instructions on
+configuring the component.
+
+Localization_MRPT can be launched in stand-alone mode by executing the
+``Localization_MRPTComp`` executable (installed into ``${prefix}/components/bin``).
+Alternatively, ``libLocalization_MRPT.so`` can be loaded into a manager, using the
+initialisation function ``Localization_MRPTInit``. This shared object can be found in
+``${prefix}/components/lib`` or ``${prefix}/components/lib64``.
+
+
+Configuration
+=============
+
+The available configuration parameters are described below:
+
+================ ================== ================ ======
+Parameter        Data type          Default Value    Effect
+================ ================== ================ ======
+min_x            float              -0.01            
+max_x            float              0.01             
+min_y            float              -0.01            
+max_y            float              0.01             
+min_phi          float              -0.01            
+max_phi          float              0.01             
+range_min        float              0.3              
+range_max        float              10               
+gausianModel_minStdXY float              0.01             
+gausianModel_minStdPHI float              0.01             
+KLD_binSize_PHI  float              0.01             
+KLD_binSize_XY   float              0.01             
+KLD_delta        float              0.02             
+KLD_epsilon      float              0.02             
+KLD_maxSampleSize int                1000             
+KLD_minSampleSize int                150              
+KLD_minSamplesPerBin double             0                
+adaptiveSampleSize bool               1                
+pfAuxFilterOptimal_MaximumSearchSamples int                10               
+BETA             double             0.5              
+sampleSize       int                1                
+poseTimeOut      float              3.0              
+PF_algorithm     string             pfSatndardProposal 
+resampleingMethod int                prMultinomials   
+particles_count  int                1000             
+occupancyGrid_count int                1                
+mapAltitude      int                0                
+useMapaltitude   int                1                
+maxDistanceInsertion int                15               
+maxOccupancyUpdateCertainty double             0.55             
+consiiderInvalidRangesAsFreeSpace int                1                
+decimation       int                1                
+hrizontalTolerance double             0.000873         
+CFD_features_gaussian_size double             1.0              
+CFD_features_median_size double             3.0              
+wideningBeamsWithDistance int                0                
+likelihoodMethod int                4                
+enableLikelihoodCache int                1                
+LF_decimation    int                20               
+LF_stdHit        double             20               
+LF_maxCorrsDistance double             0.30             
+LF_zHit          double             0.95             
+LF_zRandom       double             0.05             
+LF_maxRange      double             80               
+LF_alternateAverageMethod int                0                
+MI_exponent      int                10               
+MI_skip_rasys    int                10               
+MI_ratio_max_distance int                2                
+rayTracing_useDistanceFilter int                0                
+rayTracing_decimation int                10               
+rayTracing_stdHit double             0.30             
+consensus_takeEachRange int                30               
+consensus_pow    int                1                
+================ ================== ================ ======
+
+Ports
+=====
+
+The ports provided by the component are described below:
+
+=============== =========== ============================== =======
+Name            Type        Data type                      Purpose
+=============== =========== ============================== =======
+range           InPort      RTC::RangeData                 
+odometry        InPort      RTC::TimedPose2D               
+estimatedPose   OutPort     RTC::TimedPose2D               
+OGMapServer     ServicePort RTC::OGMapServer               
+=============== =========== ============================== =======
+
+Examples
+========
+
+An example configuration file is provided in the
+``${prefix}/components/share/Localization_MRPT/examples/conf/`` directory.
+
+Changelog
+=========
+
+
+
+License
+=======
+
+This software is developed at the National Institute of Advanced
+Industrial Science and Technology. Approval number H23PRO-????. This
+software is licensed under the Lesser General Public License. See
+COPYING.LESSER.
+

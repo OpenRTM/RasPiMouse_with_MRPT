@@ -1,0 +1,196 @@
+﻿Mapper_MRPTName - English
+========================
+
+.. toctree::
+   :hidden:
+
+   index_j
+
+
+Introduction
+============
+
+
+For a full list of classes and functions, see the `API documentation`_.
+
+.. _`API Documentation`:
+   doxygen/html/index.html
+
+Requirements
+============
+
+Mapper_MRPT uses the `CMake build system`. You will need at least version
+2.8 to be able to build the component.
+
+.. _`CMAke build system`:
+   http://www.cmake.org
+
+
+Installation
+============
+
+Binary
+------
+
+Users of Windows can install the component using the binary installer. This
+will install the component and all its necessary dependencies. It is the
+recommended method of installation in Windows.
+
+- Download the installer from the website.
+- Double-click the executable file to begin installation.
+- Follow the instructions to install the component.
+- You may need to restart your computer for environment variable changes
+  to take effect before using the component.
+
+The component can be launched by double-clicking the
+``Mapper_MRPTComp`` executable. The ``Mapper_MRPT`` library
+is available for loading into a manager, using the initialisation function
+``Mapper_MRPTInit``.
+
+From source
+-----------
+
+Follow these steps to install Mapper_MRPT from source in any operating
+system:
+
+- Download the source, either from the repository or a source archive,
+  and extract it somewhere::
+
+    tar -xvzf Mapper_MRPT-1.0.0.tar.gz
+
+- Change to the directory containing the extracted source::
+
+    cd Mapper_MRPT-1.0.0
+
+- Create a directory called ``build``::
+
+    mkdir build
+
+- Change to that directory::
+
+    cd build
+
+- Run cmake or cmake-gui::
+
+    cmake ../
+
+- If no errors occurred, run make::
+
+    make
+
+- Finally, install the component. Ensure the necessary permissions to
+  install into the chosen prefix are available::
+
+    make install
+
+- The install destination can be changed by executing ccmake and changing
+  the variable ``CMAKE_INSTALL_PREFIX``::
+
+    ccmake ../
+
+The component is now ready for use. See the next section for instructions on
+configuring the component.
+
+Mapper_MRPT can be launched in stand-alone mode by executing the
+``Mapper_MRPTComp`` executable (installed into ``${prefix}/components/bin``).
+Alternatively, ``libMapper_MRPT.so`` can be loaded into a manager, using the
+initialisation function ``Mapper_MRPTInit``. This shared object can be found in
+``${prefix}/components/lib`` or ``${prefix}/components/lib64``.
+
+
+Configuration
+=============
+
+The available configuration parameters are described below:
+
+================ ================== ================ ======
+Parameter        Data type          Default Value    Effect
+================ ================== ================ ======
+debug            int                0                For Debug, set 1 to get verbosity output on console.
+start_map_update_in_activated string             false            If true,
+ICP_algorithm    string             icpClassic       Select algorithm of ICP mapping. icpClassic, icpLevenbergMarquardt, icpIKF
+ICP_onlyClosestCorrespondences string             true             The usual approach: to consider only the closest correspondence for each local point (Default to true)
+ICP_onlyUniqueRobust string             false            Apart of "onlyClosestCorrespondences=true", if this option is enabled only the closest correspondence for each reference point will be kept (default=false).
+ICP_maxIterations unsigned int       80               Maximum number of iterations to run.
+ICP_minAbsStep_trans float              0.000001          If the correction in all translation coordinates (X,Y,Z) is below this threshold (in meters), iterations are terminated (Default:1e-6)
+ICP_minAbsStep_rot float              0.000001          If the correction in all rotation coordinates (yaw,pitch,roll) is below this threshold (in radians), iterations are terminated (Default:1e-6)
+ICP_thresholdDist float              0.2              Initial threshold distance for two points to become a correspondence.
+ICP_thresholdAng float              0.1745           Initial threshold distance for two points to become a correspondence.
+ICP_ALFA         float              0.8              The scale factor for threshold everytime convergence is achieved.
+ICP_smallestThresholdDist float              0.05             The size for threshold such that iterations will stop, since it is considered precise enough. 
+ICP_covariance_varPoints float              0.0004           This is the normalization constant \sigma^2_p that is used to scale the whole 3x3 covariance.  This has a default value of (0.02)^2 , that is, a 2cm sigma.  
+ICP_doRANSAC     string             false            Perform a RANSAC step after the ICP convergence, to obtain a better estimation of the pose PDF.
+ICP_ransac_nSimulations unsigned int       100               RANSAC-step options
+ICP_ransac_minSetSize unsigned int       5                 RANSAC-step options
+ICP_ransac_maxSetSize unsigned int       20                RANSAC-step options
+ICP_ransac_mahalanobisDistanceThreshold float              3.0               RANSAC-step options
+ICP_ransac_normalizationStd float              0.2              RANSAC-step option: The standard deviation in X,Y of landmarks/points which are being matched (used to compute covariances in the SoG)
+ICP_ransac_fuseByCorrsMatch string             false            RANSAC-step option: The standard deviation in X,Y of landmarks/points which are being matched (used to compute covariances in the SoG)
+ICP_ransac_fuseMaxDiffXY float              0.01             RANSAC-step option: The standard deviation in X,Y of landmarks/points which are being matched (used to compute covariances in the SoG)
+ICP_ransac_fuseMaxDiffPhi float              0.001745         RANSAC-step option: The standard deviation in X,Y of landmarks/points which are being matched (used to compute covariances in the SoG)
+ICP_kernel_rho   float              0.07             Cauchy kernel rho, for estimating the optimal transformation covariance, in meters (default = 0.07m).
+ICP_use_kernel   string             true             Whether to use kernel_rho to smooth distances, or use distances directly (default=true)
+ICP_Axy_aprox_derivatives float              0.05              The size of the perturbance in x & y used to estimate the Jacobians of the square error (in LM & IKF methods, default=0.05).
+ICP_LM_initial_lambda float              0.0001           The initial value of the lambda parameter in the LM method (default=1e-4).
+ICP_skip_cov_calculation string             false             Skip the computation of the covariance (saves some time) (default=false)
+ICP_skip_quality_calculation string             true             Skip the (sometimes) expensive evaluation of the term 'quality' at ICP output (Default=true)
+ICP_corresponding_points_decimation unsigned int       5                Decimation of the point cloud being registered against the reference one (default=5) - set to 1 to have the older (MRPT <0.9.5) behavior   of not approximating ICP by ignoring the correspondence of some points. The speed-up comes from a decimation of the number of KD-tree queries,   the most expensive step in ICP.
+ICP_matchAgainstTheGrid string             0                (default:false) Match against the occupancy grid or the points map? The former is quicker but less precise.
+ICP_insertionLinDistance double             0.5              Minimum robot linear (m) displacement for a new observation to be inserted in the map.
+ICP_insertionAngDistance double             0.8              Minimum robot angular (rad, deg when loaded from the .ini) displacement for a new observation to be inserted in the map.
+ICP_localizationLinDistance double             0.5              Minimum robot linear (m) displacement for a new observation to be used to do ICP-based localization (otherwise, dead-reckon with odometry).
+ICP_localizationAngDistance double             0.8              Minimum robot angular (rad, deg when loaded from the .ini) displacement for a new observation to be used to do ICP-based localization (otherwise, dead-reckon with odometry).
+ICP_minICPgoodnessToAccept float              0.40             Minimum ICP goodness (0,1) to accept the resulting corrected position (default: 0.40)
+MAP_min_x        float              -10.0            Initial size of Occupancy Grid Map 
+MAP_max_x        float              10.0             Initial size of Occupancy Grid Map 
+MAP_min_y        float              -10.0            Initial size of Occupancy Grid Map 
+MAP_max_y        float              10.0             Initial size of Occupancy Grid Map 
+MAP_resolution   float              0.05             Resolution of Grid Map. Length of the grid 
+MAP_insertion_mapAltitude float              0.0              The altitude (z-axis) of 2D scans (within a 0.01m tolerance) for they to be inserted in this map!
+MAP_insertion_useMapAltitude string             false            The parameter "mapAltitude" has effect while inserting observations in the grid only if this is true.
+MAP_insertion_maxDistanceInsertion float              15               The largest distance at which cells will be updated (Default 15 meters)
+MAP_insertion_maxOccupancyUpdateCertainty float              0.55             A value in the range [0.5,1] used for updating cell with a bayesian approach (default 0.8)
+MAP_insertion_considerInvalidRangesAsFreeSpace string             true             If set to true (default), invalid range values (no echo rays) as consider as free space until "maxOccupancyUpdateCertainty", but ONLY when the previous and next rays are also an invalid ray.
+MAP_insertion_decimation unsigned short int 1                Specify the decimation of the range scan (default=1 : take all the range values!)
+MAP_insertion_horizontalTolerance float              0                 The tolerance in rads in pitch & roll for a laser scan to be considered horizontal, then processed by calls to this class (default=0).
+MAP_insertion_CFD_features_gaussian_size float              1                Gaussian sigma of the filter used in getAsImageFiltered (for features detection) (Default=1) (0:Disabled)
+MAP_insertion_CFD_features_median_size float              3                Size of the Median filter used in getAsImageFiltered (for features detection) (Default=3) (0:Disabled)
+MAP_insertion_wideningBeamsWithDistance string             false            Enabled: Rays widen with distance to approximate the real behavior of lasers, disabled: insert rays as simple lines (Default=false)
+initial_pose_x   double             0.0              Initial Pose of Robot
+initial_pose_y   double             0.0              Initial Pose of Robot
+initial_pose_phi double             0.0              Initial Pose of Robot
+================ ================== ================ ======
+
+Ports
+=====
+
+The ports provided by the component are described below:
+
+=============== =========== ============================== =======
+Name            Type        Data type                      Purpose
+=============== =========== ============================== =======
+range           InPort      RTC::RangeData                 Input for Ranger Data (LiDAR sensors.)
+odometry        InPort      RTC::TimedPose2D               Input for odometry of mobile robot.
+estimatedPose   OutPort     RTC::TimedPose2D               Estimated pose of robot with SLAM algorithm (ICP)
+OGMapper        ServicePort RTC::OGMapper                  This port provides the services for Mapper. Please see MobileRobot.idl to know more about the interface. Ths port provides OGMapper service.
+=============== =========== ============================== =======
+
+Examples
+========
+
+An example configuration file is provided in the
+``${prefix}/components/share/Mapper_MRPT/examples/conf/`` directory.
+
+Changelog
+=========
+
+
+
+License
+=======
+
+This software is developed at the National Institute of Advanced
+Industrial Science and Technology. Approval number H23PRO-????. This
+software is licensed under the Lesser General Public License. See
+COPYING.LESSER.
+

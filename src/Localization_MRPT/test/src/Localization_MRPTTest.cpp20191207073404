@@ -1,0 +1,267 @@
+﻿// -*- C++ -*-
+/*!
+ * @file  Localization_MRPTTest.cpp
+ * @brief Localization MRPT Component
+ * @date $Date$
+ *
+ * $Id$
+ */
+
+#include "Localization_MRPTTest.h"
+
+// Module specification
+// <rtc-template block="module_spec">
+static const char* localization_mrpt_spec[] =
+  {
+    "implementation_id", "Localization_MRPTTest",
+    "type_name",         "Localization_MRPTTest",
+    "description",       "Localization MRPT Component",
+    "version",           "1.0.0",
+    "vendor",            "Sugar Sweet Robotics",
+    "category",          "Navigation",
+    "activity_type",     "PERIODIC",
+    "kind",              "DataFlowComponent",
+    "max_instance",      "1",
+    "language",          "C++",
+    "lang_type",         "compile",
+    // Configuration variables
+    "conf.default.min_x", "-0.01",
+    "conf.default.max_x", "0.01",
+    "conf.default.min_y", "-0.01",
+    "conf.default.max_y", "0.01",
+    "conf.default.min_phi", "-0.01",
+    "conf.default.max_phi", "0.01",
+    "conf.default.range_min", "0.3",
+    "conf.default.range_max", "10",
+    "conf.default.gausianModel_minStdXY", "0.01",
+    "conf.default.gausianModel_minStdPHI", "0.01",
+    "conf.default.KLD_binSize_PHI", "0.01",
+    "conf.default.KLD_binSize_XY", "0.01",
+    "conf.default.KLD_delta", "0.02",
+    "conf.default.KLD_epsilon", "0.02",
+    "conf.default.KLD_maxSampleSize", "1000",
+    "conf.default.KLD_minSampleSize", "150",
+    "conf.default.KLD_minSamplesPerBin", "0",
+    "conf.default.adaptiveSampleSize", "1",
+    "conf.default.pfAuxFilterOptimal_MaximumSearchSamples", "10",
+    "conf.default.BETA", "0.5",
+    "conf.default.sampleSize", "1",
+    "conf.default.poseTimeOut", "3.0",
+
+    // Widget
+    "conf.__widget__.min_x", "text",
+    "conf.__widget__.max_x", "text",
+    "conf.__widget__.min_y", "text",
+    "conf.__widget__.max_y", "text",
+    "conf.__widget__.min_phi", "text",
+    "conf.__widget__.max_phi", "text",
+    "conf.__widget__.range_min", "text",
+    "conf.__widget__.range_max", "text",
+    "conf.__widget__.gausianModel_minStdXY", "text",
+    "conf.__widget__.gausianModel_minStdPHI", "text",
+    "conf.__widget__.KLD_binSize_PHI", "text",
+    "conf.__widget__.KLD_binSize_XY", "text",
+    "conf.__widget__.KLD_delta", "text",
+    "conf.__widget__.KLD_epsilon", "text",
+    "conf.__widget__.KLD_maxSampleSize", "text",
+    "conf.__widget__.KLD_minSampleSize", "text",
+    "conf.__widget__.KLD_minSamplesPerBin", "text",
+    "conf.__widget__.adaptiveSampleSize", "text",
+    "conf.__widget__.pfAuxFilterOptimal_MaximumSearchSamples", "text",
+    "conf.__widget__.BETA", "text",
+    "conf.__widget__.sampleSize", "text",
+    "conf.__widget__.poseTimeOut", "text",
+    // Constraints
+
+    "conf.__type__.min_x", "float",
+    "conf.__type__.max_x", "float",
+    "conf.__type__.min_y", "float",
+    "conf.__type__.max_y", "float",
+    "conf.__type__.min_phi", "float",
+    "conf.__type__.max_phi", "float",
+    "conf.__type__.range_min", "float",
+    "conf.__type__.range_max", "float",
+    "conf.__type__.gausianModel_minStdXY", "float",
+    "conf.__type__.gausianModel_minStdPHI", "float",
+    "conf.__type__.KLD_binSize_PHI", "float",
+    "conf.__type__.KLD_binSize_XY", "float",
+    "conf.__type__.KLD_delta", "float",
+    "conf.__type__.KLD_epsilon", "float",
+    "conf.__type__.KLD_maxSampleSize", "int",
+    "conf.__type__.KLD_minSampleSize", "int",
+    "conf.__type__.KLD_minSamplesPerBin", "double",
+    "conf.__type__.adaptiveSampleSize", "bool",
+    "conf.__type__.pfAuxFilterOptimal_MaximumSearchSamples", "int",
+    "conf.__type__.BETA", "double",
+    "conf.__type__.sampleSize", "int",
+    "conf.__type__.poseTimeOut", "float",
+
+    ""
+  };
+// </rtc-template>
+
+/*!
+ * @brief constructor
+ * @param manager Maneger Object
+ */
+Localization_MRPTTest::Localization_MRPTTest(RTC::Manager* manager)
+    // <rtc-template block="initializer">
+  : RTC::DataFlowComponentBase(manager),
+    m_rangeIn("range", m_range),
+    m_odometryIn("odometry", m_odometry),
+    m_estimatedPoseOut("estimatedPose", m_estimatedPose),
+    m_mapServerPort("mapServer")
+
+    // </rtc-template>
+{
+}
+
+/*!
+ * @brief destructor
+ */
+Localization_MRPTTest::~Localization_MRPTTest()
+{
+}
+
+
+
+RTC::ReturnCode_t Localization_MRPTTest::onInitialize()
+{
+  // Registration: InPort/OutPort/Service
+  // <rtc-template block="registration">
+  // Set InPort buffers
+  addInPort("estimatedPose", m_estimatedPoseIn);
+  
+  // Set OutPort buffer
+  addOutPort("range", m_rangeOut);
+  addOutPort("odometry", m_odometryOut);
+  
+  // Set service provider to Ports
+  m_mapServerPort.registerProvider("OGMapServer", "RTC::OGMapServer", m_mapServer);
+  
+  // Set service consumers to Ports
+  
+  // Set CORBA Service Ports
+  addPort(m_mapServerPort);
+  
+  // </rtc-template>
+
+  // <rtc-template block="bind_config">
+  // Bind variables and configuration variable
+  bindParameter("min_x", m_min_x, "-0.01");
+  bindParameter("max_x", m_max_x, "0.01");
+  bindParameter("min_y", m_min_y, "-0.01");
+  bindParameter("max_y", m_max_y, "0.01");
+  bindParameter("min_phi", m_min_phi, "-0.01");
+  bindParameter("max_phi", m_max_phi, "0.01");
+  bindParameter("range_min", m_range_min, "0.3");
+  bindParameter("range_max", m_range_max, "10");
+  bindParameter("gausianModel_minStdXY", m_minStdXY, "0.01");
+  bindParameter("gausianModel_minStdPHI", m_minStdPHI, "0.01");
+  bindParameter("KLD_binSize_PHI", m_KLD_binSize_PHI, "0.01");
+  bindParameter("KLD_binSize_XY", m_KLD_binSize_XY, "0.01");
+  bindParameter("KLD_delta", m_KLD_delta, "0.02");
+  bindParameter("KLD_epsilon", m_KLD_epsilon, "0.02");
+  bindParameter("KLD_maxSampleSize", m_KLD_maxSampleSize, "1000");
+  bindParameter("KLD_minSampleSize", m_KLD_minSampleSize, "150");
+  bindParameter("KLD_minSamplesPerBin", m_KLD_minSamplesPerBin, "0");
+  bindParameter("adaptiveSampleSize", m_adaptiveSampleSize, "1");
+  bindParameter("pfAuxFilterOptimal_MaximumSearchSamples", m_pfAuxFilterOptimal_MaximumSearchSamples, "10");
+  bindParameter("BETA", m_BETA, "0.5");
+  bindParameter("sampleSize", m_sampleSize, "1");
+  bindParameter("poseTimeOut", m_poseTimeOut, "3.0");
+  // </rtc-template>
+  
+  return RTC::RTC_OK;
+}
+
+/*
+RTC::ReturnCode_t Localization_MRPTTest::onFinalize()
+{
+  return RTC::RTC_OK;
+}
+*/
+
+/*
+RTC::ReturnCode_t Localization_MRPTTest::onStartup(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+*/
+
+/*
+RTC::ReturnCode_t Localization_MRPTTest::onShutdown(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+*/
+
+
+RTC::ReturnCode_t Localization_MRPTTest::onActivated(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+
+
+RTC::ReturnCode_t Localization_MRPTTest::onDeactivated(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+
+
+RTC::ReturnCode_t Localization_MRPTTest::onExecute(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+
+/*
+RTC::ReturnCode_t Localization_MRPTTest::onAborting(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+*/
+
+/*
+RTC::ReturnCode_t Localization_MRPTTest::onError(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+*/
+
+/*
+RTC::ReturnCode_t Localization_MRPTTest::onReset(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+*/
+
+/*
+RTC::ReturnCode_t Localization_MRPTTest::onStateUpdate(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+*/
+
+/*
+RTC::ReturnCode_t Localization_MRPTTest::onRateChanged(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+*/
+
+
+
+extern "C"
+{
+ 
+  void Localization_MRPTTestInit(RTC::Manager* manager)
+  {
+    coil::Properties profile(localization_mrpt_spec);
+    manager->registerFactory(profile,
+                             RTC::Create<Localization_MRPTTest>,
+                             RTC::Delete<Localization_MRPTTest>);
+  }
+  
+};
+
+
