@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>RaspberryPiMouse</title>
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/utils.js"></script>
+
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+  </head>
+  <body onload="rtclist()">
+
+  <div id="contents">
+    <h1>RaspberryPiMouse with OpenRTM-aist</h1>
+   <p />
+    <h2>RT-Components</h2>
+    <div class="r1">
+    <table>
+      <tr>
+	<td>○ RaspberryPiMouseRTC</td>
+       <td>
+       [<a href="/cgi-bin/start_rtc.py?rtc=RaspberryPiMouseRTC">Start</a>]
+       [<a href="/cgi-bin/rtexit.py?rtc=RaspberryPiMouseRTC">Stop</a>] |
+       </td><td>
+       [<a href="/cgi-bin/rtact.py?rtc=RaspberryPiMouseRTC">Activate</a>]
+       [<a href="/cgi-bin/rtdeact.py?rtc=RaspberryPiMouseRTC">Deactivate</a>]
+       </td>
+	</tr>
+      <tr>
+	<td>○ RPLidarRTC</td>
+       <td>
+       [<a href="/cgi-bin/start_rtc.py?rtc=RPLidarRTC">Start</a>]
+       [<a href="/cgi-bin/rtexit.py?rtc=RPLidarRTC">Stop</a>] |
+       </td><td>
+       [<a href="/cgi-bin/rtact.py?rtc=RPLidarRTC">Activate</a>]
+       [<a href="/cgi-bin/rtdeact.py?rtc=RPLidarRTC">Deactivate</a>]
+       </td>
+	</tr>
+      <tr>
+	<td>○ Mapper_MRPT</td>
+	<td>
+       [<a href="/cgi-bin/start_rtc.py?rtc=Mapper_MRPT">Start</a>]
+       [<a href="/cgi-bin/rtexit.py?rtc=Mapper_MRPT">Stop</a>] |
+       </td><td>
+       [<a href="/cgi-bin/rtact.py?rtc=Mapper_MRPT">Activate</a>]
+       [<a href="/cgi-bin/rtdeact.py?rtc=Mapper_MRPT">Deactivate</a>]
+	</td>
+	</tr>
+      <tr>
+	<td>○ Localization_MRPT</td>
+	<td>
+       [<a href="/cgi-bin/start_rtc.py?rtc=Localization_MRPT">Start</a>]
+       [<a href="/cgi-bin/rtexit.py?rtc=Localization_MRPT">Stop</a>] |
+       </td><td>
+       [<a href="/cgi-bin/rtact.py?rtc=Localization_MRPT">Activate</a>]
+       [<a href="/cgi-bin/rtdeact.py?rtc=Localization_MRPT">Deactivate</a>]
+	</td>
+	</tr>
+      <tr>
+	<td>○ PathPlanner_MRPT</td>
+	<td>
+       [<a href="/cgi-bin/start_rtc.py?rtc=PathPlanner_MRPT">Start</a>]
+       [<a href="/cgi-bin/rtexit.py?rtc=PathPlanner_MRPT">Stop</a>] |
+       </td><td>
+       [<a href="/cgi-bin/rtact.py?rtc=PathPlanner_MRPT">Activate</a>]
+       [<a href="/cgi-bin/rtdeact.py?rtc=PathPlanner_MRPT">Deactivate</a>]
+	</td>
+	</tr>
+      <tr>
+	<td>○ SimplePathFollower</td>
+	<td>
+       [<a href="/cgi-bin/start_rtc.py?rtc=SimplePathFollower">Start</a>]
+       [<a href="/cgi-bin/rtexit.py?rtc=SimplePathFollower">Stop</a>] |
+       </td><td>
+       [<a href="/cgi-bin/rtact.py?rtc=SimplePathFollower">Activate</a>]
+       [<a href="/cgi-bin/rtdeact.py?rtc=SimplePathFollower">Deactivate</a>]
+	</td>
+	</tr>
+      <tr>
+	<td>○ MapServer(Java)</td>
+	<td>
+       [<a href="/cgi-bin/start_rtc.py?rtc=MapServer">Start</a>]
+       [<a href="/cgi-bin/rtexit.py?rtc=MapServer">Stop</a>] |
+       </td><td>
+       [<a href="/cgi-bin/rtact.py?rtc=MapServer">Activate</a>]
+       [<a href="/cgi-bin/rtdeact.py?rtc=MapServer">Deactivate</a>]
+	</td>
+	</tr>
+      <tr>
+	<td>○ NavigationManager(Java)</td>
+	<td>
+       [<a href="/cgi-bin/start_rtc.py?rtc=NavigationManager">Start</a>]
+       [<a href="/cgi-bin/rtexit.py?rtc=NavigationManager">Stop</a>] |
+       </td><td>
+       [<a href="/cgi-bin/rtact.py?rtc=NavigationManager">Activate</a>]
+       [<a href="/cgi-bin/rtdeact.py?rtc=NavigationManager">Deactivate</a>]
+	</td>
+	</tr>
+    </table>	
+    </div>
+<!--
+    <h2>Name Server</h2>
+    <div class="r1">
+      <span id="ns_state" style="color:blue;"></span><br>
+      <button onClick="start_ns()" style="width:10em;height:3ex;">Start NameServer</button>
+    </div>
+-->
+    <h2>RTC List</h2>
+    <div class="r1">
+      <button onClick="start_ns()" style="width:10em;height:3ex;">Start NameServer</button>
+      <button onClick="rtclist();" style="width:10em;">List</button>
+      <div id="rtclist">
+      </div>
+    </div>
+
+   <!--
+    <h2>Client Address</h2>
+     <input type="text" id="display_ip" value="">
+   -->
+    <h2>Mapper</h2>
+      <div class="r1">
+      Create a map for a navigation.
+     <p>
+      <button onClick="rtsys_cmd('mapper', 'start')" >Start</button> &nbsp;
+      <button onClick="rtsys_cmd('mapper', 'connect')" >Connect</button> &nbsp;
+      <button onClick="rtsys_cmd('mapper', 'activate')" >Activate</button> &nbsp;
+      <button onClick="rtsys_cmd('mapper', 'deactivate')" >Deactivate</button> &nbsp;
+      <button onClick="rtsys_cmd('mapper', 'stop')" >Stop</button>
+      <br>
+      <img src="images/mapper.png" width="600"/>
+      </div>
+
+    <h2>Localization</h2>
+      <div class="r1">
+      RasPiMouse localization with the map.
+     <p>
+      <button onClick="rtsys_cmd('localize', 'start')" >Start</button> &nbsp;
+      <button onClick="rtsys_cmd('localize', 'connect')" >Connect</button> &nbsp;
+      <button onClick="rtsys_cmd('localize', 'activate')" >Activate</button> &nbsp;
+      <button onClick="rtsys_cmd('localize', 'deactivate')" >Deactivate</button> &nbsp;
+      <button onClick="rtsys_cmd('localize', 'stop')" >Stop</button>
+      <br>
+      <img src="images/localize.png" width="600"/>
+      </div>
+
+    <h2>PathPlan</h2>
+      <div class="r1">
+      RasPiMouse navigation by using a path planner using MRPT.
+     <p>
+      <button onClick="rtsys_cmd('path_plan', 'start')" >Start</button> &nbsp;
+      <button onClick="rtsys_cmd('path_plan', 'connect')" >Connect</button> &nbsp;
+      <button onClick="rtsys_cmd('path_plan', 'activate')" >Activate</button> &nbsp;
+      <button onClick="rtsys_cmd('path_plan', 'deactivate')" >Deactivate</button> &nbsp;
+      <button onClick="rtsys_cmd('path_plan', 'stop')" >Stop</button>
+      <br>
+      <img src="images/path_plan.png" width="600"/>
+      </div>
+
+   </div>
+    <div id="footer">
+      <p>
+	 Copyright(C) 2020 Robot Software Platform Research Team, AIST
+      </p>
+    </div>
+  </body>
+</html>
+
