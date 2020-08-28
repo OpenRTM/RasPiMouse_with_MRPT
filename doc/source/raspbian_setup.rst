@@ -1,17 +1,70 @@
 RaspberryPi 3B+へOSのインストール
 ----------------------------------
 RasPiMouse2019のハードウェアの組み立ての前に、搭載するCPUボード(RaspberryPi 3B+)に
-OSのインストールとRasPiMouse2019を動作指せるデバイスドライバのインストールを行ってください。
+OSのインストールとRasPiMouse2019の各種デバイスを動作させるためのデバイスドライバのインストールを行ってください。
 
 RaspberryPi 3B+にRaspbianをインストール
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Raspbianのインストールは、`オフィシャルサイト <https://www.raspberrypi.org/downloads/raspbian/>`_ 
-からNOOBS.zipをダウンロードし、RaspbianをインストールするmicroSDカードに展開します。
+から Raspbian (Raspberry Pi OS) または `NOOBS <https://www.raspberrypi.org/downloads/noobs/>` 
+をダウンロードしてOSをインストールします。
 
-次に、NOOBS.zipを展開したmicroSDカードをRaspberryPi 3B+に挿入し、ディスプレイ、マウス、キーボードを接続して、
-通常起動を行い、画面の指示通りに進めるとRaspbian Busterがインストールされます。
+Raspbian (Raspberry Pi OS) を直接インストール
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-また、sshdを有効にするために NOOBS.zipを展開した場所に ssh という名前のファイルを作成してください。
+オフィシャルサイトの `Raspbian ダウンロードサイト <https://www.raspberrypi.org/downloads/raspbian/>`_
+からOSイメージをダウンロードして、SDカードに書き込みます。なお、このドキュメント執筆時点では、以下の３種類のOSが
+ダウンロード可能でしたが、RaspberryPiMouseを動作させる場合には Lite 版で十分ですので、サイズの小さい
+Lite 版をインストールすることをお勧めします。ただし、このイメージではGUIでの操作ができないので、
+コマンドライン操作に自信がない場合は、サイズ中の desktop 版をインストールします。
+
+* Raspberry Pi OS (32-bit) with desktop and recommended software (サイズ大、インストール時間長、推奨)
+* Raspberry Pi OS (32-bit) with desktop (サイズ中、インストール時間中、推奨)
+* Raspberry Pi OS (32-bit) Lite (サイズ小、インストール時間短、推奨)
+
+イメージとは、ディスクの0バイト目から最後までを一つのファイルにしたものであり、これをイメージ書き込みツールなどで
+SDカードやHDD/SSDなど起動可能なディスクに書き込むと、OSをそのディスクにインストールしたものと同じ状態になる
+一つの大きなファイルのことを指します。
+
+基本的な方法は、上記ダウンロードサイトから、RaspbianのOSイメージを選択・ダウンロードし、イメージ書き込みツールで
+SDカードへの書き込むことで行います。詳細な方法についてはWeb上に多数のドキュメントがありますのでそれらを参照してください。
+主なドキュメントを以下に示します。
+
+* `Qiita 「Raspberry Pi OS(Raspbian)インストールと初期セットアップ」 <https://qiita.com/s_harada/items/3ba9f660f66bc74d1746>`
+* `Qiita 「Raspbian Busterのインストール」 <https://qiita.com/desucru/items/ccd382aec0628007dc48>`
+
+NOOBS から Raspbian をインストール
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+NOOBSは、上記より簡単な方法で、様々なOSをインストールする方法を提供するツールです。
+SDカードの書き込みに特別なツールは必要ありませんし、多数のOSの中からインストール時に好きなOSを
+選ぶことができます。オフィシャルサイトの `NOOOBS ダウンロードサイト <https://www.raspberrypi.org/downloads/noobs/>`_
+からNOOBSをダウンロードして、SDカードに書き込みます。NOOBSは以下の２種類あり、ネットワークがつながる場合には、Lite版が利用可能です。
+
+* NOOBS （サイズ大、ネットワーク不要)
+* NOOBS Lite (サイズ小、ネットワーク必要、推奨)
+
+NOOBSを利用したインストール方法の概要はおおよそ以下の通りです。
+
+* NOOBSファイル (NOOBS.zip) をダウンロード
+※ SDカードをフォーマッタでフォーマット
+* NOOBS.zip を解凍して展開されたフィアルをSDカードにコピーする
+※ RaspberryPi にSDカードを挿し起動する
+※ GUIメニューでOSを選択、その後自動でインストールが完了
+
+詳細な方法についてはWeb上に多数のドキュメントがありますのでそれらを参照してください。
+主なドキュメントを以下に示します。
+
+* `Qiita「Raspbian ネットインストール」<https://qiita.com/halchiyo/items/8a03db32e726ecddb0aa>
+* `Qiita「RaspberryPi 3 Model B+ の設定　機材からOSのインストールまで【備忘録】」 <https://qiita.com/MEGAMAN__HS/items/2ac62c260e85b1bea6ad>`
+* `Qiita「Raspberry Pi への Raspbian インストール方法」 <https://qiita.com/SatomiWatanabe/items/e2773b0c87d3c32473ac>`
+＊ `Qiita「Raspberry pi 3 Model B セットアップしてみた。」<https://qiita.com/takabye/items/03ad86a23226a12e4417>`
+
+また、NOOBSは工夫すると、事前にssh (リモートログインに必要)やVNC (リモートで画面表示しつつRaspberryPiを操作可能)、
+WIFIなどを設定することができるため、RaspberryPiに接続するキーボードやディスプレイを用意する必要がなくなります。
+その方法については、Web情に多数のドキュメントがありますが、その一つをいかに示します。
+
+* `Qiita「Raspberry Piにディスプレイとマウスとキーボートを繋がずに自動でRaspbianをインストールする」 <https://qiita.com/horidaisuke/items/f3a6955c2015fab76f2c>`
 
 インストール終了後、ネットワークに接続してOSのアップデートを行ってください。
 
