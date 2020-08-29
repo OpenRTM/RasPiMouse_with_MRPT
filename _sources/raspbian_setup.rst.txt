@@ -6,7 +6,7 @@ OSのインストールとRasPiMouse2019の各種デバイスを動作させる�
 RaspberryPi 3B+にRaspbianをインストール
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Raspbianのインストールは、`オフィシャルサイト <https://www.raspberrypi.org/downloads/raspbian/>`_ 
-から Raspbian (Raspberry Pi OS) または `NOOBS <https://www.raspberrypi.org/downloads/noobs/>`  
+から Raspbian (Raspberry Pi OS) または `NOOBS <https://www.raspberrypi.org/downloads/noobs/>`_  
 をダウンロードしてOSをインストールします。
 
 Raspbian (Raspberry Pi OS) を直接インストール
@@ -30,8 +30,8 @@ SDカードやHDD/SSDなど起動可能なディスクに書き込むと、OSを
 SDカードへの書き込むことで行います。詳細な方法についてはWeb上に多数のドキュメントがありますのでそれらを参照してください。
 主なドキュメントを以下に示します。
 
-* `Qiita 「Raspberry Pi OS(Raspbian)インストールと初期セットアップ」 <https://qiita.com/s_harada/items/3ba9f660f66bc74d1746>`
-* `Qiita 「Raspbian Busterのインストール」 <https://qiita.com/desucru/items/ccd382aec0628007dc48>`
+* `Qiita 「Raspberry Pi OS(Raspbian)インストールと初期セットアップ」 <https://qiita.com/s_harada/items/3ba9f660f66bc74d1746>`_
+* `Qiita 「Raspbian Busterのインストール」 <https://qiita.com/desucru/items/ccd382aec0628007dc48>`_
 
 NOOBS から Raspbian をインストール
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -55,16 +55,16 @@ NOOBSを利用したインストール方法の概要はおおよそ以下の通
 詳細な方法についてはWeb上に多数のドキュメントがありますのでそれらを参照してください。
 主なドキュメントを以下に示します。
 
-* `Qiita「Raspbian ネットインストール」<https://qiita.com/halchiyo/items/8a03db32e726ecddb0aa>
-* `Qiita「RaspberryPi 3 Model B+ の設定　機材からOSのインストールまで【備忘録】」 <https://qiita.com/MEGAMAN__HS/items/2ac62c260e85b1bea6ad>`
-* `Qiita「Raspberry Pi への Raspbian インストール方法」 <https://qiita.com/SatomiWatanabe/items/e2773b0c87d3c32473ac>`
-＊ `Qiita「Raspberry pi 3 Model B セットアップしてみた。」<https://qiita.com/takabye/items/03ad86a23226a12e4417>`
+* `Qiita「Raspbian ネットインストール」<https://qiita.com/halchiyo/items/8a03db32e726ecddb0aa>`_
+* `Qiita「RaspberryPi 3 Model B+ の設定　機材からOSのインストールまで【備忘録】」 <https://qiita.com/MEGAMAN__HS/items/2ac62c260e85b1bea6ad>`_
+* `Qiita「Raspberry Pi への Raspbian インストール方法」 <https://qiita.com/SatomiWatanabe/items/e2773b0c87d3c32473ac>`_
+＊ `Qiita「Raspberry pi 3 Model B セットアップしてみた。」<https://qiita.com/takabye/items/03ad86a23226a12e4417>`_
 
 また、NOOBSは工夫すると、事前にssh (リモートログインに必要)やVNC (リモートで画面表示しつつRaspberryPiを操作可能)、
 WIFIなどを設定することができるため、RaspberryPiに接続するキーボードやディスプレイを用意する必要がなくなります。
 その方法については、Web情に多数のドキュメントがありますが、その一つをいかに示します。
 
-* `Qiita「Raspberry Piにディスプレイとマウスとキーボートを繋がずに自動でRaspbianをインストールする」 <https://qiita.com/horidaisuke/items/f3a6955c2015fab76f2c>`
+* `Qiita「Raspberry Piにディスプレイとマウスとキーボートを繋がずに自動でRaspbianをインストールする」 <https://qiita.com/horidaisuke/items/f3a6955c2015fab76f2c>`_
 
 インストール終了後、ネットワークに接続してOSのアップデートを行ってください。
 
