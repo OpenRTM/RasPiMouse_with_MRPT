@@ -6,7 +6,7 @@ OSのインストールとRasPiMouse2019の各種デバイスを動作させる�
 RaspberryPi 3B+にRaspbianをインストール
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Raspbianのインストールは、`オフィシャルサイト <https://www.raspberrypi.org/downloads/raspbian/>`_ 
-から Raspbian (Raspberry Pi OS) または `NOOBS <https://www.raspberrypi.org/downloads/noobs/>` 
+から Raspbian (Raspberry Pi OS) または `NOOBS <https://www.raspberrypi.org/downloads/noobs/>`  
 をダウンロードしてOSをインストールします。
 
 Raspbian (Raspberry Pi OS) を直接インストール
