@@ -3,7 +3,7 @@
 RaspberryPi Mouse SLAM component sets with MRP
 
 This is RT-Component packages set based on MRPT (Mobile Robot Platform Toolkit) for RaspberryPi Mouse with RPLIDAR.
-THis package includes the following RTC and tools.
+This package includes the following RTC and tools.
 
 - RT-Components
   - RaspberryPiMouseRTC
