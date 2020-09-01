@@ -5,13 +5,11 @@ Raspberry Pi Mouse ROSConJP2019講習会キット
 この文書について
 ====================
 この文章は、レーザ測域センサ付き小型移動ロボット（株式会社アールティ製
-Raspberry Pi Mouse ROSConJP2019講習会キット：以下RasPiMouse2019）を
-OpenRTM-aistの講習会に用いるための、教材作成に係るものです。
-
-RasPiMouse2019にOpenRTM-aist-1.2.1及び移動ロボットナビゲーション
+Raspberry Pi Mouse ROSConJP2019講習会キット：以下RasPiMouse2019）に
+OpenRTM-aist-1.2.1及び移動ロボットナビゲーション
 RTコンポーネントをインストールし、ナビゲーション用地図の生成、
 地図上の指定した地点へのナビゲーションを実行するシステムを導入し、
-RTミドルウェア講習会のための教材を作成すること目的としています。
+RTミドルウェア講習会のための教材セットを作成すること目的としています。
 
 .. contents:: 目次
    :depth: 3
