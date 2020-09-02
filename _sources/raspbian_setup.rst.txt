@@ -1,3 +1,6 @@
+.. -*- coding: utf-8 -*-
+:tocdepth: 2
+
 RaspberryPi 3B+へOSのインストール
 ----------------------------------
 RasPiMouse2019のハードウェアの組み立ての前に、搭載するCPUボード(RaspberryPi 3B+)に
