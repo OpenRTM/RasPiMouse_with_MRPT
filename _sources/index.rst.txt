@@ -14,8 +14,6 @@ RTミドルウェア講習会のための教材セットを作成すること目
 .. toctree:: 目次
    :maxdepth: 3
 
-RaspberryPiMouseのセットアップ
-===============================
 
 raspbian_setup
 
