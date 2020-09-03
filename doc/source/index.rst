@@ -17,7 +17,7 @@ RTミドルウェア講習会のための教材セットを作成すること目
 RaspberryPiMouseのセットアップ
 ===============================
 
-.. include:: raspbian_setup.rst
+raspbian_setup
 
 
 対象RTコンポーネントのバイナリパッケージのインストール
