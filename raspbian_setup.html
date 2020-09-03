@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RaspberryPiMouseのセットアップ &#8212; Navigation  ドキュメント</title>
+    <title>RaspberryPiMouseセットアップ &#8212; RasPiMouse MRPT  ドキュメント</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
@@ -17,7 +17,9 @@
     <script src="_static/translations.js"></script>
     
     <link rel="index" title="索引" href="genindex.html" />
-    <link rel="search" title="検索" href="search.html" /> 
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="パッケージインストール" href="install_pkg.html" />
+    <link rel="prev" title="MRPT RTC群によるSLAMナビゲーションシステム" href="index.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>ナビゲーション</h3>
@@ -25,8 +27,14 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="総合索引"
              accesskey="I">索引</a></li>
-        <li class="nav-item nav-item-0"><a href="index.html">Navigation  ドキュメント</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">RaspberryPiMouseのセットアップ</a></li> 
+        <li class="right" >
+          <a href="install_pkg.html" title="パッケージインストール"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="MRPT RTC群によるSLAMナビゲーションシステム"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">RasPiMouse MRPT  ドキュメント</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">RaspberryPiMouseセットアップ</a></li> 
       </ul>
     </div>  
 
@@ -36,19 +44,42 @@
           <div class="body" role="main">
             
   <div class="section" id="raspberrypimouse">
-<h1>RaspberryPiMouseのセットアップ<a class="headerlink" href="#raspberrypimouse" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<h1><a class="toc-backref" href="#id6">RaspberryPiMouseセットアップ</a><a class="headerlink" href="#raspberrypimouse" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="contents topic" id="id1">
+<p class="topic-title">目次</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#raspberrypimouse" id="id6">RaspberryPiMouseセットアップ</a></p>
+<ul>
+<li><p><a class="reference internal" href="#raspberrypi-3b-os" id="id7">RaspberryPi 3B+へOSのインストール</a></p>
+<ul>
+<li><p><a class="reference internal" href="#raspberrypi-3b-raspbian" id="id8">RaspberryPi 3B+にRaspbianをインストール</a></p></li>
+<li><p><a class="reference internal" href="#raspbian-raspberry-pi-os" id="id9">Raspbian (Raspberry Pi OS) を直接インストール</a></p></li>
+<li><p><a class="reference internal" href="#noobs-raspbian" id="id10">NOOBS から Raspbian をインストール</a></p></li>
+<li><p><a class="reference internal" href="#cui" id="id11">起動モードをCUIに変更</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id3" id="id12">RaspberryPiMouseのドライバのインストール</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id4" id="id13">RaspberryPiMouseのドライバのインストール</a></p></li>
+<li><p><a class="reference internal" href="#id5" id="id14">Raspbianの設定変更とスクリプトの導入</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
 <div class="section" id="raspberrypi-3b-os">
-<h2>RaspberryPi 3B+へOSのインストール<a class="headerlink" href="#raspberrypi-3b-os" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id7">RaspberryPi 3B+へOSのインストール</a><a class="headerlink" href="#raspberrypi-3b-os" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>RasPiMouse2019のハードウェアの組み立ての前に、搭載するCPUボード(RaspberryPi 3B+)に
 OSのインストールとRasPiMouse2019の各種デバイスを動作させるためのデバイスドライバのインストールを行ってください。</p>
 <div class="section" id="raspberrypi-3b-raspbian">
-<h3>RaspberryPi 3B+にRaspbianをインストール<a class="headerlink" href="#raspberrypi-3b-raspbian" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id8">RaspberryPi 3B+にRaspbianをインストール</a><a class="headerlink" href="#raspberrypi-3b-raspbian" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>Raspbianのインストールは、<a class="reference external" href="https://www.raspberrypi.org/downloads/raspbian/">オフィシャルサイト</a>
 から Raspbian (Raspberry Pi OS) または <a class="reference external" href="https://www.raspberrypi.org/downloads/noobs/">NOOBS</a>
 をダウンロードしてOSをインストールします。</p>
 </div>
 <div class="section" id="raspbian-raspberry-pi-os">
-<h3>Raspbian (Raspberry Pi OS) を直接インストール<a class="headerlink" href="#raspbian-raspberry-pi-os" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id9">Raspbian (Raspberry Pi OS) を直接インストール</a><a class="headerlink" href="#raspbian-raspberry-pi-os" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>オフィシャルサイトの <a class="reference external" href="https://www.raspberrypi.org/downloads/raspbian/">Raspbian ダウンロードサイト</a>
 からOSイメージをダウンロードして、SDカードに書き込みます。なお、このドキュメント執筆時点では、以下の３種類のOSが
 ダウンロード可能でしたが、RaspberryPiMouseを動作させる場合には Lite 版で十分ですので、サイズの小さい
@@ -71,7 +102,7 @@ SDカードへの書き込むことで行います。詳細な方法について
 </ul>
 </div>
 <div class="section" id="noobs-raspbian">
-<h3>NOOBS から Raspbian をインストール<a class="headerlink" href="#noobs-raspbian" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id10">NOOBS から Raspbian をインストール</a><a class="headerlink" href="#noobs-raspbian" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>NOOBSは、上記より簡単な方法で、様々なOSをインストールする方法を提供するツールです。
 SDカードの書き込みに特別なツールは必要ありませんし、多数のOSの中からインストール時に好きなOSを
 選ぶことができます。オフィシャルサイトの <a class="reference external" href="https://www.raspberrypi.org/downloads/noobs/">NOOOBS ダウンロードサイト</a>
@@ -105,7 +136,7 @@ WIFIなどを設定することができるため、RaspberryPiに接続する�
 <p>インストール終了後、ネットワークに接続してOSのアップデートを行ってください。</p>
 </div>
 <div class="section" id="cui">
-<h3>起動モードをCUIに変更<a class="headerlink" href="#cui" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id11">起動モードをCUIに変更</a><a class="headerlink" href="#cui" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>NOOBSを使ってRaspbianをインストールすると、グラフィックモードで起動します。
 RasPiMouse2019では、通常、ディスプレイを接続しませんので、CUIモードで起動するように設定ます。
 起動モードの設定には、raspi-configを用います。</p>
@@ -121,12 +152,12 @@ Raspbianをインストール時に設定したパスワードを入力してく
 <p>変更終了後、再起動してCUIモードで起動することを確認してください。</p>
 </div>
 </div>
-<div class="section" id="id2">
-<h2>RaspberryPiMouseのドライバのインストール<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id12">RaspberryPiMouseのドライバのインストール</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>搭載するCPUボードへのOSのインストール終了後、RaspberryPiMouse2019にCPUボードを取付け
 モータ、センサ制御用のデバイスドライバのインストールを行います。</p>
-<div class="section" id="id3">
-<h3>RaspberryPiMouseのドライバのインストール<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id4">
+<h3><a class="toc-backref" href="#id13">RaspberryPiMouseのドライバのインストール</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>RaspberryPiMouseのドライバは、<a class="reference external" href="https://github.com/rt-net/RaspberryPiMouse">株式会社アールティのオフィシャルGithub</a>
 に公開されています。
 RaspberryPiMouseのドライバは、ソースコードからビルドしインストールします。</p>
@@ -160,8 +191,8 @@ $ sudo depmod
 </pre></div>
 </div>
 </div>
-<div class="section" id="id4">
-<h3>Raspbianの設定変更とスクリプトの導入<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id5">
+<h3><a class="toc-backref" href="#id14">Raspbianの設定変更とスクリプトの導入</a><a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>次に、再移動直後に RaspberryPiMouseのドライバモジュールが利用できるように設定を行います。
 RaspberryPiMouseのドライバは、SPI機能とI2C機能を有効にする必要がありますので、
 raspi-configコマンドを使って、SPI機能、I2C機能を「入」にしてください。
@@ -266,22 +297,6 @@ exit 0
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">目次</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">RaspberryPiMouseのセットアップ</a><ul>
-<li><a class="reference internal" href="#raspberrypi-3b-os">RaspberryPi 3B+へOSのインストール</a></li>
-<li><a class="reference internal" href="#id2">RaspberryPiMouseのドライバのインストール</a></li>
-</ul>
-</li>
-</ul>
-
-  <div role="note" aria-label="source link">
-    <h3>このページ</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/raspbian_setup.rst.txt"
-            rel="nofollow">ソースコードを表示</a></li>
-    </ul>
-   </div>
 <div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">クイック検索</h3>
     <div class="searchformwrapper">
@@ -291,7 +306,27 @@ exit 0
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script><div id="toc" class="sidebarRow">
+
+    <h4><a href="index.html">目次</a></h4>
+        <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">RaspberryPiMouseセットアップ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_pkg.html">パッケージインストール</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ap_setup.html">RaspberryPiシステム設定</a></li>
+<li class="toctree-l1"><a class="reference internal" href="start_rtc.html">RTコンポーネントの起動方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auto_start.html">RTC自動起動設定</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system.html">SLAMによるナビゲーション</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build_rtc.html">（付録）RTCのコンパイル</a></li>
+</ul>
+
+    
+</div>
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="index.html"
+                        title="前の章へ">MRPT RTC群によるSLAMナビゲーションシステム</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="install_pkg.html"
+                        title="次の章へ">パッケージインストール</a></p>
         </div>
       </div>
       <div class="clearer"></div>
@@ -302,12 +337,18 @@ exit 0
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="総合索引"
              >索引</a></li>
-        <li class="nav-item nav-item-0"><a href="index.html">Navigation  ドキュメント</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">RaspberryPiMouseのセットアップ</a></li> 
+        <li class="right" >
+          <a href="install_pkg.html" title="パッケージインストール"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="MRPT RTC群によるSLAMナビゲーションシステム"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">RasPiMouse MRPT  ドキュメント</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">RaspberryPiMouseセットアップ</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2019, Isao Hara.
+        &#169; Copyright 2019, AIST.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
     </div>
   </body>

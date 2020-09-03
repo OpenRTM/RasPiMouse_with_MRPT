@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RaspberryPiMouseの無線LANのアクセスポイント化 &#8212; Navigation  ドキュメント</title>
+    <title>RaspberryPiシステム設定 &#8212; RasPiMouse MRPT  ドキュメント</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
@@ -17,7 +17,9 @@
     <script src="_static/translations.js"></script>
     
     <link rel="index" title="索引" href="genindex.html" />
-    <link rel="search" title="検索" href="search.html" /> 
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="RTコンポーネントの起動方法" href="start_rtc.html" />
+    <link rel="prev" title="パッケージインストール" href="install_pkg.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>ナビゲーション</h3>
@@ -25,8 +27,14 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="総合索引"
              accesskey="I">索引</a></li>
-        <li class="nav-item nav-item-0"><a href="index.html">Navigation  ドキュメント</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">RaspberryPiMouseの無線LANのアクセスポイント化</a></li> 
+        <li class="right" >
+          <a href="start_rtc.html" title="RTコンポーネントの起動方法"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="install_pkg.html" title="パッケージインストール"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">RasPiMouse MRPT  ドキュメント</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">RaspberryPiシステム設定</a></li> 
       </ul>
     </div>  
 
@@ -35,8 +43,22 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="raspberrypimouselan">
-<h1>RaspberryPiMouseの無線LANのアクセスポイント化<a class="headerlink" href="#raspberrypimouselan" title="このヘッドラインへのパーマリンク">¶</a></h1>
+  <div class="section" id="raspberrypi">
+<h1><a class="toc-backref" href="#id2">RaspberryPiシステム設定</a><a class="headerlink" href="#raspberrypi" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="contents topic" id="id1">
+<p class="topic-title">目次</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#raspberrypi" id="id2">RaspberryPiシステム設定</a></p>
+<ul>
+<li><p><a class="reference internal" href="#raspberrypimouselan" id="id3">RaspberryPiMouseの無線LANのアクセスポイント化</a></p></li>
+<li><p><a class="reference internal" href="#web" id="id4">Webサーバーのセットアップ</a></p></li>
+<li><p><a class="reference internal" href="#pc" id="id5">クライアント用PCの設定</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="raspberrypimouselan">
+<h2><a class="toc-backref" href="#id3">RaspberryPiMouseの無線LANのアクセスポイント化</a><a class="headerlink" href="#raspberrypimouselan" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>RasPiMouse2019を使用する場合、無線LANを外部ネットワークに接続して
 使用しても良いのですが、複数のRasPiMouse2019で講習会を行うことを
 想定すると個々のRasPiMouse2019の無線LANをアクセスポイント化し
@@ -126,7 +148,7 @@ Raspbian Buster の初期設定では、ホスト名である &quot;raspberrypi&
 再起動を実施てアクセスポイントになっていることを確認してください。</p>
 </div>
 <div class="section" id="web">
-<h1>Webサーバーのセットアップ<a class="headerlink" href="#web" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<h2><a class="toc-backref" href="#id4">Webサーバーのセットアップ</a><a class="headerlink" href="#web" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>RasPiMouse2019では、CGIを経由して外部PC上のWebブラウザから
 ネームサーバの起動、RTC群の制御を行うことができます。</p>
 <p>この節では、CGIを利用するためにapache2を導入と設定を行っていきます。
@@ -162,7 +184,7 @@ apache2を再起動するために下記のコマンドを実行してくださ�
 </div>
 </div>
 <div class="section" id="pc">
-<h1>クライアント用PCの設定<a class="headerlink" href="#pc" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<h2><a class="toc-backref" href="#id5">クライアント用PCの設定</a><a class="headerlink" href="#pc" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>RasPiMouse2019のナビゲーションRTC群の中でNavigationManagerは、Javaで実装され
 GUIパネルを含んでいます。</p>
 <p>そのため RasPiMouse2019上でNavigationManagerを動作させるには、
@@ -174,6 +196,7 @@ Windows10などのMicrosoftのOSには、Xサーバーを別途インストー�
 または <a class="reference external" href="https://sourceforge.net/projects/vcxsrv/">VcXsrv</a>
 がありますので、どちらのアプリケーションをインストールしてください。</p>
 </div>
+</div>
 
 
             <div class="clearer"></div>
@@ -182,20 +205,6 @@ Windows10などのMicrosoftのOSには、Xサーバーを別途インストー�
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">目次</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">RaspberryPiMouseの無線LANのアクセスポイント化</a></li>
-<li><a class="reference internal" href="#web">Webサーバーのセットアップ</a></li>
-<li><a class="reference internal" href="#pc">クライアント用PCの設定</a></li>
-</ul>
-
-  <div role="note" aria-label="source link">
-    <h3>このページ</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/ap_setup.rst.txt"
-            rel="nofollow">ソースコードを表示</a></li>
-    </ul>
-   </div>
 <div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">クイック検索</h3>
     <div class="searchformwrapper">
@@ -205,7 +214,27 @@ Windows10などのMicrosoftのOSには、Xサーバーを別途インストー�
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script><div id="toc" class="sidebarRow">
+
+    <h4><a href="index.html">目次</a></h4>
+        <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="raspbian_setup.html">RaspberryPiMouseセットアップ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_pkg.html">パッケージインストール</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">RaspberryPiシステム設定</a></li>
+<li class="toctree-l1"><a class="reference internal" href="start_rtc.html">RTコンポーネントの起動方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auto_start.html">RTC自動起動設定</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system.html">SLAMによるナビゲーション</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build_rtc.html">（付録）RTCのコンパイル</a></li>
+</ul>
+
+    
+</div>
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="install_pkg.html"
+                        title="前の章へ">パッケージインストール</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="start_rtc.html"
+                        title="次の章へ">RTコンポーネントの起動方法</a></p>
         </div>
       </div>
       <div class="clearer"></div>
@@ -216,12 +245,18 @@ Windows10などのMicrosoftのOSには、Xサーバーを別途インストー�
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="総合索引"
              >索引</a></li>
-        <li class="nav-item nav-item-0"><a href="index.html">Navigation  ドキュメント</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">RaspberryPiMouseの無線LANのアクセスポイント化</a></li> 
+        <li class="right" >
+          <a href="start_rtc.html" title="RTコンポーネントの起動方法"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="install_pkg.html" title="パッケージインストール"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">RasPiMouse MRPT  ドキュメント</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">RaspberryPiシステム設定</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2019, Isao Hara.
+        &#169; Copyright 2019, AIST.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
     </div>
   </body>

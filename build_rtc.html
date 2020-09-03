@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ナビゲーションRTC群のソースコードの取得 &#8212; Navigation  ドキュメント</title>
+    <title>（付録）RTCのコンパイル &#8212; RasPiMouse MRPT  ドキュメント</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
@@ -17,7 +17,8 @@
     <script src="_static/translations.js"></script>
     
     <link rel="index" title="索引" href="genindex.html" />
-    <link rel="search" title="検索" href="search.html" /> 
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="prev" title="SLAMによるナビゲーション" href="system.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>ナビゲーション</h3>
@@ -25,8 +26,11 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="総合索引"
              accesskey="I">索引</a></li>
-        <li class="nav-item nav-item-0"><a href="index.html">Navigation  ドキュメント</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">ナビゲーションRTC群のソースコードの取得</a></li> 
+        <li class="right" >
+          <a href="system.html" title="SLAMによるナビゲーション"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">RasPiMouse MRPT  ドキュメント</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">（付録）RTCのコンパイル</a></li> 
       </ul>
     </div>  
 
@@ -35,7 +39,23 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <p>RasPiMouse2019のナビゲーションを行うRTCは、
+  <div class="section" id="rtc">
+<h1><a class="toc-backref" href="#id5">（付録）RTCのコンパイル</a><a class="headerlink" href="#rtc" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="contents topic" id="id1">
+<p class="topic-title">目次</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#rtc" id="id5">（付録）RTCのコンパイル</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id2" id="id6">ナビゲーションRTC群のソースコードの取得</a></p></li>
+<li><p><a class="reference internal" href="#rtc-c" id="id7">RTC(C++)のビルド</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id8">RTC(C++)のパッケージ化</a></p></li>
+<li><p><a class="reference internal" href="#rtc-java" id="id9">RTC(Java)のビルド</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id10">RTC(Java)のパッケージ化</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>RasPiMouse2019のナビゲーションを行うRTCは、
 下記の8つのRTCがあります。</p>
 <ul class="simple">
 <li><p>RaspberryPiMouseRTC</p></li>
@@ -51,8 +71,8 @@
 2つのコンポーネントは、Javaで実装されており、
 他の6つはC++で実装されています。</p>
 <p>ここでは上記のRTCをソースコードからビルドする方法について説明します。</p>
-<div class="section" id="rtc">
-<h1>ナビゲーションRTC群のソースコードの取得<a class="headerlink" href="#rtc" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id2">
+<h2><a class="toc-backref" href="#id6">ナビゲーションRTC群のソースコードの取得</a><a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>まず最初にソースコードを取得します。
 上記のRTCのソースコードは全てGithub上に公開されていますので、
 gitコマンドでダウンロードしてください。</p>
@@ -70,7 +90,7 @@ $ git clone https://github.com/hara-jp/NavigationManager.git
 </div>
 </div>
 <div class="section" id="rtc-c">
-<h1>RTC(C++)のビルド<a class="headerlink" href="#rtc-c" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<h2><a class="toc-backref" href="#id7">RTC(C++)のビルド</a><a class="headerlink" href="#rtc-c" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>次に、C++で実装されているRTCをビルドします。
 OpenRTM-aist-1.2.1-Releaseでは、cmakeとmakeを使った
 ビルドシステムを使用します。
@@ -93,8 +113,8 @@ makeコマンドを実行してRTCをビルドします。</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id1">
-<h1>RTC(C++)のパッケージ化<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id8">RTC(C++)のパッケージ化</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>OpenRTM-aist-1.2.1-ReleaseのRTC Builderで生成した
 cmakeファイルでは、cpackコマンドによるdebパッケージの
 生成を行うことができます。</p>
@@ -105,7 +125,7 @@ $ cpack
 </div>
 </div>
 <div class="section" id="rtc-java">
-<h1>RTC(Java)のビルド<a class="headerlink" href="#rtc-java" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<h2><a class="toc-backref" href="#id9">RTC(Java)のビルド</a><a class="headerlink" href="#rtc-java" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>次に、Javaで実装されているRTCをビルドします。
 OpenRTM-aist-1.2.1-Releaseでは、Java版のRTCにはantコマンドを使用します。
 Java版のRTCもC++版と同様にビルド手順は全て同じです。
@@ -117,8 +137,8 @@ $ ant -f build_NavigationManager.xml
 </div>
 <p>ビルトが成功すれば、bin, classesの下に生成された.classファイルが生成されます。</p>
 </div>
-<div class="section" id="id2">
-<h1>RTC(Java)のパッケージ化<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id4">
+<h2><a class="toc-backref" href="#id10">RTC(Java)のパッケージ化</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>OpenRTM-aist-1.2.1-Releaseでは、
 Java版のビルド後にcmakeコマンドとcpackコマンドで
 debパッケージを生成することができます。</p>
@@ -132,6 +152,7 @@ $ cpack
 </pre></div>
 </div>
 </div>
+</div>
 
 
             <div class="clearer"></div>
@@ -140,22 +161,6 @@ $ cpack
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">目次</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">ナビゲーションRTC群のソースコードの取得</a></li>
-<li><a class="reference internal" href="#rtc-c">RTC(C++)のビルド</a></li>
-<li><a class="reference internal" href="#id1">RTC(C++)のパッケージ化</a></li>
-<li><a class="reference internal" href="#rtc-java">RTC(Java)のビルド</a></li>
-<li><a class="reference internal" href="#id2">RTC(Java)のパッケージ化</a></li>
-</ul>
-
-  <div role="note" aria-label="source link">
-    <h3>このページ</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/build_rtc.rst.txt"
-            rel="nofollow">ソースコードを表示</a></li>
-    </ul>
-   </div>
 <div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">クイック検索</h3>
     <div class="searchformwrapper">
@@ -165,7 +170,24 @@ $ cpack
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script><div id="toc" class="sidebarRow">
+
+    <h4><a href="index.html">目次</a></h4>
+        <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="raspbian_setup.html">RaspberryPiMouseセットアップ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_pkg.html">パッケージインストール</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ap_setup.html">RaspberryPiシステム設定</a></li>
+<li class="toctree-l1"><a class="reference internal" href="start_rtc.html">RTコンポーネントの起動方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auto_start.html">RTC自動起動設定</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system.html">SLAMによるナビゲーション</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">（付録）RTCのコンパイル</a></li>
+</ul>
+
+    
+</div>
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="system.html"
+                        title="前の章へ">SLAMによるナビゲーション</a></p>
         </div>
       </div>
       <div class="clearer"></div>
@@ -176,12 +198,15 @@ $ cpack
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="総合索引"
              >索引</a></li>
-        <li class="nav-item nav-item-0"><a href="index.html">Navigation  ドキュメント</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">ナビゲーションRTC群のソースコードの取得</a></li> 
+        <li class="right" >
+          <a href="system.html" title="SLAMによるナビゲーション"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">RasPiMouse MRPT  ドキュメント</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">（付録）RTCのコンパイル</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2019, Isao Hara.
+        &#169; Copyright 2019, AIST.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
     </div>
   </body>

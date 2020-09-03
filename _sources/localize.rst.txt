@@ -1,5 +1,4 @@
 .. -*- coding: utf-8 -*-
-:tocdepth: 2
 
 概要
 ^^^^^^^^

@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Webブラウザを用いたRTCの起動 &#8212; Navigation  ドキュメント</title>
+    <title>RTコンポーネントの起動方法 &#8212; RasPiMouse MRPT  ドキュメント</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
@@ -17,7 +17,9 @@
     <script src="_static/translations.js"></script>
     
     <link rel="index" title="索引" href="genindex.html" />
-    <link rel="search" title="検索" href="search.html" /> 
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="next" title="RTC自動起動設定" href="auto_start.html" />
+    <link rel="prev" title="RaspberryPiシステム設定" href="ap_setup.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>ナビゲーション</h3>
@@ -25,8 +27,14 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="総合索引"
              accesskey="I">索引</a></li>
-        <li class="nav-item nav-item-0"><a href="index.html">Navigation  ドキュメント</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Webブラウザを用いたRTCの起動</a></li> 
+        <li class="right" >
+          <a href="auto_start.html" title="RTC自動起動設定"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="ap_setup.html" title="RaspberryPiシステム設定"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">RasPiMouse MRPT  ドキュメント</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">RTコンポーネントの起動方法</a></li> 
       </ul>
     </div>  
 
@@ -35,7 +43,25 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <p>ここでは、RasPiMouse2019を操作するRTC群の起動方法について説明します。
+  <div class="section" id="rt">
+<h1><a class="toc-backref" href="#id4">RTコンポーネントの起動方法</a><a class="headerlink" href="#rt" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="contents topic" id="id1">
+<p class="topic-title">目次</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#rt" id="id4">RTコンポーネントの起動方法</a></p>
+<ul>
+<li><p><a class="reference internal" href="#webrtc" id="id5">Webブラウザを用いたRTCの起動</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id2" id="id6">ネームサーバーの起動</a></p></li>
+<li><p><a class="reference internal" href="#rtc" id="id7">ナビゲーションRTC群の操作</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id3" id="id8">コマンドラインからRTCの起動</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>ここでは、RasPiMouse2019を操作するRTC群の起動方法について説明します。
 RasPiMouse2019のナビゲーションのためのRTC群の操作は、
 sshでログインしてターミナル上で起動、接続、有効化等の操作を行うことも
 可能ですが、ナビゲーションRTC群の基本操作は Webブラウザを介して
@@ -43,7 +69,7 @@ sshでログインしてターミナル上で起動、接続、有効化等の�
 ここでは、最初にWebブラウザを用いた操作について説明し、次にターミナルから
 ログインして操作する方法について解説します。</p>
 <div class="section" id="webrtc">
-<h1>Webブラウザを用いたRTCの起動<a class="headerlink" href="#webrtc" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<h2><a class="toc-backref" href="#id5">Webブラウザを用いたRTCの起動</a><a class="headerlink" href="#webrtc" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>RasPiMouse2019の電源と投入し、Raspbian を起動させます。
 クライアントPCの無線LANのマネージャーからhostapd.confで設定したssidが
 見えることを確認し、接続してください。</p>
@@ -57,8 +83,8 @@ ipconfigコマンド等で確認してください。</p>
 Webブラウザから接続してください。
 下のようなページが出力されれば正常に動作しています。</p>
 <img alt="_images/web.png" src="_images/web.png" />
-<div class="section" id="id1">
-<h2>ネームサーバーの起動<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id2">
+<h3><a class="toc-backref" href="#id6">ネームサーバーの起動</a><a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>起動直後ではネームサーバーが動作していないため、2段目の &quot;RTC LIST&quot;の部分は、
 下のようなエラー表示になっています。</p>
 <img alt="_images/web-1.png" src="_images/web-1.png" />
@@ -70,7 +96,7 @@ Webブラウザから接続してください。
 <p>このようにエラーメッセージが表示されない場合は、ネームサーバが正常に動作しています。</p>
 </div>
 <div class="section" id="rtc">
-<h2>ナビゲーションRTC群の操作<a class="headerlink" href="#rtc" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h3><a class="toc-backref" href="#id7">ナビゲーションRTC群の操作</a><a class="headerlink" href="#rtc" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>トップページの最初のセクションには、下図のように
 RasPiMouse2019のナビゲーションに用いるRTCの名称および
 操作のCGIプログラムへのリンクの一覧が表示されています。</p>
@@ -81,8 +107,8 @@ RasPiMouse2019のナビゲーションに用いるRTCの名称および
 ネームサーバーに登録されているRTCの一覧を更新、表示することができます。</p>
 </div>
 </div>
-<div class="section" id="id2">
-<h1>コマンドラインからRTCの起動<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id8">コマンドラインからRTCの起動</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>Webブラウザからでは、現在、個々のRTCの起動、終了、アクティベート、デアクティベートに対応していますが、
 RTCの強制終了やエラー時の対応など細かい操作を行うことができません。</p>
 <p>RTCの強制終了やエラー時の対応など細かい操作が必要な場合には、
@@ -117,6 +143,7 @@ $ /usr/local/openrtm/mapper.sh stop
 </pre></div>
 </div>
 </div>
+</div>
 
 
             <div class="clearer"></div>
@@ -125,23 +152,6 @@ $ /usr/local/openrtm/mapper.sh stop
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">目次</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Webブラウザを用いたRTCの起動</a><ul>
-<li><a class="reference internal" href="#id1">ネームサーバーの起動</a></li>
-<li><a class="reference internal" href="#rtc">ナビゲーションRTC群の操作</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#id2">コマンドラインからRTCの起動</a></li>
-</ul>
-
-  <div role="note" aria-label="source link">
-    <h3>このページ</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/start_rtc.rst.txt"
-            rel="nofollow">ソースコードを表示</a></li>
-    </ul>
-   </div>
 <div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">クイック検索</h3>
     <div class="searchformwrapper">
@@ -151,7 +161,27 @@ $ /usr/local/openrtm/mapper.sh stop
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script><div id="toc" class="sidebarRow">
+
+    <h4><a href="index.html">目次</a></h4>
+        <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="raspbian_setup.html">RaspberryPiMouseセットアップ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_pkg.html">パッケージインストール</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ap_setup.html">RaspberryPiシステム設定</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">RTコンポーネントの起動方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auto_start.html">RTC自動起動設定</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system.html">SLAMによるナビゲーション</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build_rtc.html">（付録）RTCのコンパイル</a></li>
+</ul>
+
+    
+</div>
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="ap_setup.html"
+                        title="前の章へ">RaspberryPiシステム設定</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="auto_start.html"
+                        title="次の章へ">RTC自動起動設定</a></p>
         </div>
       </div>
       <div class="clearer"></div>
@@ -162,12 +192,18 @@ $ /usr/local/openrtm/mapper.sh stop
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="総合索引"
              >索引</a></li>
-        <li class="nav-item nav-item-0"><a href="index.html">Navigation  ドキュメント</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Webブラウザを用いたRTCの起動</a></li> 
+        <li class="right" >
+          <a href="auto_start.html" title="RTC自動起動設定"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="ap_setup.html" title="RaspberryPiシステム設定"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">RasPiMouse MRPT  ドキュメント</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">RTコンポーネントの起動方法</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2019, Isao Hara.
+        &#169; Copyright 2019, AIST.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
     </div>
   </body>
