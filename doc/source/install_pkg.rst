@@ -1,10 +1,15 @@
 .. -*- coding: utf-8 -*-
-:tocdepth: 2
 
-OpenRTM-aist-1.2.1-Releaseのインストール
+パッケージインストール
+========================
+
+.. contents:: 目次
+  :depth: 3
+
+OpenRTM-aistのインストール
 ----------------------------------------
 `OpenRTM-aistのオフィシャルサイト <https://openrtm.org/openrtm/ja/node/6912>`_
-から「一括インストールスクリプト(pkg_install_raspbian.sh)」をダウンロードし、インストールを行います。
+から「一括インストールスクリプト(pkg_install_raspbian.sh)」をダウンロードし、インストールを行います。以下では、OpenRTM-aist-1.2.1 を仮定して話を勧めます。
 
 下記のコマンドを実行してください。
 OpenRTM-aist-1.2.1-Release のC++版、Python版(Python2.7)、Java版及びOpenRTP, Rtshellがインストールされます。
@@ -42,7 +47,7 @@ rplidar_sdkのインストール
 次に、RasPiMouse2019に搭載さているレーザー距離センサを利用するためのライブラリ 
 rplidar_sdkをインストールします。
 
-rplidar_sdkは、`Github <https://github.com/hara-jp/rplidar_sdk>`_
+rplidar_sdkは、`rplidar_sdkのGithubリポジトリ <https://github.com/hara-jp/rplidar_sdk>`_
 に公開されていますので、ダウンロードしインストールします。
 下記のコマンドでライブラリをビルドしてください。
 
@@ -100,7 +105,7 @@ libmrptは、下記のようにaptコマンドでインストールすること�
 ナビゲーションRTC群のパッケージインストール
 -------------------------------------------
 次に、RasPiMouse2019のナビゲーションのためのRTC群のパッケージを
-`Github <https://github.com/hara-jp/RasPiMouse2019-OpenRTM/blob/master/pkgs.tgz?raw=true>`_ 
+`RTCパッケージのGithubリポジトリ <https://github.com/hara-jp/RasPiMouse2019-OpenRTM/blob/master/pkgs.tgz?raw=true>`_ 
 からダウンロードしてください。
 
 このパッケージには、ナビゲーションRTC群(debファイル)、
