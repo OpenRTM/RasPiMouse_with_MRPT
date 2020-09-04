@@ -54,7 +54,7 @@ exclude_patterns = []
 #html_theme = 'alabaster'
 #html_theme = 'nature'
 #html_theme = 'classic'
-html_theme = 'bistyle'
+html_theme = 'bizstyle'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
