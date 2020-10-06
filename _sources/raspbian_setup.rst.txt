@@ -36,9 +36,9 @@ RaspberryPiMouseを動作させる場合には Lite 版で十分ですので、�
 このイメージではRaspberryPiをGUIから操作ができませんが、本チュートリアルでは、RaspberryPi をGUIから操作することは
 ほとんどありませんので、動作が軽いLite版を推奨いたします。
 
-* Raspberry Pi OS (32-bit) Lite (サイズ小、インストール時間**短**、推奨)
-* Raspberry Pi OS (32-bit) with desktop (サイズ中、インストール時間**中**、非推奨)
-* Raspberry Pi OS (32-bit) with desktop and recommended software (サイズ大、インストール時間**長**、非推奨)
+* Raspberry Pi OS (32-bit) Lite (サイズ小、インストール時間 **短** 、推奨)
+* Raspberry Pi OS (32-bit) with desktop (サイズ中、インストール時間 **中** 、非推奨)
+* Raspberry Pi OS (32-bit) with desktop and recommended software (サイズ大、インストール時間 **長** 、非推奨)
 
 **Download ZIP** をクリックして、ZIPファイルをダウンロードし、ダウンロードが完了したら
 
@@ -59,18 +59,38 @@ OSをそのディスクにインストールしたものと同じ状態になる
 イメージファイルからSDカードにOSをインストールするには、Windowsの場合は専用のツール（MacやLinuxでは特定のコマンド）を使用します。
 ツールには様々な種類がありますが、ここでは以下のURLから Win32 Disk Imagerをダウのロードしてください。
 
-* `Win32 Disk Imager <https://sourceforge.net/projects/win32diskimager/>`
+* `Win32 Disk Imager <https://sourceforge.net/projects/win32diskimager/>`_ 
 
 .. image:: img/win32diskimager_download.png
 
+ダウンロードした実行ファイルを実行すると、インストーラが起動しますので、 **NEXT>** を押してデフォルト設定のままインストールします。
 
-基本的な方法は、上記ダウンロードサイトから、RaspbianのOSイメージを選択・ダウンロードし、イメージ書き込みツールで
-SDカードへの書き込むことで行います。詳細な方法についてはWeb上に多数のドキュメントがありますのでそれらを参照してください。
+.. image:: img/win32di_install_01.png
+
+インストールの最後の画面で、**Launch Win32DiskImager** にチェックが入っていることを確認して、**Finish** を押して、インストーラを終了しWin32DiskImagerを起動します。
+
+.. image:: img/win32di_install_04.png
+
+Win32DiskImagerを起動すると以下のような画面が現れますので、 **Image File** の部分のボタンを押し、先ほどダウンロードしたRaspbianのイメージファイルを指定します。
+.. image:: img/win32diskimager_01.png
+
+さらに、SDカードをPCに接続されたSDカードスロット等に挿入し、そのドライブレターを **Device** の部分で指定します（下図の例では **F:\** ドライブ）。
+
+.. image:: img/win32diskimager_03.png
+
+以上が終了したら、**Write** ボタンを押し、実際にSDカードにイメージを書き込みます。
+
+以上で、SDカードへのOSの書き込みは終了です。
+
+MacOSやLinuxでもOSの書き込みを行うことは可能ですので、Qiita等に多数のドキュメントがありますのでそれらを参照してください。
 主なドキュメントを以下に示します。
+現在は、RaspberryPi公式サイトからWindows, Linux, MacOS いずれのOSでも利用可能なRaspberryPi Imagerというツールが提供されており、
+これを使うのが簡単かもしれません。
 
-
-* `Qiita 「Raspberry Pi OS(Raspbian)インストールと初期セットアップ」(Windows) <https://qiita.com/s_harada/items/3ba9f660f66bc74d1746>`_
+* `Qiita 「めっちゃ簡単にラズパイ用のOSをインストールできる」（Windows/Mac/Linux）<https://qiita.com/Miutaku/items/a51e8c8ff34af8d3b156>`_
+* `Qiita 「Raspberry Pi OS(Raspbian)インストールと初期セットアップ」(Windows) <https://qiita.com/s_harada/items/3ba9f660f66bc74d1746>`_ 
 * `Qiita 「Raspbian Busterのインストール」(MacOS) <https://qiita.com/desucru/items/ccd382aec0628007dc48>`_
+
 
 NOOBS から Raspbian をインストール
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -116,7 +136,9 @@ WIFIなどを設定することができるため、RaspberryPiに接続する�
 
 起動モードをCUIに変更
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-NOOBSを使ってRaspbianをインストールすると、グラフィックモードで起動します。
+Raspbian Lite版をインストールした場合は、この節はスキップしてください。
+
+Desktop版のRaspbianや、NOOBSを使ってRaspbianをインストールすると、グラフィックモードで起動します。
 RasPiMouse2019では、通常、ディスプレイを接続しませんので、CUIモードで起動するように設定ます。
 起動モードの設定には、raspi-configを用います。
 
