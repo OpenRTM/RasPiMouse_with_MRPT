@@ -13,36 +13,73 @@ OSのインストールとRasPiMouse2019の各種デバイスを動作させる�
 
 RaspberryPi 3B+にRaspbianをインストール
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Raspbianのインストールは、`オフィシャルサイト <https://www.raspberrypi.org/downloads/raspbian/>`_ 
-から Raspbian (Raspberry Pi OS) または `NOOBS <https://www.raspberrypi.org/downloads/noobs/>`_  
-をダウンロードしてOSをインストールします。
+
+RaspberryPi にOSをインストールする方法は大きく分けて二通りあります。
+
+* 標準OS **Raspbian** のイメージをダウンロードしてSDカードに書き込み (少し難しいが短時間でインストール可能)
+* OS選択式インストーラ **NOOBS** をSDカードに書き込みインストール時にOSを選択 (簡単だが多少時間がかかる)
+
+いずれの方法も手順通りやれば難しくはなく、かかる時間もそれほど差はありません。
 
 Raspbian (Raspberry Pi OS) を直接インストール
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 オフィシャルサイトの `Raspbian ダウンロードサイト <https://www.raspberrypi.org/downloads/raspbian/>`_
-からOSイメージをダウンロードして、SDカードに書き込みます。なお、このドキュメント執筆時点では、以下の３種類のOSが
-ダウンロード可能でしたが、RaspberryPiMouseを動作させる場合には Lite 版で十分ですので、サイズの小さい
-Lite 版をインストールすることをお勧めします。ただし、このイメージではGUIでの操作ができないので、
-コマンドライン操作に自信がない場合は、サイズ中の desktop 版をインストールします。
+からOSイメージをダウンロードして、SDカードに書き込みます。
 
-* Raspberry Pi OS (32-bit) with desktop and recommended software (サイズ大、インストール時間長、推奨)
-* Raspberry Pi OS (32-bit) with desktop (サイズ中、インストール時間中、推奨)
-* Raspberry Pi OS (32-bit) Lite (サイズ小、インストール時間短、推奨)
+.. image:: img/Raspbian_download.png
 
-イメージとは、ディスクの0バイト目から最後までを一つのファイルにしたものであり、これをイメージ書き込みツールなどで
-SDカードやHDD/SSDなど起動可能なディスクに書き込むと、OSをそのディスクにインストールしたものと同じ状態になる
-一つの大きなファイルのことを指します。
+なお、このドキュメント執筆時点では、以下の３種類のOSがダウンロード可能でしたが、
+RaspberryPiMouseを動作させる場合には Lite 版で十分ですので、サイズの小さいLite 版をインストールすることを
+お勧めします。
+
+このイメージではRaspberryPiをGUIから操作ができませんが、本チュートリアルでは、RaspberryPi をGUIから操作することは
+ほとんどありませんので、動作が軽いLite版を推奨いたします。
+
+* Raspberry Pi OS (32-bit) Lite (サイズ小、インストール時間**短**、推奨)
+* Raspberry Pi OS (32-bit) with desktop (サイズ中、インストール時間**中**、非推奨)
+* Raspberry Pi OS (32-bit) with desktop and recommended software (サイズ大、インストール時間**長**、非推奨)
+
+**Download ZIP** をクリックして、ZIPファイルをダウンロードし、ダウンロードが完了したら
+* ZIPファイルを右クリック
+* コンテキストメニューの**「すべて展開」(T)...**を選択
+* **「展開先の選択とファイルの展開」** ダイアログで展開先を指定（デフォルトでOK）
+* **「展開」**ボタンを押す
+* 上記で指定した展開先に **2020-08-20-raspios-buster-armhf-lite.img**(Lite版の場合) というファイルが展開されます。
+(標準では下図のようなCDアイコンで表示される。)
+
+.. image:: img/raspbian_image.png
+
+**イメージファイルとは**、ディスクの0バイト目から最後までを一つのファイルにしたものであり、
+これをイメージ書き込みツールなどでSDカードやHDD/SSDなど起動可能なディスクに書き込むと、
+OSをそのディスクにインストールしたものと同じ状態になる一つの大きなファイルのことを指します。
+
+**イメージファイルは、そのままSDカードにコピーしてはいけません！**
+イメージファイルからSDカードにOSをインストールするには、Windowsの場合は専用のツール（MacやLinuxでは特定のコマンド）を使用します。
+ツールには様々な種類がありますが、ここでは以下のURLから Win32 Disk Imagerをダウのロードしてください。
+
+* `Win32 Disk Imager <https://sourceforge.net/projects/win32diskimager/>`
+
+.. image:: img/win32diskimager_download.png
+
 
 基本的な方法は、上記ダウンロードサイトから、RaspbianのOSイメージを選択・ダウンロードし、イメージ書き込みツールで
 SDカードへの書き込むことで行います。詳細な方法についてはWeb上に多数のドキュメントがありますのでそれらを参照してください。
 主なドキュメントを以下に示します。
 
-* `Qiita 「Raspberry Pi OS(Raspbian)インストールと初期セットアップ」 <https://qiita.com/s_harada/items/3ba9f660f66bc74d1746>`_
-* `Qiita 「Raspbian Busterのインストール」 <https://qiita.com/desucru/items/ccd382aec0628007dc48>`_
+
+* `Qiita 「Raspberry Pi OS(Raspbian)インストールと初期セットアップ」(Windows) <https://qiita.com/s_harada/items/3ba9f660f66bc74d1746>`_
+* `Qiita 「Raspbian Busterのインストール」(MacOS) <https://qiita.com/desucru/items/ccd382aec0628007dc48>`_
 
 NOOBS から Raspbian をインストール
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Raspbianのインストールは、`オフィシャルサイト <https://www.raspberrypi.org/downloads/raspbian/>`_ 
+から Raspbian (Raspberry Pi OS) または `NOOBS <https://www.raspberrypi.org/downloads/noobs/>`_  
+をダウンロードしてOSをインストールします。RaspberryPiのネットワーク接続が確保できる場合は、**NOOBS Lite** 
+で十分です。OSを順次ネットワークからダウンロードしてインストールしてくれます。
+
+.. image:: img/NOOBS_download.png
 
 NOOBSは、上記より簡単な方法で、様々なOSをインストールする方法を提供するツールです。
 SDカードの書き込みに特別なツールは必要ありませんし、多数のOSの中からインストール時に好きなOSを
