@@ -41,11 +41,12 @@ RaspberryPiMouseを動作させる場合には Lite 版で十分ですので、�
 * Raspberry Pi OS (32-bit) with desktop and recommended software (サイズ大、インストール時間**長**、非推奨)
 
 **Download ZIP** をクリックして、ZIPファイルをダウンロードし、ダウンロードが完了したら
+
 * ZIPファイルを右クリック
-* コンテキストメニューの**「すべて展開」(T)...**を選択
+* コンテキストメニューの **「すべて展開」(T)...** を選択
 * **「展開先の選択とファイルの展開」** ダイアログで展開先を指定（デフォルトでOK）
-* **「展開」**ボタンを押す
-* 上記で指定した展開先に **2020-08-20-raspios-buster-armhf-lite.img**(Lite版の場合) というファイルが展開されます。
+* **「展開」** ボタンを押す
+* 上記で指定した展開先に **2020-08-20-raspios-buster-armhf-lite.img** (Lite版の場合) というファイルが展開されます。
 (標準では下図のようなCDアイコンで表示される。)
 
 .. image:: img/raspbian_image.png

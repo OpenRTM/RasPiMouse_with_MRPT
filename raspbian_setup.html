@@ -50,24 +50,24 @@
           <div class="body" role="main">
             
   <div class="section" id="raspberrypimouse">
-<h1><a class="toc-backref" href="#id10">RaspberryPiMouseセットアップ</a><a class="headerlink" href="#raspberrypimouse" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<h1><a class="toc-backref" href="#id6">RaspberryPiMouseセットアップ</a><a class="headerlink" href="#raspberrypimouse" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="contents topic" id="id1">
 <p class="topic-title">目次</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#raspberrypimouse" id="id10">RaspberryPiMouseセットアップ</a></p>
+<li><p><a class="reference internal" href="#raspberrypimouse" id="id6">RaspberryPiMouseセットアップ</a></p>
 <ul>
-<li><p><a class="reference internal" href="#raspberrypi-3b-os" id="id11">RaspberryPi 3B+へOSのインストール</a></p>
+<li><p><a class="reference internal" href="#raspberrypi-3b-os" id="id7">RaspberryPi 3B+へOSのインストール</a></p>
 <ul>
-<li><p><a class="reference internal" href="#raspberrypi-3b-raspbian" id="id12">RaspberryPi 3B+にRaspbianをインストール</a></p></li>
-<li><p><a class="reference internal" href="#raspbian-raspberry-pi-os" id="id13">Raspbian (Raspberry Pi OS) を直接インストール</a></p></li>
-<li><p><a class="reference internal" href="#noobs-raspbian" id="id14">NOOBS から Raspbian をインストール</a></p></li>
-<li><p><a class="reference internal" href="#cui" id="id15">起動モードをCUIに変更</a></p></li>
+<li><p><a class="reference internal" href="#raspberrypi-3b-raspbian" id="id8">RaspberryPi 3B+にRaspbianをインストール</a></p></li>
+<li><p><a class="reference internal" href="#raspbian-raspberry-pi-os" id="id9">Raspbian (Raspberry Pi OS) を直接インストール</a></p></li>
+<li><p><a class="reference internal" href="#noobs-raspbian" id="id10">NOOBS から Raspbian をインストール</a></p></li>
+<li><p><a class="reference internal" href="#cui" id="id11">起動モードをCUIに変更</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#id7" id="id16">RaspberryPiMouseのドライバのインストール</a></p>
+<li><p><a class="reference internal" href="#id3" id="id12">RaspberryPiMouseのドライバのインストール</a></p>
 <ul>
-<li><p><a class="reference internal" href="#id8" id="id17">RaspberryPiMouseのドライバのインストール</a></p></li>
-<li><p><a class="reference internal" href="#id9" id="id18">Raspbianの設定変更とスクリプトの導入</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id13">RaspberryPiMouseのドライバのインストール</a></p></li>
+<li><p><a class="reference internal" href="#id5" id="id14">Raspbianの設定変更とスクリプトの導入</a></p></li>
 </ul>
 </li>
 </ul>
@@ -75,11 +75,11 @@
 </ul>
 </div>
 <div class="section" id="raspberrypi-3b-os">
-<h2><a class="toc-backref" href="#id11">RaspberryPi 3B+へOSのインストール</a><a class="headerlink" href="#raspberrypi-3b-os" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2><a class="toc-backref" href="#id7">RaspberryPi 3B+へOSのインストール</a><a class="headerlink" href="#raspberrypi-3b-os" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>RasPiMouse2019のハードウェアの組み立ての前に、搭載するCPUボード(RaspberryPi 3B+)に
 OSのインストールとRasPiMouse2019の各種デバイスを動作させるためのデバイスドライバのインストールを行ってください。</p>
 <div class="section" id="raspberrypi-3b-raspbian">
-<h3><a class="toc-backref" href="#id12">RaspberryPi 3B+にRaspbianをインストール</a><a class="headerlink" href="#raspberrypi-3b-raspbian" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id8">RaspberryPi 3B+にRaspbianをインストール</a><a class="headerlink" href="#raspberrypi-3b-raspbian" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>RaspberryPi にOSをインストールする方法は大きく分けて二通りあります。</p>
 <ul class="simple">
 <li><p>標準OS <strong>Raspbian</strong> のイメージをダウンロードしてSDカードに書き込み (少し難しいが短時間でインストール可能)</p></li>
@@ -88,7 +88,7 @@ OSのインストールとRasPiMouse2019の各種デバイスを動作させる�
 <p>いずれの方法も手順通りやれば難しくはなく、かかる時間もそれほど差はありません。</p>
 </div>
 <div class="section" id="raspbian-raspberry-pi-os">
-<h3><a class="toc-backref" href="#id13">Raspbian (Raspberry Pi OS) を直接インストール</a><a class="headerlink" href="#raspbian-raspberry-pi-os" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id9">Raspbian (Raspberry Pi OS) を直接インストール</a><a class="headerlink" href="#raspbian-raspberry-pi-os" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>オフィシャルサイトの <a class="reference external" href="https://www.raspberrypi.org/downloads/raspbian/">Raspbian ダウンロードサイト</a>
 からOSイメージをダウンロードして、SDカードに書き込みます。</p>
 <img alt="_images/Raspbian_download.png" src="_images/Raspbian_download.png" />
@@ -102,13 +102,15 @@ RaspberryPiMouseを動作させる場合には Lite 版で十分ですので、�
 <li><p>Raspberry Pi OS (32-bit) with desktop (サイズ中、インストール時間**中**、非推奨)</p></li>
 <li><p>Raspberry Pi OS (32-bit) with desktop and recommended software (サイズ大、インストール時間**長**、非推奨)</p></li>
 </ul>
-<p><strong>Download ZIP</strong> をクリックして、ZIPファイルをダウンロードし、ダウンロードが完了したら
-* ZIPファイルを右クリック
-* コンテキストメニューの**「すべて展開」(T)...**を選択
-* <strong>「展開先の選択とファイルの展開」</strong> ダイアログで展開先を指定（デフォルトでOK）
-* <a href="#id2"><span class="problematic" id="id3">**</span></a>「展開」**ボタンを押す
-* 上記で指定した展開先に <a href="#id4"><span class="problematic" id="id5">**</span></a>2020-08-20-raspios-buster-armhf-lite.img**(Lite版の場合) というファイルが展開されます。
-(標準では下図のようなCDアイコンで表示される。)</p>
+<p><strong>Download ZIP</strong> をクリックして、ZIPファイルをダウンロードし、ダウンロードが完了したら</p>
+<ul class="simple">
+<li><p>ZIPファイルを右クリック</p></li>
+<li><p>コンテキストメニューの <strong>「すべて展開」(T)...</strong> を選択</p></li>
+<li><p><strong>「展開先の選択とファイルの展開」</strong> ダイアログで展開先を指定（デフォルトでOK）</p></li>
+<li><p><strong>「展開」</strong> ボタンを押す</p></li>
+<li><p>上記で指定した展開先に <strong>2020-08-20-raspios-buster-armhf-lite.img</strong> (Lite版の場合) というファイルが展開されます。</p></li>
+</ul>
+<p>(標準では下図のようなCDアイコンで表示される。)</p>
 <img alt="_images/raspbian_image.png" src="_images/raspbian_image.png" />
 <p><strong>イメージファイルとは</strong>、ディスクの0バイト目から最後までを一つのファイルにしたものであり、
 これをイメージ書き込みツールなどでSDカードやHDD/SSDなど起動可能なディスクに書き込むと、
@@ -129,7 +131,7 @@ SDカードへの書き込むことで行います。詳細な方法について
 </ul>
 </div>
 <div class="section" id="noobs-raspbian">
-<h3><a class="toc-backref" href="#id14">NOOBS から Raspbian をインストール</a><a class="headerlink" href="#noobs-raspbian" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id10">NOOBS から Raspbian をインストール</a><a class="headerlink" href="#noobs-raspbian" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>Raspbianのインストールは、<a class="reference external" href="https://www.raspberrypi.org/downloads/raspbian/">オフィシャルサイト</a>
 から Raspbian (Raspberry Pi OS) または <a class="reference external" href="https://www.raspberrypi.org/downloads/noobs/">NOOBS</a>
 をダウンロードしてOSをインストールします。RaspberryPiのネットワーク接続が確保できる場合は、<strong>NOOBS Lite</strong>
@@ -168,7 +170,7 @@ WIFIなどを設定することができるため、RaspberryPiに接続する�
 <p>インストール終了後、ネットワークに接続してOSのアップデートを行ってください。</p>
 </div>
 <div class="section" id="cui">
-<h3><a class="toc-backref" href="#id15">起動モードをCUIに変更</a><a class="headerlink" href="#cui" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3><a class="toc-backref" href="#id11">起動モードをCUIに変更</a><a class="headerlink" href="#cui" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>NOOBSを使ってRaspbianをインストールすると、グラフィックモードで起動します。
 RasPiMouse2019では、通常、ディスプレイを接続しませんので、CUIモードで起動するように設定ます。
 起動モードの設定には、raspi-configを用います。</p>
@@ -184,12 +186,12 @@ Raspbianをインストール時に設定したパスワードを入力してく
 <p>変更終了後、再起動してCUIモードで起動することを確認してください。</p>
 </div>
 </div>
-<div class="section" id="id7">
-<h2><a class="toc-backref" href="#id16">RaspberryPiMouseのドライバのインストール</a><a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id12">RaspberryPiMouseのドライバのインストール</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>搭載するCPUボードへのOSのインストール終了後、RaspberryPiMouse2019にCPUボードを取付け
 モータ、センサ制御用のデバイスドライバのインストールを行います。</p>
-<div class="section" id="id8">
-<h3><a class="toc-backref" href="#id17">RaspberryPiMouseのドライバのインストール</a><a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id4">
+<h3><a class="toc-backref" href="#id13">RaspberryPiMouseのドライバのインストール</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>RaspberryPiMouseのドライバは、<a class="reference external" href="https://github.com/rt-net/RaspberryPiMouse">株式会社アールティのオフィシャルGithub</a>
 に公開されています。
 RaspberryPiMouseのドライバは、ソースコードからビルドしインストールします。</p>
@@ -223,8 +225,8 @@ $ sudo depmod
 </pre></div>
 </div>
 </div>
-<div class="section" id="id9">
-<h3><a class="toc-backref" href="#id18">Raspbianの設定変更とスクリプトの導入</a><a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="section" id="id5">
+<h3><a class="toc-backref" href="#id14">Raspbianの設定変更とスクリプトの導入</a><a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>次に、再移動直後に RaspberryPiMouseのドライバモジュールが利用できるように設定を行います。
 RaspberryPiMouseのドライバは、SPI機能とI2C機能を有効にする必要がありますので、
 raspi-configコマンドを使って、SPI機能、I2C機能を「入」にしてください。
