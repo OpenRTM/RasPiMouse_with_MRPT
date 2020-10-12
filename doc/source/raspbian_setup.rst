@@ -23,6 +23,12 @@ RaspberryPi にOSをインストールする方法は大きく分けて三通り
 RaspberryPi公式のSDカードへのOSインストールツール **RaspberryPi Imager** が利用できるようになったため、
 下2つの方法は、特別な事情がない限り推奨しません。
 
+Raspberry Pi Imager を用いてインストール
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RaspberryPi公式のSDカードへのOSインストールツール **RaspberryPi Imager** が公開されています。
+これを使うと、Windows, MacOS X, Linux(Ubuntu) のいずれのOSからでも、かんたんにSDカードへ希望のOSをインストールすることができます。
+
+
 Raspbian (Raspberry Pi OS) を直接インストール
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
