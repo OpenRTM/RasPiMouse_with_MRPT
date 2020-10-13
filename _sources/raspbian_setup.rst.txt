@@ -28,6 +28,17 @@ Raspberry Pi Imager を用いてインストール
 RaspberryPi公式のSDカードへのOSインストールツール **RaspberryPi Imager** が公開されています。
 これを使うと、Windows, MacOS X, Linux(Ubuntu) のいずれのOSからでも、かんたんにSDカードへ希望のOSをインストールすることができます。
 
+以下のサイトから Raspberry Pi Imager をダウンロードします。
+インストール後に Raspberry Pi Imager 実行すると以下のような画面が現れますので、
+
+* **Operating System** では 「Raspberry Pi OS (other)」-> 「Raspberry Pi OS Lite (32bit)」 を選択
+* **SD Card** ではターゲットのSDカードを選択
+
+します。選択後、右の **WRITE** ボタンを押し、SDカードへの書き込みを開始します。
+Raspberry Pi Imager は指定されたOSイメージを自動でダウンロードしSDカードカードへ書き込みます。
+
+終了したらSDカードへのOSインストールは終了です。SDカードをRaspberry Piに挿入してスイッチを入れて起動します。
+
 
 Raspbian (Raspberry Pi OS) を直接インストール
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
