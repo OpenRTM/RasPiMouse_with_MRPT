@@ -19,12 +19,16 @@ X-serverのインストールと起動
 以下のシステム構成では、GUIを持つRaspberryPiマウス上で実行するコンポーネントの画面をWindows上で表示することができるようになっています。
 
 ここでは、無償のVcXsrvというX-serverを利用する方法を説明します。
-まず、以下のURLから VcXsrvをダウンロードしインストールします。
+まず、以下のURLから VcXsrv をダウンロードしてください。
 
 * `VcXsrv <https://sourceforge.net/projects/vcxsrv/>`_ 
 
+ダウンロードしたインストーラを実行してVcXsrvをインストールします。
 インストール後、スタートメニューから XLaunch というアプリケーションを起動します。
 起動後ダイアログが現れて、設定が進みますが、途中のExtra Settingsのダイアログで Disable access control というチェックボックスにチェックを入れて進んでください。
+
+.. image:: img/xlaunch03.png
+
 その後X-serverが起動します。タスクバー右端の常駐アプリアイコンから起動しているかどうかを確認できます。
 
 Webブラウザを用いたRTCの起動
