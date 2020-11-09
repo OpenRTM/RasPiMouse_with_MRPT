@@ -73,8 +73,8 @@ Disable access control というチェックボックスにチェックを入れ
 
 Webブラウザを用いたRTCの起動
 ----------------------------------
-RasPiMouse2019の電源と投入し、Raspbian を起動させます。
-クライアントPCの無線LANのマネージャーからhostapd.confで設定したssidが
+電源を投入し、RasPiMouse を起動させます。
+クライアントPCの無線LANのマネージャーからhostapd.confで設定したSSIDが
 見えることを確認し、接続してください。
 
 WindowsPCの場合には、タスクバーの右側のWifiの設定から接続することができます。
