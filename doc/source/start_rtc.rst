@@ -44,7 +44,7 @@ X-serverのインストールと起動
 
 上記 NavigationManagerはGUI表示のあるRTCなので、通常RaspberryPi上で起動すると、
 そのGUI画面はRaspberyPi上で表示されてしまいます。
-ただし、Linux等の`X Window System <https://ja.wikipedia.org/wiki/X_Window_System>`_では、
+ただし、Linux等の `X Window System <https://ja.wikipedia.org/wiki/X_Window_System>`_ では、
 特定のアプリケーション画面を他のPCに表示させることができるので、
 この機能を応用すると、RaspberryPi上で実行するNavigationManagerのGUI画面を
 手元のPCに表示させることができます。
