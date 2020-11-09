@@ -25,12 +25,23 @@ RTCの起動は、Webブラウザを利用する場合には、トップペー�
 表示されますが、RTCによって起動時間が異なりますので、全てのRTCが起動完了するまで
 しばらくお待ちください。
 
-NavigationManagerはGUIを伴いますので、おそらく一番最後に起動すると思います。
+NavigationManagerをRasPiMouse側で起動する際は、あらかじめX ServerをローカルPCで起動させたうえで、
+このシステムを起動させてください。NavigationManagerはGUI表示を伴いますので、
+おそらく一番最後に起動すると思います。
 全てのRTCが起動すると、下図のようなNavigationManagerの操作パネルが表示されます。
 
 .. image:: img/NavigationManager.png
 
-また、第2セクションの「List」を押下すると下図のようにRTCのリストが表示されます。
+NavigationManagerをローカルPC側で起動する場合は、ローカルPCでは X Serverを起動させずに、
+Webブラウザからシステムを起動します。この際、RasPiMouse側のNavigationManagerは、
+X Serverへ接続できませんので、エラーで終了します。代わりに、前節でローカルPC側に
+ダウンロードした NavigationManagerを NavigationManager.bat をクリックして起動します。
+
+なお、前節でダウンロードしたNavigationManagerは、RasPiMouse側で起動するRTCと
+同じネームサーバの同じホストコンテキスト raspberrypi.host_cxt の下に登録されます。
+これであたかも、NavigationManagerもRasPiMouse上で起動されたように見えます。
+
+第2セクションの「List」を押下すると下図のようにRTCのリストが表示されます。
 
 .. image:: img/mapper-1.png
 
@@ -57,6 +68,10 @@ Webブラウザを使用せずに、ターミナルでRasPiMouse2019にログイ
 また、`rtcmd <https://github.com/haraisao/rtcmd>`_ を用いて graphコマンドを実行すると下図のようなシステム構成図を得ることができます。
 
 .. image:: img/mapper-graph.png
+
+NagvigationManagerをローカルPCで起動した場合も、上記のWebの 「Connect」 ボタンで
+接続が行われるはずですが、もし失敗する場合には主導でWebページの図と同じように
+接続してください。
 
 また、Webブラウザを使用せずに、ターミナルでRasPiMouse2019にログインする場合には、
 下記のコマンドを入力すると上記と同じ結果が得らえます。
@@ -115,6 +130,7 @@ NavigationManagerのJoystickは、メニューの [Control] -> [Start Control]�
 
 正常にポート接続が完了すれば下図のような仮想Joystickが表示されますので、
 RasPiMouse2019を移動させ、ナビゲーション地図を完成させてください。
+X ServerでNavigationManagerの画面を表示させている場合は、、操作が多少重いかもしれません。
 
 .. image:: img/Joystick.png
 
@@ -126,8 +142,12 @@ RasPiMouse2019を移動させ、ナビゲーション地図を完成させてく
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 最後に作成したナビゲーション地図を保存します。
 NavigationManagerの「Save Mapping」ボタンを押下してください。
-ファイル名選択ダイアログが表示されますので、/usr/local/openrtm/testMap.png　と
-いう名前で保存してください。
+ファイル名選択ダイアログが表示されますので、
+
+* NavigationManagerをRasPiMouseで起動: /usr/local/openrtm/testMap.png
+* NavigationManagerをローカルPCで起動: MapServer ディレクトリの直下に testMap.png
+
+という名前で保存してください。
 
 ここで保存したファイル名(testMap)は、
 自己位置同定システムや経路生成システムで使用するMapServerのデフォルト値になっています。
