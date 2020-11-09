@@ -70,7 +70,7 @@ Webブラウザを使用せずに、ターミナルでRasPiMouse2019にログイ
 .. image:: img/mapper-graph.png
 
 NagvigationManagerをローカルPCで起動した場合も、上記のWebの 「Connect」 ボタンで
-接続が行われるはずですが、もし失敗する場合には主導でWebページの図と同じように
+接続が行われるはずですが、もし失敗する場合には手動でWebページの図と同じように
 接続してください。
 
 また、Webブラウザを使用せずに、ターミナルでRasPiMouse2019にログインする場合には、
