@@ -369,9 +369,21 @@ PathPlanner_MRPT, SimplePathFollower, MapServer, NavigationManagerの7つのRTC�
 <p>トップページに移行後、第2セクションの  &quot;RTC List&quot; には、現在起動中のRTCの一覧が
 表示されますが、RTCによって起動時間が異なりますので、全てのRTCが起動完了するまで
 しばらくお待ちください。</p>
-<p>NavigationManagerはGUIを伴いますので、おそらく一番最後に起動すると思います。
-全てのRTCが起動すると、ナビゲーション地図作成システムと同様の
-NavigationManagerの操作パネルが表示されます。</p>
+<p>NavigationManagerをRasPiMouse側で起動する際は、あらかじめX ServerをローカルPCで
+起動させたうえで、 このシステムを起動させてください。
+NavigationManagerはGUI表示を伴いますので、 おそらく一番最後に起動すると思います。
+全てのRTCが起動すると、下図のようなNavigationManagerの操作パネルが表示されます。</p>
+<p>NavigationManagerをローカルPC側で起動する場合は、ローカルPCでは X Serverを起動させずに、
+Webブラウザからシステムを起動します。この際、RasPiMouse側のNavigationManagerは、
+X Serverへ接続できませんので、エラーで終了します。一方、MapServerはそのまま起動
+してしまいますので、Webページ上部の RT-Components のセクションにて、MapServer の
+「Stop」リンクをクリックして停止させます。</p>
+<p>NavigationManager/MapServerがRasPiMouseで起動していないことを確認したら、
+前節でローカルPC側に ダウンロードした NavigationManager/MapServerを
+それぞれ NavigationManager.bat、 MapServer.bat をクリックして起動します。</p>
+<p>なお、前節でダウンロードしたNavigationManager/MapServer は、RasPiMouse側で
+起動するRTCと 同じネームサーバの同じホストコンテキスト raspberrypi.host_cxt
+の下に登録されます。 これであたかも、これらのRTCがRasPiMouse上で起動されたように見えます。</p>
 <p>また、第2セクションの「List」を押下すると下図のようにRTCのリストが表示されます。</p>
 <img alt="_images/path_plan-start.png" src="_images/path_plan-start.png" />
 <p>Webブラウザを使用せずに、ターミナルでRasPiMouse2019にログインする場合には、
