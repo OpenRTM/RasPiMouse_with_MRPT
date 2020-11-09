@@ -7,11 +7,7 @@ RTコンポーネントの起動方法
   :depth: 3
 
 ここでは、RasPiMouse2019を操作するRTC群の起動方法について説明します。
-RasPiMouse2019のナビゲーションのためのRTC群の操作は、
-sshでログインしてターミナル上で起動、接続、有効化等の操作を行うことも
-可能ですが、ナビゲーションRTC群の基本操作は Webブラウザを介して実行することができます。
-ここでは、最初にWebブラウザを用いた操作について説明し、次にターミナルから
-ログインして操作する方法について解説します。
+RasPiMouse2019のナビゲーションのためのRTC群は、以下の8種類あります。
 
 * RaspberryPiMouseRTC: RaspberrryPiMouseドライバRTC
 * RPLidarRTC: LiDAR制御RTC
@@ -22,11 +18,42 @@ sshでログインしてターミナル上で起動、接続、有効化等の�
 * MapServer: マップサーバ (Java)
 * NavigationManager: 操作GUI (Java)
 
+これらのRTCはすべてRaspberryPiMouse上で動作させることもできますし、操作の都合上
+(Java) と書かれているものは、ノートPC側で動作させる方が便利なケースがあります。
+
++ すべてのRTCをRasspberryPi上で起動する方法
++ MapServer/NavigationManager をノートPC、その他をRaspBerryPi上で起動する方法
+
+ここでは、両方のケースについて説明していきます。
+
+RaspberryPi上で起動するRTCの操作は、Webブラウザで操作する方法とssh(TeraTerm等の
+ターミナルソフト) でRaspberryPiにノートPCからログインして操作する方法の
+2種類があります。
+
++ Webブラウザ経由で起動・操作する方法
++ sshログインして起動・操作する方法
+
+これらの方法についても説明します。
 
 
 X-serverのインストールと起動
 ----------------------------------
-以下のシステム構成では、GUIを持つRaspberryPiマウス上で実行するコンポーネントの画面をWindows上で表示することができるようになっています。
+この項目は、「MapServer/NavigationManager」をノートPCで
+起動する場合は必要ありません。
+
+上記 NavigationManagerはGUI表示のあるRTCなので、通常RaspberryPi上で起動すると、
+そのGUI画面はRaspberyPi上で表示されてしまいます。
+ただし、Linux等のX Windowシステムでは、特定のアプリケーションのGUI画面を他のPCに
+表示させることができるので、この機能を応用すると、RaspberryPi上で実行する
+NavigationManagerのGUI画面を手元のノートPCに表示させることができます。
+
+この項目では、そのために必要な方法を説明していきます。
+ただし、X WindowシステムでGUI画面を表示させる方法は大きな通信帯域を
+消費するため、操作はかなり重いものとなることをあらかじめご承知おきください。
+
+X Windowシステムを利用してWindows上でリモート（ここではRaspberryPi側）の
+アプリケーションのGUI画面を表示させるには、X Serverと呼ばれるソフトウェアを
+インストールする必要があります。
 
 ここでは、無償のVcXsrvというX-serverを利用する方法を説明します。
 まず、以下のURLから VcXsrv をダウンロードしてください。
@@ -35,7 +62,8 @@ X-serverのインストールと起動
 
 ダウンロードしたインストーラを実行してVcXsrvをインストールします。
 インストール後、スタートメニューから XLaunch というアプリケーションを起動します。
-起動後ダイアログが現れて、設定が進みますが、途中のExtra Settingsのダイアログで Disable access control というチェックボックスにチェックを入れて進んでください。
+起動後ダイアログが現れて、設定が進みますが、途中のExtra Settingsのダイアログで 
+Disable access control というチェックボックスにチェックを入れて進んでください。
 
 .. image:: img/xlaunch03.png
 
