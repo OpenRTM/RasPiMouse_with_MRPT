@@ -15,43 +15,45 @@ RasPiMouse2019のナビゲーションのためのRTC群は、以下の8種類�
 * Localization_MRPT: 自己位置推定RTC
 * PathPlanner_MRPT: パス生成RTC
 * SimplePathFollower: 経路追従RTC
-* MapServer: マップサーバ (Java)
-* NavigationManager: 操作GUI (Java)
+* MapServer: マップサーバ
+* NavigationManager: 操作GUI
 
 これらのRTCはすべてRaspberryPiMouse上で動作させることもできますし、操作の都合上
-(Java) と書かれているものは、ノートPC側で動作させる方が便利なケースがあります。
+MapServer/NavigationManager については、ノートPC側で動作させる方が便利なケースがあり
+以下の2通りの方法から選択することができます。
 
++ MapServer/NavigationManager をPC、その他をRaspBerryPi上で起動する方法（推奨）
 + すべてのRTCをRasspberryPi上で起動する方法
-+ MapServer/NavigationManager をノートPC、その他をRaspBerryPi上で起動する方法
 
 ここでは、両方のケースについて説明していきます。
 
-RaspberryPi上で起動するRTCの操作は、Webブラウザで操作する方法とssh(TeraTerm等の
-ターミナルソフト) でRaspberryPiにノートPCからログインして操作する方法の
-2種類があります。
+また、RaspberryPi上で起動するRTCの操作は、Webブラウザで操作する方法と
+PCからssh(TeraTerm等のターミナルソフト) でRaspberryPiにログインして
+操作する以下の2種類の方法があります。
 
-+ Webブラウザ経由で起動・操作する方法
++ Webブラウザ経由で起動・操作する方法（推奨）
 + sshログインして起動・操作する方法
 
-これらの方法についても説明します。
+これらの方法についてもそれぞれ説明します。
 
 
 X-serverのインストールと起動
 ----------------------------------
-この項目は、「MapServer/NavigationManager」をノートPCで
-起動する場合は必要ありません。
+この項目は、「MapServer/NavigationManager」をPCで起動する場合は
+必要ありませんのでスキップしてください。
 
 上記 NavigationManagerはGUI表示のあるRTCなので、通常RaspberryPi上で起動すると、
 そのGUI画面はRaspberyPi上で表示されてしまいます。
-ただし、Linux等のX Windowシステムでは、特定のアプリケーションのGUI画面を他のPCに
-表示させることができるので、この機能を応用すると、RaspberryPi上で実行する
-NavigationManagerのGUI画面を手元のノートPCに表示させることができます。
+ただし、Linux等の`X Window System <https://ja.wikipedia.org/wiki/X_Window_System>`_では、
+特定のアプリケーション画面を他のPCに表示させることができるので、
+この機能を応用すると、RaspberryPi上で実行するNavigationManagerのGUI画面を
+手元のPCに表示させることができます。
 
 この項目では、そのために必要な方法を説明していきます。
-ただし、X WindowシステムでGUI画面を表示させる方法は大きな通信帯域を
+ただし、X Window System でGUI画面を表示させる方法は大きな通信帯域を
 消費するため、操作はかなり重いものとなることをあらかじめご承知おきください。
 
-X Windowシステムを利用してWindows上でリモート（ここではRaspberryPi側）の
+X Window System を利用してWindows上でリモート（ここではRaspberryPi側）の
 アプリケーションのGUI画面を表示させるには、X Serverと呼ばれるソフトウェアを
 インストールする必要があります。
 
@@ -78,6 +80,7 @@ RasPiMouse2019の電源と投入し、Raspbian を起動させます。
 WindowsPCの場合には、タスクバーの右側のWifiの設定から接続することができます。
 接続時には、パスワードを入力する必要がありますので、hostapd.confに記載した
 passwordを入力してください。
+(講習会では、SSID: RPiMouse<番号>、PW: openrtm-aistに設定されています。)
 
 正常に接続できれば、192.168.11.XX というIPアドレスが設定されているはずですので、
 ipconfigコマンド等で確認してください。
@@ -171,3 +174,33 @@ RTCの個別起動は、/usr/local/openrtm/bin/<RTC名>.sh というファイル
 
     $ /usr/local/openrtm/mapper.sh deactivate
     $ /usr/local/openrtm/mapper.sh stop
+
+
+PC側でのMapServer/NavigationManagerの起動
+-----------------------------------------
+
+このシステムでは、まず 
+(1)地図作成モードでNavigationManagerを使い地図を作成、
+(2)作成した地図データをMapServerが読み込むファイル名でコピー、
+(3)ナビゲーションモードでMapServerを含めて必要なRTCを起動してナビゲーションを行う、
+といった手順で移動ロボットを動作させます。
+
+このような手順のため、NavigationManagerとMapServerは同一PCにある方が
+作業がやりやすいため、これら2つのコンポーネントについては、RasPiMouse側ではなく
+PC側で起動した方が効率的です。
+
+これら2つのコンポーネントはJavaで記述されているため、同一のバイナリを
+RasPiMouse側でもPC (Windows, Linux, MacOS等）側でも起動可能です。
+
+MapServer/NavigationManager の実行ファイルを以下の場所から
+ダウンロードしZIPファイルを展開します。
+
+* `MapServer/NavigationManager <https://github.com/OpenRTM/RasPiMouse_with_MRPT/raw/master/bin/Navigation.zip>`_
+
+展開すると、Navigation というディレクトリの下に、
+
+* NavigationManager.bat
+* MapServer.bat
+
+というバッチファイルが現れます。以下の地図作成やナビゲーションの必要なタイミングで、
+これらのバッチファイルをダブルクリックして起動してください。
