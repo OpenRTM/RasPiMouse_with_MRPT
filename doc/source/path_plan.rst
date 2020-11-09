@@ -31,9 +31,24 @@ RTCの起動は、Webブラウザを利用する場合には、トップペー�
 表示されますが、RTCによって起動時間が異なりますので、全てのRTCが起動完了するまで
 しばらくお待ちください。
 
-NavigationManagerはGUIを伴いますので、おそらく一番最後に起動すると思います。
-全てのRTCが起動すると、ナビゲーション地図作成システムと同様の
-NavigationManagerの操作パネルが表示されます。
+NavigationManagerをRasPiMouse側で起動する際は、あらかじめX ServerをローカルPCで
+起動させたうえで、 このシステムを起動させてください。 
+NavigationManagerはGUI表示を伴いますので、 おそらく一番最後に起動すると思います。
+全てのRTCが起動すると、下図のようなNavigationManagerの操作パネルが表示されます。
+
+NavigationManagerをローカルPC側で起動する場合は、ローカルPCでは X Serverを起動させずに、
+Webブラウザからシステムを起動します。この際、RasPiMouse側のNavigationManagerは、
+X Serverへ接続できませんので、エラーで終了します。一方、MapServerはそのまま起動
+してしまいますので、Webページ上部の RT-Components のセクションにて、MapServer の
+「Stop」リンクをクリックして停止させます。
+
+NavigationManager/MapServerがRasPiMouseで起動していないことを確認したら、
+前節でローカルPC側に ダウンロードした NavigationManager/MapServerを
+それぞれ NavigationManager.bat、 MapServer.bat をクリックして起動します。
+
+なお、前節でダウンロードしたNavigationManager/MapServer は、RasPiMouse側で
+起動するRTCと 同じネームサーバの同じホストコンテキスト raspberrypi.host_cxt 
+の下に登録されます。 これであたかも、これらのRTCがRasPiMouse上で起動されたように見えます。
 
 また、第2セクションの「List」を押下すると下図のようにRTCのリストが表示されます。
 
