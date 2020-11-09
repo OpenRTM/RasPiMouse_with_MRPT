@@ -9,10 +9,20 @@ RTコンポーネントの起動方法
 ここでは、RasPiMouse2019を操作するRTC群の起動方法について説明します。
 RasPiMouse2019のナビゲーションのためのRTC群の操作は、
 sshでログインしてターミナル上で起動、接続、有効化等の操作を行うことも
-可能ですが、ナビゲーションRTC群の基本操作は Webブラウザを介して
-実行することができます。
+可能ですが、ナビゲーションRTC群の基本操作は Webブラウザを介して実行することができます。
 ここでは、最初にWebブラウザを用いた操作について説明し、次にターミナルから
 ログインして操作する方法について解説します。
+
+* RaspberryPiMouseRTC: RaspberrryPiMouseドライバRTC
+* RPLidarRTC: LiDAR制御RTC
+* Mapper_MRPT: Map作成RTC
+* Localization_MRPT: 自己位置推定RTC
+* PathPlanner_MRPT: パス生成RTC
+* SimplePathFollower: 経路追従RTC
+* MapServer: マップサーバ (Java)
+* NavigationManager: 操作GUI (Java)
+
+
 
 X-serverのインストールと起動
 ----------------------------------
