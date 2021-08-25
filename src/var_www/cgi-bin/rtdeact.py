@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import os
 import sys
@@ -15,30 +15,30 @@ if __name__ == '__main__':
   except:
     rtcname = None
 
-  print "Content-type: text/html"
-  print
-  print "<html>"
-  print "<head>"
-  print "<title>Deactivate RTC</title>"
-  print '<META http-equiv="Refresh" content="3;URL=/">'
-  print "</head>"
-  print "<body>"
-  print "<h1>Deactivate RTC</h1>"
-  print "<pre>"
+  print("Content-type: text/html")
+  print("")
+  print("<html>")
+  print("<head>")
+  print("<title>Deactivate RTC</title>")
+  print('<META http-equiv="Refresh" content="3;URL=/">')
+  print("</head>")
+  print("<body>")
+  print("<h1>Deactivate RTC</h1>")
+  print("<pre>")
 
   try:
     rtc_name="%s.host_cxt/%s0.rtc" % (hostname, rtcname)
-    print rtc_name
+    print(rtc_name)
     res=subprocess.check_output(['python', 'rtcmd', 'deactivate', rtc_name])
-    print res
+    print(res)
   except:
-    print "Error: rtcmd"
+    print("Error: rtcmd")
 
 
-  print "</pre>"
-  print "<hr>"
-  print '[<a href="/">Back</a>]'
-  print "</body>"
-  print "</html>"
+  print("</pre>")
+  print("<hr>")
+  print('[<a href="/">Back</a>]')
+  print("</body>")
+  print("</html>")
 
   sys.stdout.flush()

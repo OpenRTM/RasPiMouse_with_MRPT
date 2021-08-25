@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import os
 import sys
@@ -11,7 +11,7 @@ def daemonize():
   try:
     pid=os.fork()
   except:
-    print( "ERROR in fork1" )
+    print("ERROR in fork1")
     os._exit(0)
 
   if pid > 0:
@@ -20,12 +20,12 @@ def daemonize():
   try:
     os.setsid()
   except:
-    print( "ERROR in setsid" )
+    print("ERROR in setsid")
 
   try:
     pid=os.fork()
   except:
-    print( "ERROR in fork2" )
+    print("ERROR in fork2")
 
   if pid > 0:
     os._exit(0)
