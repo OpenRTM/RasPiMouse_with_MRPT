@@ -8,10 +8,10 @@ import cgi
 
 if __name__ == '__main__':
   print("Content-type: text/html")
-  print
+  print("")
 
   try:
-    res=subprocess.check_output(['python', 'rtcmd', 'list', '-l'])
+    res=subprocess.check_output(['python3', 'rtcmd', 'list', '-l'])
     print(res)
   except:
     print("Error: rtcmd")

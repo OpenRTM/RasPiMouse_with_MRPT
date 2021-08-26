@@ -19,8 +19,7 @@ if __name__ == '__main__':
   print("<pre>")
 
   try:
-    #res=subprocess.check_output(['python', 'rtcmd.py', 'list', '-l'])
-    res=subprocess.check_output(['python', 'rtcmd', 'list', '-l'])
+    res=subprocess.check_output(['python3', 'rtcmd', 'list', '-l'])
     print(res)
   except:
     print("Error: rtcmd")

@@ -36,7 +36,7 @@ if __name__ == '__main__':
   print('[<a href="/">Back to the top page.</a>]')
   print("</body>")
   print("</html>")
-(  sys.stdout.flush())
+  sys.stdout.flush()
 
   utils.daemonize()
 

@@ -29,7 +29,7 @@ if __name__ == '__main__':
   try:
     rtc_name="%s.host_cxt/%s0.rtc" % (hostname, rtcname)
     print(rtc_name)
-    res=subprocess.check_output(['python', 'rtcmd', 'deactivate', rtc_name])
+    res=subprocess.check_output(['python3', 'rtcmd', 'deactivate', rtc_name])
     print(res)
   except:
     print("Error: rtcmd")
