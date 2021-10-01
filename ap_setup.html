@@ -5,16 +5,16 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>RaspberryPiシステム設定 &#8212; RasPiMouse MRPT  ドキュメント</title>
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/override.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/override.css" />
     
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/language_data.js"></script>
     <script src="_static/translations.js"></script>
     <script src="_static/bizstyle.js"></script>
     <link rel="shortcut icon" href="_static/favicon.ico"/>
@@ -49,7 +49,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="raspberrypi">
+  <section id="raspberrypi">
 <h1><a class="toc-backref" href="#id2">RaspberryPiシステム設定</a><a class="headerlink" href="#raspberrypi" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="contents topic" id="id1">
 <p class="topic-title">目次</p>
@@ -63,7 +63,7 @@
 </li>
 </ul>
 </div>
-<div class="section" id="raspberrypimouselan">
+<section id="raspberrypimouselan">
 <h2><a class="toc-backref" href="#id3">RaspberryPiMouseの無線LANのアクセスポイント化</a><a class="headerlink" href="#raspberrypimouselan" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>RasPiMouse2019を使用する場合、無線LANを外部ネットワークに接続して
 使用しても良いのですが、複数のRasPiMouse2019で講習会を行うことを
@@ -104,9 +104,9 @@ dhcpcdの設定ファイルは /etc/dhcpcd.conf になりますので、
   <span class="o">....</span>
 
 <span class="n">interface</span> <span class="n">wlan0</span>
-<span class="n">static</span> <span class="n">ip_address</span><span class="o">=</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">11.1</span><span class="o">/</span><span class="mi">24</span>
-<span class="n">static</span> <span class="n">routers</span><span class="o">=</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">11.1</span>
-<span class="n">static</span> <span class="n">domain_name_servers</span><span class="o">=</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">11.1</span> <span class="mf">8.8</span><span class="o">.</span><span class="mf">8.8</span>
+<span class="n">static</span> <span class="n">ip_address</span><span class="o">=</span><span class="mf">192.168.11.1</span><span class="o">/</span><span class="mi">24</span>
+<span class="n">static</span> <span class="n">routers</span><span class="o">=</span><span class="mf">192.168.11.1</span>
+<span class="n">static</span> <span class="n">domain_name_servers</span><span class="o">=</span><span class="mf">192.168.11.1</span> <span class="mf">8.8.8.8</span>
 <span class="n">nohook</span> <span class="n">wpa_supplicant</span>
 </pre></div>
 </div>
@@ -125,8 +125,8 @@ DHCPサーバー機能を有効にします。</p>
 下記の内容を追記してください。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">no</span><span class="o">-</span><span class="n">resolv</span>
 <span class="n">no</span><span class="o">-</span><span class="n">poll</span>
-<span class="n">dhcp</span><span class="o">-</span><span class="nb">range</span><span class="o">=</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">11.10</span><span class="p">,</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">11.20</span><span class="p">,</span><span class="mi">12</span><span class="n">h</span>
-<span class="n">server</span><span class="o">=</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">11.1</span>
+<span class="n">dhcp</span><span class="o">-</span><span class="nb">range</span><span class="o">=</span><span class="mf">192.168.11.10</span><span class="p">,</span><span class="mf">192.168.11.20</span><span class="p">,</span><span class="mi">12</span><span class="n">h</span>
+<span class="n">server</span><span class="o">=</span><span class="mf">192.168.11.1</span>
 </pre></div>
 </div>
 <p>ここでは、クライアントPCに配布するIDアドレスとして、192.168.11.10～192.168.11.20の
@@ -141,19 +141,19 @@ $ sudo systemctl enable hostapd
 </div>
 <p>最後に、Java版の外部からのアクセスを有効にするために、/etc/hostsを変更します。
 Raspbian Buster の初期設定では、ホスト名である &quot;raspberrypi&quot; のIPアドレスの設定が、</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">127.0</span><span class="o">.</span><span class="mf">1.1</span>    <span class="n">raspberrypi</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">127.0.1.1</span>    <span class="n">raspberrypi</span>
 </pre></div>
 </div>
 <p>と記載されています。
 このままでは、Java版のRTCに外部のPCからアクセスすることができません。</p>
 <p>したがって、上記の部分を下のように修正してください。</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">192.168</span><span class="o">.</span><span class="mf">11.1</span>    <span class="n">raspberrypi</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">192.168.11.1</span>    <span class="n">raspberrypi</span>
 </pre></div>
 </div>
 <p>以上で、RasPiMouse2019の内蔵無線LANデバイスをアクセスポイント化することができましたので、
 再起動を実施てアクセスポイントになっていることを確認してください。</p>
-</div>
-<div class="section" id="web">
+</section>
+<section id="web">
 <h2><a class="toc-backref" href="#id4">Webサーバーのセットアップ</a><a class="headerlink" href="#web" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>RasPiMouse2019では、CGIを経由して外部PC上のWebブラウザから
 ネームサーバの起動、RTC群の制御を行うことができます。</p>
@@ -188,8 +188,8 @@ apache2を再起動するために下記のコマンドを実行してくださ�
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo service apache2 restart
 </pre></div>
 </div>
-</div>
-<div class="section" id="pc">
+</section>
+<section id="pc">
 <h2><a class="toc-backref" href="#id5">クライアント用PCの設定</a><a class="headerlink" href="#pc" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>RasPiMouse2019のナビゲーションRTC群の中でNavigationManagerは、Javaで実装され
 GUIパネルを含んでいます。</p>
@@ -201,8 +201,8 @@ Windows10などのMicrosoftのOSには、Xサーバーを別途インストー�
 <a class="reference external" href="https://www.microsoft.com/ja-jp/p/x410/9nlp712zmn9q?activetab=pivot:overviewtab">有償のX410</a>
 または <a class="reference external" href="https://sourceforge.net/projects/vcxsrv/">VcXsrv</a>
 がありますので、どちらのアプリケーションをインストールしてください。</p>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -215,7 +215,7 @@ Windows10などのMicrosoftのOSには、Xサーバーを別途インストー�
   <h3 id="searchlabel">クイック検索</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="検索" />
     </form>
     </div>
@@ -263,7 +263,7 @@ Windows10などのMicrosoftのOSには、Xサーバーを別途インストー�
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, AIST.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.3.0.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.1.2.
     </div>
   </body>
 </html>

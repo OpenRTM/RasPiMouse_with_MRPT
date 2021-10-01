@@ -5,16 +5,16 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>概要 &#8212; RasPiMouse MRPT  ドキュメント</title>
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/override.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/override.css" />
     
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/language_data.js"></script>
     <script src="_static/translations.js"></script>
     <script src="_static/bizstyle.js"></script>
     <link rel="shortcut icon" href="_static/favicon.ico"/>
@@ -41,15 +41,15 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="id1">
+  <section id="id1">
 <h1>概要<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p>このシステムでは、RasPiMouse2019に搭載しているLiDARからの情報をベースに
 slamによるナビゲーション地図の作成を行うシステムについて述べます。</p>
 <p>このシステムでは、RaspberryPiMouseRTC, RPLidarRTC, Mapper_MRPT, NavigationManagerの4つのRTCを使用します。
 また各RTC間の接続は、下図のようになります。</p>
 <img alt="_images/mapper.png" src="_images/mapper.png" />
-</div>
-<div class="section" id="rtc">
+</section>
+<section id="rtc">
 <h1>RTCの起動<a class="headerlink" href="#rtc" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p>RTCの起動は、Webブラウザを利用する場合には、トップページの第3セクション &quot;Mapper&quot;の部分を使用します。
 ナビゲーションRTCのシステムに対しては、
@@ -79,8 +79,8 @@ X Serverへ接続できませんので、エラーで終了します。代わり
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ /usr/local/openrtm/bin/mapper.sh start
 </pre></div>
 </div>
-</div>
-<div class="section" id="id2">
+</section>
+<section id="id2">
 <h1>ナビゲーション地図生成構築（ポートの接続）<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p>必要なRTCの起動後は、ナビゲーション地図作成システムを構成するために、
 各RTCのポートの接続を行います。
@@ -99,12 +99,12 @@ X Serverへ接続できませんので、エラーで終了します。代わり
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ /usr/local/openrtm/bin/mapper.sh connect
 </pre></div>
 </div>
-</div>
-<div class="section" id="id3">
+</section>
+<section id="id3">
 <h1>ナビゲーション地図生成の実行<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p>RTCのポート接続が完了後、ナビゲーション地図作成を行います。
 地図生成に係る4つのRTCをアクティベートしてください。</p>
-<div class="section" id="id4">
+<section id="id4">
 <h2>RTCのアクティベート<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>アクティベートの方法は、
 Webブラウザ、ターミナルでログイン後にコマンド入力、
@@ -121,8 +121,8 @@ Webブラウザ、ターミナルでログイン後にコマンド入力、
 <p>現在の設定では、10m x 10mの地図を作成することができます。
 より広い地図を作成する必要がある場合には、/usr/local/openrtm/etc/Mapper_MRPT.confのパラメータを
 変更してください。</p>
-</div>
-<div class="section" id="id5">
+</section>
+<section id="id5">
 <h2>ナビゲーション地図の作成<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>システムのRTCのアクティベーション後は、
 ナビゲーション地図を作成するために NavigationManagerの上部にある
@@ -131,8 +131,8 @@ Webブラウザ、ターミナルでログイン後にコマンド入力、
 <img alt="_images/mapper-start2.png" src="_images/mapper-start2.png" />
 <p>上図のようにナビゲーション地図作成が開始されれば、NavigationManagerのJoystickパネルを用いて
 手動でRasPiMouse2019を移動させてください。</p>
-</div>
-<div class="section" id="joystick">
+</section>
+<section id="joystick">
 <h2>Joystickパネルによる操作<a class="headerlink" href="#joystick" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>NavigationManagerのJoystickは、メニューの [Control] -&gt; [Start Control]を選択することで、
 下図のような接続ダイアログが表示されますので、「OK」ボタンで選択してください。</p>
@@ -143,8 +143,8 @@ X ServerでNavigationManagerの画面を表示させている場合は、、操�
 <img alt="_images/Joystick.png" src="_images/Joystick.png" />
 <p>しばらくRasPiMouse2019を移動させると下図のようなナビゲーション地図が得られます。</p>
 <img alt="_images/mapper-end.png" src="_images/mapper-end.png" />
-</div>
-<div class="section" id="id6">
+</section>
+<section id="id6">
 <h2>ナビゲーション地図の保存<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>最後に作成したナビゲーション地図を保存します。
 NavigationManagerの「Save Mapping」ボタンを押下してください。
@@ -156,9 +156,9 @@ NavigationManagerの「Save Mapping」ボタンを押下してください。
 <p>という名前で保存してください。</p>
 <p>ここで保存したファイル名(testMap)は、
 自己位置同定システムや経路生成システムで使用するMapServerのデフォルト値になっています。</p>
-</div>
-</div>
-<div class="section" id="id7">
+</section>
+</section>
+<section id="id7">
 <h1>ナビゲーション地図生成システムの終了<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p>ナビゲーション地図の保存が終了後は、RTCの終了を行います。
 RTCの終了はWebブラウザの第3セクションの「Stop」ボタンを押下するか、
@@ -169,7 +169,7 @@ RTCの終了はWebブラウザの第3セクションの「Stop」ボタンを押
 <p>上記の例では、「Disconnct」と「Deactivate」を使用しませんでしたが、
 起動中のRTCをそのまま使い自己位置同定システム等を実行する場合には
 適宜利用することができます。</p>
-</div>
+</section>
 
 
             <div class="clearer"></div>
@@ -182,7 +182,7 @@ RTCの終了はWebブラウザの第3セクションの「Stop」ボタンを押
   <h3 id="searchlabel">クイック検索</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="検索" />
     </form>
     </div>
@@ -218,7 +218,7 @@ RTCの終了はWebブラウザの第3セクションの「Stop」ボタンを押
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, AIST.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.3.0.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.1.2.
     </div>
   </body>
 </html>

@@ -5,16 +5,16 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>概要 &#8212; RasPiMouse MRPT  ドキュメント</title>
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/override.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/override.css" />
     
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/language_data.js"></script>
     <script src="_static/translations.js"></script>
     <script src="_static/bizstyle.js"></script>
     <link rel="shortcut icon" href="_static/favicon.ico"/>
@@ -41,7 +41,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="id1">
+  <section id="id1">
 <h1>概要<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p>このシステムでは、前述のナビゲーション地図作成システムにより生成した
 地図とRasPiMouse2019に搭載したLiDARの情報をもとに
@@ -52,8 +52,8 @@
 <p>このシステムでは、RaspberryPiMouseRTC, RPLidarRTC, Localization_MRPT, MapServer, NavigationManagerの5つのRTCを使用します。
 また、各RTC間の接続は、下図のようになります。</p>
 <img alt="_images/localize.png" src="_images/localize.png" />
-</div>
-<div class="section" id="rtc">
+</section>
+<section id="rtc">
 <h1>RTCの起動<a class="headerlink" href="#rtc" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p>RTCの起動は、Webブラウザを利用する場合には、トップページの第4セクション &quot;Localiation&quot;の部分を使用します。
 ナビゲーションRTCのシステムに対しては、
@@ -86,8 +86,8 @@ X Serverへ接続できませんので、エラーで終了します。一方、
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ /usr/local/openrtm/bin/location.sh start
 </pre></div>
 </div>
-</div>
-<div class="section" id="id2">
+</section>
+<section id="id2">
 <h1>ナビゲーション（自己位置同定）構築（ポートの接続）<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p>必要なRTCの起動後は、ナビゲーション（自己位置同定）システムを構成するために、
 各RTCのポートの接続を行います。
@@ -103,12 +103,12 @@ X Serverへ接続できませんので、エラーで終了します。一方、
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ /usr/local/openrtm/bin/location.sh connect
 </pre></div>
 </div>
-</div>
-<div class="section" id="id3">
+</section>
+<section id="id3">
 <h1>ナビゲーション（自己位置同定）の実行<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p>RTCのポート接続が完了後、ナビゲーション（自己位置同定）を行います。
 本システムに係る5つのRTCをアクティベートしてください。</p>
-<div class="section" id="id4">
+<section id="id4">
 <h2>RTCのアクティベート<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>RTCのアクティベートの方法は、
 Webブラウザ、ターミナルでログイン後にコマンド入力、
@@ -125,8 +125,8 @@ Webブラウザ、ターミナルでログイン後にコマンド入力、
 <p>現在のデフォルト設定では、/usr/local/openrtm/testMap.yamlを使用しますが、
 他のナビゲーション地図を利用する場合には、
 /usr/local/openrtm/etc/MapServer.confのパラメータを適宜修正してください。</p>
-</div>
-<div class="section" id="joystick">
+</section>
+<section id="joystick">
 <h2>Joystickパネルによる操作<a class="headerlink" href="#joystick" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>ナビゲーション（自己位置同定）システムでは、NavigationManagerのJoystickパネルを用いて
 手動でRasPiMouse2019を移動させることを想定しています。</p>
@@ -142,9 +142,9 @@ RasPiMouse2019を移動させ、ナビゲーション地図上でRasPiMouse2019�
 そのため、車輪のスリップによりオドメトリ値が大きく異なる場合には、
 正しく自己位置を推定することはできません。</p>
 <p>車輪のスリップを極力抑えるように車輪のメンテナンスをしてください。</p>
-</div>
-</div>
-<div class="section" id="id5">
+</section>
+</section>
+<section id="id5">
 <h1>ナビゲーション（自己位置同定）システムの終了<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <p>ナビゲーション（自己位置同定）システムの終了は、
 Webブラウザの第3セクションの「Stop」ボタンを押下するか、
@@ -155,7 +155,7 @@ Webブラウザの第3セクションの「Stop」ボタンを押下するか、
 <p>上記の例では、「Disconnct」と「Deactivate」を使用しませんでしたが、
 起動中のRTCをそのまま使い経路計画システム等を実行する場合には適宜利用する
 ことができます。</p>
-</div>
+</section>
 
 
             <div class="clearer"></div>
@@ -168,7 +168,7 @@ Webブラウザの第3セクションの「Stop」ボタンを押下するか、
   <h3 id="searchlabel">クイック検索</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="検索" />
     </form>
     </div>
@@ -204,7 +204,7 @@ Webブラウザの第3セクションの「Stop」ボタンを押下するか、
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, AIST.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.3.0.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.1.2.
     </div>
   </body>
 </html>

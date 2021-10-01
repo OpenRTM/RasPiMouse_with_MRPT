@@ -5,16 +5,16 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>SLAMによるナビゲーション &#8212; RasPiMouse MRPT  ドキュメント</title>
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/override.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/override.css" />
     
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/language_data.js"></script>
     <script src="_static/translations.js"></script>
     <script src="_static/bizstyle.js"></script>
     <link rel="shortcut icon" href="_static/favicon.ico"/>
@@ -49,7 +49,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="slam">
+  <section id="slam">
 <h1><a class="toc-backref" href="#id27">SLAMによるナビゲーション</a><a class="headerlink" href="#slam" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <div class="contents topic" id="id1">
 <p class="topic-title">目次</p>
@@ -94,17 +94,17 @@
 <li><p>Path Plannerを用いた経路生成とナビゲーションシステム</p></li>
 </ul>
 <p>ここでは、それぞれのシステムの起動、実行、終了の手順について解説を行っていきます。</p>
-<div class="section" id="id2">
+<section id="id2">
 <h2><a class="toc-backref" href="#id28">ナビゲーション地図生成の実行</a><a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<div class="section" id="id3">
+<section id="id3">
 <h3><a class="toc-backref" href="#id29">概要</a><a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>このシステムでは、RasPiMouse2019に搭載しているLiDARからの情報をベースに
 slamによるナビゲーション地図の作成を行うシステムについて述べます。</p>
 <p>このシステムでは、RaspberryPiMouseRTC, RPLidarRTC, Mapper_MRPT, NavigationManagerの4つのRTCを使用します。
 また各RTC間の接続は、下図のようになります。</p>
 <img alt="_images/mapper.png" src="_images/mapper.png" />
-</div>
-<div class="section" id="rtc">
+</section>
+<section id="rtc">
 <h3><a class="toc-backref" href="#id30">RTCの起動</a><a class="headerlink" href="#rtc" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>RTCの起動は、Webブラウザを利用する場合には、トップページの第3セクション &quot;Mapper&quot;の部分を使用します。
 ナビゲーションRTCのシステムに対しては、
@@ -134,8 +134,8 @@ X Serverへ接続できませんので、エラーで終了します。代わり
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ /usr/local/openrtm/bin/mapper.sh start
 </pre></div>
 </div>
-</div>
-<div class="section" id="id4">
+</section>
+<section id="id4">
 <h3><a class="toc-backref" href="#id31">ナビゲーション地図生成構築（ポートの接続）</a><a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>必要なRTCの起動後は、ナビゲーション地図作成システムを構成するために、
 各RTCのポートの接続を行います。
@@ -154,12 +154,12 @@ X Serverへ接続できませんので、エラーで終了します。代わり
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ /usr/local/openrtm/bin/mapper.sh connect
 </pre></div>
 </div>
-</div>
-<div class="section" id="id5">
+</section>
+<section id="id5">
 <h3><a class="toc-backref" href="#id32">ナビゲーション地図生成の実行</a><a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>RTCのポート接続が完了後、ナビゲーション地図作成を行います。
 地図生成に係る4つのRTCをアクティベートしてください。</p>
-<div class="section" id="id6">
+<section id="id6">
 <h4>RTCのアクティベート<a class="headerlink" href="#id6" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>アクティベートの方法は、
 Webブラウザ、ターミナルでログイン後にコマンド入力、
@@ -176,8 +176,8 @@ Webブラウザ、ターミナルでログイン後にコマンド入力、
 <p>現在の設定では、10m x 10mの地図を作成することができます。
 より広い地図を作成する必要がある場合には、/usr/local/openrtm/etc/Mapper_MRPT.confのパラメータを
 変更してください。</p>
-</div>
-<div class="section" id="id7">
+</section>
+<section id="id7">
 <h4>ナビゲーション地図の作成<a class="headerlink" href="#id7" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>システムのRTCのアクティベーション後は、
 ナビゲーション地図を作成するために NavigationManagerの上部にある
@@ -186,8 +186,8 @@ Webブラウザ、ターミナルでログイン後にコマンド入力、
 <img alt="_images/mapper-start2.png" src="_images/mapper-start2.png" />
 <p>上図のようにナビゲーション地図作成が開始されれば、NavigationManagerのJoystickパネルを用いて
 手動でRasPiMouse2019を移動させてください。</p>
-</div>
-<div class="section" id="joystick">
+</section>
+<section id="joystick">
 <h4>Joystickパネルによる操作<a class="headerlink" href="#joystick" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>NavigationManagerのJoystickは、メニューの [Control] -&gt; [Start Control]を選択することで、
 下図のような接続ダイアログが表示されますので、「OK」ボタンで選択してください。</p>
@@ -198,8 +198,8 @@ X ServerでNavigationManagerの画面を表示させている場合は、、操�
 <img alt="_images/Joystick.png" src="_images/Joystick.png" />
 <p>しばらくRasPiMouse2019を移動させると下図のようなナビゲーション地図が得られます。</p>
 <img alt="_images/mapper-end.png" src="_images/mapper-end.png" />
-</div>
-<div class="section" id="id8">
+</section>
+<section id="id8">
 <h4>ナビゲーション地図の保存<a class="headerlink" href="#id8" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>最後に作成したナビゲーション地図を保存します。
 NavigationManagerの「Save Mapping」ボタンを押下してください。
@@ -211,9 +211,9 @@ NavigationManagerの「Save Mapping」ボタンを押下してください。
 <p>という名前で保存してください。</p>
 <p>ここで保存したファイル名(testMap)は、
 自己位置同定システムや経路生成システムで使用するMapServerのデフォルト値になっています。</p>
-</div>
-</div>
-<div class="section" id="id9">
+</section>
+</section>
+<section id="id9">
 <h3><a class="toc-backref" href="#id33">ナビゲーション地図生成システムの終了</a><a class="headerlink" href="#id9" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>ナビゲーション地図の保存が終了後は、RTCの終了を行います。
 RTCの終了はWebブラウザの第3セクションの「Stop」ボタンを押下するか、
@@ -224,11 +224,11 @@ RTCの終了はWebブラウザの第3セクションの「Stop」ボタンを押
 <p>上記の例では、「Disconnct」と「Deactivate」を使用しませんでしたが、
 起動中のRTCをそのまま使い自己位置同定システム等を実行する場合には
 適宜利用することができます。</p>
-</div>
-</div>
-<div class="section" id="id10">
+</section>
+</section>
+<section id="id10">
 <h2><a class="toc-backref" href="#id34">ナビゲーション（自己位置同定）の実行</a><a class="headerlink" href="#id10" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<div class="section" id="id11">
+<section id="id11">
 <h3><a class="toc-backref" href="#id35">概要</a><a class="headerlink" href="#id11" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>このシステムでは、前述のナビゲーション地図作成システムにより生成した
 地図とRasPiMouse2019に搭載したLiDARの情報をもとに
@@ -239,8 +239,8 @@ RTCの終了はWebブラウザの第3セクションの「Stop」ボタンを押
 <p>このシステムでは、RaspberryPiMouseRTC, RPLidarRTC, Localization_MRPT, MapServer, NavigationManagerの5つのRTCを使用します。
 また、各RTC間の接続は、下図のようになります。</p>
 <img alt="_images/localize.png" src="_images/localize.png" />
-</div>
-<div class="section" id="id12">
+</section>
+<section id="id12">
 <h3><a class="toc-backref" href="#id36">RTCの起動</a><a class="headerlink" href="#id12" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>RTCの起動は、Webブラウザを利用する場合には、トップページの第4セクション &quot;Localiation&quot;の部分を使用します。
 ナビゲーションRTCのシステムに対しては、
@@ -273,8 +273,8 @@ X Serverへ接続できませんので、エラーで終了します。一方、
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ /usr/local/openrtm/bin/location.sh start
 </pre></div>
 </div>
-</div>
-<div class="section" id="id13">
+</section>
+<section id="id13">
 <h3><a class="toc-backref" href="#id37">ナビゲーション（自己位置同定）構築（ポートの接続）</a><a class="headerlink" href="#id13" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>必要なRTCの起動後は、ナビゲーション（自己位置同定）システムを構成するために、
 各RTCのポートの接続を行います。
@@ -290,12 +290,12 @@ X Serverへ接続できませんので、エラーで終了します。一方、
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ /usr/local/openrtm/bin/location.sh connect
 </pre></div>
 </div>
-</div>
-<div class="section" id="id14">
+</section>
+<section id="id14">
 <h3><a class="toc-backref" href="#id38">ナビゲーション（自己位置同定）の実行</a><a class="headerlink" href="#id14" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>RTCのポート接続が完了後、ナビゲーション（自己位置同定）を行います。
 本システムに係る5つのRTCをアクティベートしてください。</p>
-<div class="section" id="id15">
+<section id="id15">
 <h4>RTCのアクティベート<a class="headerlink" href="#id15" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>RTCのアクティベートの方法は、
 Webブラウザ、ターミナルでログイン後にコマンド入力、
@@ -312,8 +312,8 @@ Webブラウザ、ターミナルでログイン後にコマンド入力、
 <p>現在のデフォルト設定では、/usr/local/openrtm/testMap.yamlを使用しますが、
 他のナビゲーション地図を利用する場合には、
 /usr/local/openrtm/etc/MapServer.confのパラメータを適宜修正してください。</p>
-</div>
-<div class="section" id="id16">
+</section>
+<section id="id16">
 <h4>Joystickパネルによる操作<a class="headerlink" href="#id16" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>ナビゲーション（自己位置同定）システムでは、NavigationManagerのJoystickパネルを用いて
 手動でRasPiMouse2019を移動させることを想定しています。</p>
@@ -329,9 +329,9 @@ RasPiMouse2019を移動させ、ナビゲーション地図上でRasPiMouse2019�
 そのため、車輪のスリップによりオドメトリ値が大きく異なる場合には、
 正しく自己位置を推定することはできません。</p>
 <p>車輪のスリップを極力抑えるように車輪のメンテナンスをしてください。</p>
-</div>
-</div>
-<div class="section" id="id17">
+</section>
+</section>
+<section id="id17">
 <h3><a class="toc-backref" href="#id39">ナビゲーション（自己位置同定）システムの終了</a><a class="headerlink" href="#id17" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>ナビゲーション（自己位置同定）システムの終了は、
 Webブラウザの第3セクションの「Stop」ボタンを押下するか、
@@ -342,11 +342,11 @@ Webブラウザの第3セクションの「Stop」ボタンを押下するか、
 <p>上記の例では、「Disconnct」と「Deactivate」を使用しませんでしたが、
 起動中のRTCをそのまま使い経路計画システム等を実行する場合には適宜利用する
 ことができます。</p>
-</div>
-</div>
-<div class="section" id="id18">
+</section>
+</section>
+<section id="id18">
 <h2><a class="toc-backref" href="#id40">ナビゲーション（経路計画）の実行</a><a class="headerlink" href="#id18" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<div class="section" id="id19">
+<section id="id19">
 <h3><a class="toc-backref" href="#id41">概要</a><a class="headerlink" href="#id19" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>このシステムでは、前述のナビゲーション地図作成システムにより生成した
 地図とRasPiMouse2019に搭載したLiDARの情報をもとにMontecarlo localization
@@ -357,8 +357,8 @@ Webブラウザの第3セクションの「Stop」ボタンを押下するか、
 PathPlanner_MRPT, SimplePathFollower, MapServer, NavigationManagerの7つのRTCを使用します。
 また、各RTC間の接続は、下図のようになります。</p>
 <img alt="_images/path_plan.png" src="_images/path_plan.png" />
-</div>
-<div class="section" id="id20">
+</section>
+<section id="id20">
 <h3><a class="toc-backref" href="#id42">RTCの起動</a><a class="headerlink" href="#id20" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>RTCの起動は、Webブラウザを利用する場合には、トップページの第5セクション &quot;PathPlan&quot;の部分を使用します。
 ナビゲーションRTCのシステムに対しては、
@@ -391,8 +391,8 @@ X Serverへ接続できませんので、エラーで終了します。一方、
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ /usr/local/openrtm/bin/path_plan.sh start
 </pre></div>
 </div>
-</div>
-<div class="section" id="id21">
+</section>
+<section id="id21">
 <h3><a class="toc-backref" href="#id43">ナビゲーション（経路計画）構築（ポートの接続）</a><a class="headerlink" href="#id21" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>必要なRTCの起動後は、ナビゲーション（経路計画）システムを構成するために、
 各RTCのポートの接続を行います。
@@ -408,12 +408,12 @@ X Serverへ接続できませんので、エラーで終了します。一方、
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ /usr/local/openrtm/bin/path_plan.sh connect
 </pre></div>
 </div>
-</div>
-<div class="section" id="id22">
+</section>
+<section id="id22">
 <h3><a class="toc-backref" href="#id44">ナビゲーション（経路計画）の実行</a><a class="headerlink" href="#id22" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>RTCのポート接続が完了後、ナビゲーション（自己位置同定）を行います。
 本システムに係る5つのRTCをアクティベートしてください。</p>
-<div class="section" id="id23">
+<section id="id23">
 <h4>RTCのアクティベート<a class="headerlink" href="#id23" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>RTCのアクティベートの方法は、
 Webブラウザ、ターミナルでログイン後にコマンド入力、
@@ -430,8 +430,8 @@ Webブラウザ、ターミナルでログイン後にコマンド入力、
 <p>現在のデフォルト設定では、/usr/local/openrtm/testMap.yamlを使用しますが、
 他のナビゲーション地図を利用する場合には、
 /usr/local/openrtm/etc/MapServer.confのパラメータを適宜修正してください。</p>
-</div>
-<div class="section" id="id24">
+</section>
+<section id="id24">
 <h4>移動目標位置の入力<a class="headerlink" href="#id24" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>次に、NavigationManagerのナビゲーション地図上をマウスでクリックすることで、
 移動目標の入力を行います。</p>
@@ -443,15 +443,15 @@ Webブラウザ、ターミナルでログイン後にコマンド入力、
 <p>目標姿勢を確認後、「OK」ボタンをクリックして移動目標の位置と姿勢を決定してください。
 すると、下図に示すようにナビゲーション地図上に目標位置と姿勢が表示されます。</p>
 <img alt="_images/navi-goal-start.png" src="_images/navi-goal-start.png" />
-</div>
-<div class="section" id="id25">
+</section>
+<section id="id25">
 <h4>移動経路の生成<a class="headerlink" href="#id25" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>次に、目標位置までの経路生成を行います。
 経路生成は、NavigationManagerのGUIパネルの上部の「Plan Path」ボタンを押下することで
 生成することができます。</p>
 <p>経路生成の結果（成功したか否か）は、NavigationManagerの右下にあるメッセージパネルに表示されます。</p>
-</div>
-<div class="section" id="raspimouse2019">
+</section>
+<section id="raspimouse2019">
 <h4>RasPiMouse2019のナビゲーション<a class="headerlink" href="#raspimouse2019" title="このヘッドラインへのパーマリンク">¶</a></h4>
 <p>経路計画が正常に終了すれば、「Follow」ボタンを押下することで、
 RasPiMouse2019を移動させることができます。</p>
@@ -466,16 +466,16 @@ SimplePathFollowerコンポーネントがNavigationManager経由で
 推定精度はオドメトリの精度に大きく依存しており、車輪のスリップが発生すると
 正しいナビゲーションを行うことができません。</p>
 <p>そのため、システム動作のまえに車輪等のハードウェアの管理を適切に行うようにしてください。</p>
-</div>
-</div>
-<div class="section" id="id26">
+</section>
+</section>
+<section id="id26">
 <h3><a class="toc-backref" href="#id45">ナビゲーション（経路計画）システムの終了</a><a class="headerlink" href="#id26" title="このヘッドラインへのパーマリンク">¶</a></h3>
 <p>ナビゲーション（経路計画）システムの終了は、
 Webブラウザの第3セクションの「Stop」ボタンを押下するか、
 ターミナルでログイン後に下記のコマンド入力を行うことで行ってください。</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -488,7 +488,7 @@ Webブラウザの第3セクションの「Stop」ボタンを押下するか、
   <h3 id="searchlabel">クイック検索</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="検索" />
     </form>
     </div>
@@ -536,7 +536,7 @@ Webブラウザの第3セクションの「Stop」ボタンを押下するか、
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, AIST.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.3.0.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.1.2.
     </div>
   </body>
 </html>
